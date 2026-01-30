@@ -1,0 +1,98 @@
+
+{{#if (getVar "filter-type") "===" "mobile"}}
+
+    
+     <div class="filter-wrapper" sort-block>
+        <label label-sort class="form-label form-select--small"  for="sort">{{lang 'common.sorter.sort'}}:</label>
+        <select class="form-select" name="sort" id="all-sort-select" all-sort-select-mobile role="listbox" disabled>
+            {{#if (length category.subcategories) '===' 0 }}
+            <option value="custom_sort_order-asc" >{{lang 'common.default'}}</option>
+            {{/if}}
+            <option value="best_selling-asc" >{{lang 'common.sorter.top_sellers'}}</option>
+            {{!-- <option value="newest-asc" >{{lang 'common.sorter.newest'}}</option> --}}
+            {{!-- <option value="name-asc" >{{lang 'common.sorter.alpha_asc'}}</option> --}}
+            {{!-- <option value="name-desc" >{{lang 'common.sorter.alpha_desc'}}</option> --}}
+            {{!-- <option value="review-desc" >{{lang 'common.sorter.reviews'}}</option> --}}
+            <option value="price-asc" >{{lang 'common.sorter.price_asc'}}</option>
+            <option value="price-desc" >{{lang 'common.sorter.price_desc'}}</option>
+
+            {{#if result_count}}
+            <option value="relevance" {{#if sort '==' 'relevance'}}selected{{/if}}>{{lang 'common.sorter.relevance'}}</option>
+            {{/if}}
+        </select>
+    </div>
+    
+
+{{else}}
+    
+    <div class="filter-wrapper" sort-block>
+        <label class="form-label form-select--small" for="sort">{{lang 'common.sorter.sort_by'}}</label>
+        <select class="form-select" name="sort" id="all-sort-select" all-sort-select-pc {{getVar "no-filter"}} role="listbox" disabled>
+            {{#if (length category.subcategories) '===' 0 }}
+            <option value="custom_sort_order-asc" >{{lang 'common.default'}}</option>
+            {{/if}}
+            <option value="best_selling-asc" >{{lang 'common.sorter.top_sellers'}}</option>
+           {{!--  <option value="newest-asc" >{{lang 'common.sorter.newest'}}</option>
+            <option value="name-asc" >{{lang 'common.sorter.alpha_asc'}}</option>
+            <option value="name-desc" >{{lang 'common.sorter.alpha_desc'}}</option>
+            <option value="review-desc" >{{lang 'common.sorter.reviews'}}</option> --}}
+            <option value="price-asc" >{{lang 'common.sorter.price_asc'}}</option>
+            <option value="price-desc" >{{lang 'common.sorter.price_desc'}}</option>
+
+            {{#if result_count}}
+            <option value="relevance" {{#if sort '==' 'relevance'}}selected{{/if}}>{{lang 'common.sorter.relevance'}}</option>
+            {{/if}}
+        </select>
+    </div>
+    {{setVar "filter-type" ""}}
+
+    {{!-- Assign allowed category IDs --}}
+    {{assignVar "customBannerCategories" "74 76 70 75 52"}}
+
+    {{#contains (getVar "customBannerCategories") (concat category.id "")}}
+      <div class="sidebar-custom-banner">
+        <div class="custom-banner-text">Need something custom?</div>
+        <a href="tel:8002277713" class="call-box">
+          <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Phone Icon" />
+          <span>800.227.7713</span>
+        </a>
+      </div>
+    {{/contains}}
+
+
+    <style>
+    .sidebar-custom-banner {
+      background: linear-gradient(to right, #D00025, #8A1219);
+      padding: 10px;
+      color: white;
+      font-family: Arial, sans-serif;
+      width: 100%;
+      line-height: 1.2;
+      margin-top: 20px;
+    }
+
+    .sidebar-custom-banner .custom-banner-text {
+      font-family: "Oswald", Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      color: inherit;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .call-box {
+      display: inline-flex;
+      align-items: center;
+      background-color: #D4FF51;
+      padding: 5px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .call-box img {
+      width: 17px;
+      height: 17px;
+      margin-right: 12px;
+    }
+  </style>
+{{/if}}

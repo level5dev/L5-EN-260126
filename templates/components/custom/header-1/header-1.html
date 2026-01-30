@@ -1,0 +1,144 @@
+{{inject 'timestamp' (lang 'custom.header.top-navigation.shipping-header.header-2.expiry')}}
+
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+  {{#each (limit banners.top_metadata 1)}}
+  <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+      <div data-event-type="promotion-click">
+          {{{this.content}}}
+      </div>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+
+
+<header id="header-nav" class="header header-1 header-1--default" role="banner">
+  <div id="header--top--container" class="header-1__top container" style="padding-top: 1px;">
+      <div id="headerRotate" class="header-1__shipping-container">
+        {{#for 1 (lang 'custom.header.top-navigation.shipping-header.number-of-headers')}}
+
+          {{#if (lang (concat (concat 'custom.header.top-navigation.shipping-header.header-'$index)'.expiry')) '!==' 'null'}}
+            <div class="header--rotation">
+              
+              {{{lang (concat (concat 'custom.header.top-navigation.shipping-header.header-'$index)'.text')}}}
+              
+            </div>
+          {{else}}
+            <div class="header--rotation">
+              {{{lang (concat (concat 'custom.header.top-navigation.shipping-header.header-'$index)'.text')}}}
+
+            </div>
+          {{/if}}
+
+        {{/for}}
+      </div>
+      {{! prettier-ignore }}
+      {{> components/custom/header-1/header-1_top-nav}}
+  </div>
+
+  <div class="bg-paint-splatter nav-wrapper">
+    <div id="header--mid--container" class="header-1__mid container">
+      {{#if page_type '===' 'default'}}
+      <h1 class="header-logo">{{> components/common/store-logo}}</h1>
+      {{else}}
+      <div class="header-logo">{{> components/common/store-logo}}</div>
+      {{/if}}
+
+      <div class="navPages-container-title">
+        <p>{{lang 'common.finishing_you_can_trust'}}</p>
+        <!-- <p>FINISHING TOOLS YOU CAN TRUST™</p> -->
+      </div>
+
+      {{> components/custom/header-1/header-1_navigation}}
+
+      <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">{{lang 'common.close'}}</span>
+      </a>
+    </div>
+    <div id="search-form-mobile" class="header-1__search_mobile">
+      {{> components/common/quick-search-mobile}}
+    </div>
+  </div>
+
+  {{!-- Bottom --}}
+  <div class="header-1__bottom">
+      <div class="navPages-container container is-close" id="menu" data-menu>
+          <div class="navPages-placeholder"></div>
+          {{> components/custom/header-1/header-1_navigation-menu}}
+      </div>
+  </div>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}
+
+<script>
+
+$(document).ready(function() {
+  
+  function timer(event) {
+    const countdownElement = event.find('[data-countdown]');
+    if (countdownElement.length === 0) {
+      return;
+    }
+    
+    const curCount = new Date(new Date(parseInt(countdownElement.data('timestamp')) * 1000).toLocaleString("en-US", { timeZone: "America/New_York" })).getTime();
+    const x = setInterval(function () {
+      const distances = curCount - new Date().getTime();
+
+      if (distances < 0) {
+        clearInterval(x);
+        countdownElement.html("| EXPIRED");
+        return;
+      }
+
+      const time = {
+        day: Math.floor(distances / (1000 * 60 * 60 * 24)),
+        hour: Math.floor((distances % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minute: Math.floor((distances % (1000 * 60 * 60)) / (1000 * 60)),
+        second: Math.floor((distances % (1000 * 60)) / 1000)
+      };
+
+      for (const unit in time) {
+        event.find(`[data-count="${unit}s"]`).text(time[unit]);
+      }
+    }, 1000);
+  }
+
+  const headerRotationDivs = $('.header--rotation');
+  let currentIndex = 0;
+
+  function rotateSalesHeaders() {
+    const currentHeader = headerRotationDivs.eq(currentIndex);
+    const nextHeader = headerRotationDivs.eq((currentIndex + 1) % headerRotationDivs.length);
+    const countdownElement = currentHeader.find('[data-countdown]');
+
+    if (countdownElement.length > 0) {
+      const countdownTimestamp = parseInt(countdownElement.data('timestamp')) * 1000;
+      const currentTime = new Date().getTime();
+
+      if (countdownTimestamp <= currentTime) {
+        currentIndex = (currentIndex + 1) % headerRotationDivs.length;
+        rotateSalesHeaders();
+        return;
+      }
+    }
+
+    headerRotationDivs.removeClass('active');
+    currentHeader.addClass('active');
+    timer(currentHeader);
+    currentIndex = (currentIndex + 1) % headerRotationDivs.length;
+  }
+
+  setInterval(rotateSalesHeaders, 5000);
+
+  headerRotationDivs.each(function() {
+    timer($(this));
+  });
+});
+
+
+</script>

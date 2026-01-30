@@ -1,0 +1,336 @@
+<style>
+    
+/* No longer used, go to scss/custom/component/category/_its_custom-category-page.scss */
+    #product-block{
+        /* max-width: 1100px; */
+        width: 100%
+    }
+    
+    .grid {
+        /* background: #DDD;
+        */
+        max-width: 1500px;
+        min-width: 288px;
+        display: flex;
+        flex-wrap: wrap;
+        /* gap: 50px;
+        */
+        place-items: center;
+        margin-top: 10px;
+        margin-left: 15px;
+        width: 100%;
+    }
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+        margin-top: 10px;
+    }
+    /* ---- .grid-item ---- */
+    .product {
+        width: 25%;
+        min-width: 300px;
+        max-width: 390px;
+        height: 470px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-right: 20px;
+        overflow: unset;
+    }
+    
+    .flex-div-section {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .filter--section{
+        
+/*        margin-right: 25px;*/
+    }
+    .filter-list_container[mobile]{
+        display: none;
+    }
+    .filter-list_container[pc]{
+        display: flex;
+    }
+    
+    input[type='checkbox'] {
+        accent-color: red;
+        width: 20px;
+        height: 20px;
+    }
+    input[type="checkbox"]:active{
+        outline:none;
+    }
+    .filter--section_mobile {
+        display:none;
+    }
+    .sort--button {
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        background-color: #f9f9f9;
+        border-radius: 2px;
+        margin-left: 20px;
+        margin-bottom: 25px;
+        padding: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+        outline-color: transparent;
+        outline-style: solid;
+        box-shadow: 0 0 0 0.5px #b8000d;
+    }
+    .close--button {
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        margin-bottom: 30px;
+        background-color: #c60b2e;
+        color: #faebd7;
+        width: -webkit-fill-available;
+        padding: 5px;
+    }
+    div.filter-option {
+        display: flex;
+        align-items: center;
+    }
+    .filter-option {
+        font-family: "Oswald", Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        font-weight: inherit;
+    }
+    .form-select--small {
+        font-family: "Oswald", Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        font-weight: 200;
+        color: black;
+    }
+    @media only screen and (max-width: 1024px){
+        .product {
+            float: none;
+            width: 33%;
+            min-width: auto;
+            height: 530px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+            overflow: visible;
+        }
+        .actionBar.filter--section[mobile]{
+            display: block;
+        }
+        .filter-list_container[mobile]{
+            display: flex;
+            /*padding-left: 5%;
+            padding-right: 5%;*/
+        }
+        .filter-list_container[pc]{
+            display: none;
+        }
+        .filter--section {
+            display:none;
+        }
+        #product-filter-container {
+            display: block;
+        }
+        .actionBar.filter--section_mobile {
+            width:275px;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        .container{
+            max-width: 100%;
+            padding: 0 5rem;
+        }
+        #isotope-container {
+            margin: auto;
+        }
+        .lds-block {
+            width: 100% 
+        }
+    }
+    
+    @media only screen and (max-width: 860px) and (min-width: 600px){
+        .product {
+            float: none;
+            width: 43%;
+            min-width: auto;
+            height: 530px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+            margin-right: 0;
+            overflow: visible;
+        }
+        #product-block {
+                margin-right: -10px;
+                
+            }
+        #product-listing-container{
+            padding-right: 0px;
+        }
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .container{
+            max-width: 100%;
+            padding: 0;
+        }
+        .grid{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        #product-block{
+            margin: 0 1rem 0 1rem;
+        }
+        .product {
+            right: 0px ;
+            padding-right: 0px;
+            padding-left: 0px;
+            margin: auto;
+            width: 100%;
+            min-height: auto;
+            height:auto !important;
+        }
+        figure.card-figure {
+            overflow: visible;
+        }
+        #product-filter-container{
+            padding: 0 0.5rem;
+        }
+        .lds-block {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            /* position: absolute;
+            */
+        }
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 8px solid #3498db;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #3498db transparent transparent transparent;
+        }
+    }
+    @media only screen and (min-width: 1025px) {
+        .filter--section {
+            display:block;
+        }
+        #product-filter-container {
+            display:none;
+        }
+    }
+    .lds-ellipsis {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: auto;
+    }
+    .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #cacaca;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+    .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+    }
+    @keyframes lds-ellipsis1 {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes lds-ellipsis3 {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
+    }
+    @keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(24px, 0);
+        }
+    }
+    
+    /***************************************************************************/
+    .lds-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1200px;
+    }
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #3498db;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #3498db transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+</style>

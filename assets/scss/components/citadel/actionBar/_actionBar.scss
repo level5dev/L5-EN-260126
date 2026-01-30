@@ -1,0 +1,153 @@
+// =============================================================================
+// ACTION BAR (CSS)
+// =============================================================================
+.actionBar-section {
+  @media screen and (max-width: 1025px) {
+    width: 100%;
+  }
+  .form-field {
+    background-color: $input-bg-color;
+    border: $actionBar-form-field-border;
+    border-radius: $actionBar-form-field-radius;
+    width: 260px;
+    @media screen and (min-width: 1025px) and (max-width: 1439px) {
+      width: 220px;
+    }
+    &:hover {
+      border-color: stencilColor("input-border-color-active");
+    }
+  }
+
+  .form-label {
+    color: $actionBar-form-label-color;
+    font-size: $actionBar-form-label-fontSize;
+    line-height: $actionBar-form-label-lineHeight;
+    margin-bottom: 0;
+    padding-left: $actionBar-form-label-padding;
+  }
+
+  .form-input,
+  .form-select {
+    border: 0;
+    padding-left: $actionBar-form-input-padding;
+    width: auto;
+  }
+
+  .form-label,
+  .form-input,
+  .form-select {
+    display: inline-block;
+  }
+
+  .form-select {
+    color: stencilColor("color-textLink");
+    height: $input-small-height - remCalc($input-border-width * 2);
+    width: 27%;
+
+    &#all-sort-select {
+      // text-align: end;
+    }
+  }
+
+  .filter-wrapper {
+    border: 1px solid #e4e4e4;
+    padding: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+
+    @media screen and (min-width: 1025px) {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 0;
+    }
+
+    .form-label {
+      // position: absolute;
+      // pointer-events: none;
+      // width: 30%;
+      // width: 25%;
+      padding: 0 0.3rem;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: black;
+    }
+    .form-select {
+      width: 67%;
+      padding: 0 1rem 0rem 0rem;
+      color: #666666;
+      background-position: right;
+      // font-family: "Oswald", Arial, Helvetica, sans-serif;
+      font-weight: 350;
+      font-size: remCalc(17px);
+      text-align: end;
+      padding-right: 50px;
+      @media screen and (min-width: 1025px) and (max-width: 1439px) {
+        padding-right: 35px;
+      }
+
+      &.nice-select {
+        display: flex;
+        // justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
+        background-image: none;
+        width: 167px;
+        @media screen and (min-width: 1025px) and (max-width: 1439px) {
+          width: 136px;
+          span {
+            overflow: hidden;
+          }
+        }
+      }
+
+      // padding-left: 50px;
+    }
+  }
+
+  .filter-mobile-wrapper {
+    display: grid;
+    gap: 1rem;
+
+    // grid-template-columns: 1fr 1fr;
+
+    // forces equal width
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+
+    .filter-wrapper {
+      // margin: 0rem 0.4rem;
+      width: 100%;
+      border: 1px solid #666666;
+      display: flex;
+      &.filter-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      @media screen and (max-width: 1023px) {
+        .form-label {
+          // width: 25%;
+        }
+        .form-select {
+          width: 70%;
+        }
+      }
+    }
+    @media screen and (max-width: 480px) {
+      width: 100%;
+      .form-select {
+        padding: 0rem;
+
+        width: 70%;
+        text-align: end;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .actionBar {
+    margin: 1rem 0;
+  }
+}

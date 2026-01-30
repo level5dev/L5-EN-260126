@@ -1,0 +1,3 @@
+{
+  "components/common/subscription-form": "<h3 class=\"footer-info-heading\">{{lang 'newsletter.subscribe'}}</h3>\r\n<p class=\"footer-info-text\">{{lang 'newsletter.subscribe_intro'}}</p>\r\n\r\n<div id=\"omnisend-embedded-v2-66db6ce8ac6811011a083f1c\"></div>\n"
+}

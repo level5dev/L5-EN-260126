@@ -1,0 +1,84 @@
+<div class="form-field" data-product-attribute="set-radio" role="radiogroup" aria-labelledby="radio-group-label-{{id}}">
+    <label class="form-label form-label--alternate form-label--inlineSmall radio-label" id="radio-group-label-{{id}}">
+        {{ this.display_name }}{{assignVar "hidesign" "2225 2218"}}{{#contains (getVar "hidesign") (concat id "")}}{{else}}:{{/contains}}
+
+        {{!-- Assign allowed variants IDs --}}
+        {{assignVar "toolTypes" "2219 2220 2221 2222 2223 2225 2218 2213 2214 2215 2216 2226"}}
+
+        {{#contains (getVar "toolTypes") (concat id "")}}
+            <a class="link learn-more-tools" data-tooltype="{{id}}" data-reveal-id="tooltype-popup-{{id}}">
+                <img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/62c74f21c958f0a26728c276ba61efa14a775f59.png" alt="Info Icon" class="info-icon" />Learn more
+            </a>
+            {{#if id '==' 2225}}
+                {{> components/custom/tool-types/automatic-taper toolid=id}}
+            {{/if}}
+            {{#if id '==' 2218}}
+                {{> components/custom/tool-types/automatic-taper toolid=id}}
+            {{/if}}
+
+            {{#if id '==' 2219}}
+                {{> components/custom/tool-types/handle-style toolid=id}}
+            {{/if}}
+            {{#if id '==' 2213}}
+                {{> components/custom/tool-types/handle-style toolid=id}}
+            {{/if}}
+
+            {{#if id '==' 2220}}
+                {{> components/custom/tool-types/flat-box-style toolid=id}}
+            {{/if}}
+            {{#if id '==' 2214}}
+                {{> components/custom/tool-types/flat-box-style toolid=id}}
+            {{/if}}
+
+            {{#if id '==' 2221}}
+                {{> components/custom/tool-types/flat-box-sizes toolid=id}}
+            {{/if}}
+            {{#if id '==' 2215}}
+                {{> components/custom/tool-types/flat-box-sizes toolid=id}}
+            {{/if}}
+
+            {{#if id '==' 2222}}
+                {{> components/custom/tool-types/applicator-style toolid=id}}
+            {{/if}}
+            {{#if id '==' 2216}}
+                {{> components/custom/tool-types/applicator-style toolid=id}}
+            {{/if}}
+
+            {{#if id '==' 2223}}
+                {{> components/custom/tool-types/corner-finishers toolid=id}}
+            {{/if}}
+            {{#if id '==' 2226}}
+                {{> components/custom/tool-types/corner-finishers toolid=id}}
+            {{/if}}
+        {{else}}
+            {{> components/common/requireness-msg}}
+        {{/contains}}        
+    </label>
+
+    {{#unless required}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_radio_{{id}}_none"
+            name="attribute[{{id}}]"
+            value=""
+            checked="{{#if defaultValue '==' ''}}checked{{/if}}"
+        >
+        <label class="form-label" for="attribute_radio_{{id}}_none">{{lang 'products.none'}}</label>
+    {{/unless}}
+
+    {{#each this.values}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_radio_{{../id}}_{{id}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            {{#if selected}}
+                checked
+                data-default
+            {{/if}}
+            {{#if ../required}}required{{/if}}>
+        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_radio_{{../id}}_{{id}}">{{this.label}}</label>
+    {{/each}}
+</div>

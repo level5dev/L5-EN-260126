@@ -1,0 +1,124 @@
+<div data-its-tab="Schematics">
+    <h2 class="tab-content-header">{{lang 'custom.page.parts-components.schematics'}}</h2>
+    <div class="schematics">
+        {{#for 1 (lang 'custom.page.pdp.schematic_part_components.total')}}
+            <div class="schematic">
+                <div class="schematic__image">
+                    <img src="{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.schematic_link')}}" alt="{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.title')}}">
+                </div>
+                <div class="schematic__content">
+                    <h3 class="h5">{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.name')}}</h3>
+                    <a class="button" href="{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.schematic_link')}}">{{lang 'custom.page.parts-components.table.schematic'}}</a>
+                    {{#if (lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.part_link')) '!==' ''}}
+                    <a class="button" href="{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.part_link')}}">{{lang 'custom.page.parts-components.table.parts_list'}}</a>
+                    {{/if}}
+                    <a class="button button--pdf" target="_blank" rel="noreferrer" href="{{lang (concat (concat 'custom.page.pdp.schematic_part_components.item_' $index) '.pdf')}}">{{lang 'custom.page.parts-components.table.download_pdf'}}</a>
+                </div>
+            </div> 
+        {{/for}}
+{{!--
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/tube-assembly-schematic.gif" alt="Tube Assembly Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Tube Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/tube-assembly-schematic.gif">Schematic</a>
+                <a class="button" href="/content/schematics/its-3-w-handle/tube-assembly-parts-list.gif">Parts List</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/tube-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/taper-wheel-assembly-schematic.gif" alt="Taper Wheel Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Taper Wheel Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/taper-wheel-assembly-schematic.gif">Schematic</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/taper-wheel-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-schematic.gif" alt="Head Assembly (\"Quick Clean\" Head) Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Head Assembly ("Quick Clean" Head)</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-schematic.gif">Schematic</a>
+                <a class="button" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-parts-list.gif">Parts List</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/gooser-assembly-schematic.gif" alt="Gooser Assembly Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Gooser Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/gooser-assembly-schematic.gif">Schematic</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/gooser-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/drive-dog-assembly-schematic.gif" alt="Drive Dog Assembly Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Drive Dog Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/drive-dog-assembly-schematic.gif">Schematic</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/drive-dog-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/cutter-chain-assembly-schematic.gif" alt="Cutter Chain Assembly Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Cutter Chain Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/cutter-chain-assembly-schematic.gif">Schematic</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/cutter-chain-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/tube-assembly-schematic.gif" alt="Tube Assembly Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Tube Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/tube-assembly-schematic.gif">Schematic</a>
+                <a class="button" href="/content/schematics/its-3-w-handle/tube-assembly-parts-list.gif">Parts List</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/tube-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/taper-wheel-assembly-schematic.gif" alt="Taper Wheel Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Taper Wheel Assembly</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/taper-wheel-assembly-schematic.gif">Schematic</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/taper-wheel-assembly.pdf">Download PDF</a>
+            </div>
+        </div>
+
+        <div class="schematic">
+            <div class="schematic__image">
+                <img src="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-schematic.gif" alt="Head Assembly (\"Quick Clean\" Head) Schematic">
+            </div>
+            <div class="schematic__content">
+                <h3 class="h5">Head Assembly ("Quick Clean" Head)</h3>
+                <a class="button" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-schematic.gif">Schematic</a>
+                <a class="button" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head-parts-list.gif">Parts List</a>
+                <a class="button button--pdf" target="_blank" rel="noreferrer" href="/content/schematics/its-3-w-handle/head-assembly-quick-clean-head.pdf">Download PDF</a>
+            </div>
+        </div>
+        --}}
+    </div>
+</div>

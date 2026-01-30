@@ -1,0 +1,233 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+{{assignVar "hasVideo" "false"}} {{#filter product.custom_fields
+'__product-blog-video' property='name'}} {{assignVar "hasVideo" "true"}}
+{{/filter}} {{inject "hasVideo" (getVar "hasVideo")}}
+
+<h2>{{lang 'products.product_info'}}</h2>
+
+<div class="tabs-wrapper tabs-desktop">
+  <ul class="container tabs" data-tab data-accTab>
+    {{!-- {{#if product.description}}
+    <li class="tab is-active" data-accTabId="tab-description">
+      <a class="tab-title" href="#tab-description"
+        >{{lang 'products.description'}}</a
+      >
+    </li>
+    {{/if}} --}} {{#if (getVar "hasVideo") "===" "true"}}
+    <li
+      class="tab tab--videos {{#unless product.description}}is-active{{/unless}}"
+      data-accTabId="tab-videos"
+    >
+      <a class="tab-title" href="#tab-videos"
+        >{{lang 'products.videos.header'}}</a
+      >
+    </li>
+    {{/if}}
+
+    <li
+      class="tab tab--shipping-returns {{!-- #unless (getVar 'hasVideo') '===' 'true'}}is-active{{/unless --}}"
+      data-accTabId="tab-shipping-returns"
+    >
+      <a class="tab-title" href="#tab-shipping-returns"
+        >{{lang 'common.shipping_returns'}}</a
+      >
+    </li>
+
+    {{#if product.warranty}}
+    <li class="tab tab--warranty" data-accTabId="tab-warranty">
+      <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+    </li>
+    {{/if}}
+
+    <li class="tab tab--wear-parts hide" data-accTabId="tab-wear-parts">
+      <a class="tab-title" href="#tab-wear-parts"
+        >{{lang 'products.wear_parts'}}</a
+      >
+    </li>
+
+    {{> components/custom/schematic/schematic-tab }}
+  </ul>
+</div>
+
+<div class="tabs-contents">
+  {{!-- {{#if product.description}}
+  <div data-tabcon="tab-description">
+    <a
+      class="dropdown-toggle w-dropdown-toggle accordion-mobile"
+      data-accordion="tab-description"
+    >
+      <div class="accordion-title white">{{lang 'products.description'}}</div>
+      <i
+        class="fas fa-sharp fa-chevron-right"
+        style="color: #ffffff"
+        accordion-ddown
+      ></i>
+    </a>
+    <div
+      class="tab-content tab-content--description is-active"
+      id="tab-description"
+      accordion-mobile-content
+    >
+      <div class="container">{{{product.description}}}</div>
+    </div>
+  </div>
+  {{/if}} --}} {{#if (getVar "hasVideo") "===" "true"}}
+  <div data-tabcon="tab-videos">
+    <a
+      class="dropdown-toggle w-dropdown-toggle accordion-mobile"
+      data-accordion="tab-videos"
+    >
+      <div class="accordion-title white">{{lang 'products.videos.header'}}</div>
+      <i
+        class="fas fa-sharp fa-chevron-right"
+        style="color: #ffffff"
+        accordion-ddown
+      ></i>
+    </a>
+    <div
+      class="container tab-content tab-content--videos {{#unless product.description}}is-active{{/unless}} pdp-content-body"
+      id="tab-videos"
+      accordion-mobile-content
+    >
+      <h3 class="pdp-content-header">Related Videos</h3>
+      <div class="video-playback-wrapper">
+        <div class="video-playback-container">
+          {{#each product.custom_fields}} {{#if this.name
+          '__product-blog-video'}} {{#unless (getVar "isMatch") 0}} {{assignVar
+          "isMatch" 0}} {{#each (split this.value '>>')}} {{#with (trim this)}}
+          {{#if @index '===' 0}}
+          <iframe
+            id="main-video"
+            src="https://www.youtube.com/embed/{{this}}"
+            frameborder="0"
+            allowfullscreen
+          >
+          </iframe>
+          {{else}}
+          <h3
+            class="pdp-content-header"
+            playback-title
+            style="margin-top: 15px"
+          >
+            {{this}}
+          </h3>
+          {{/if}} {{/with}} {{/each}} {{/unless}} {{/if}} {{/each}}
+        </div>
+
+        <ul class="videoView-thumbnails-flex">
+          {{#filter product.custom_fields '__product-blog-video'
+          property='name'}}
+          <div class="videoView--thumbnail-wrapper">
+            <li class="videoView-thumbnail">
+              {{#each (split this.value '>>')}} {{#with (trim this)}} {{#if
+              @index '===' 0}}
+              <a
+                class="videoView-thumbnails-link"
+                data-type="video"
+                onclick="playVideo('https://www.youtube.com/embed/{{this}}', this)"
+              >
+                <div
+                  class="playback-thumbnails"
+                  style="background-image: url('https://img.youtube.com/vi/{{this}}/0.jpg');"
+                ></div>
+                <!-- <div class="videoView-img-wrapper">
+                  <img
+                    src="{{cdn 'img/loading.svg'}}"
+                    data-srcset="https://img.youtube.com/vi/{{this}}/0.jpg"
+                    data-src="https://img.youtube.com/vi/{{this}}/0.jpg"
+                    data-sizes="auto"
+                    class="lazyload"
+                    alt="{{title_short}}"
+                    title="{{title_long}}"
+                  />
+                </div> -->
+              </a>
+            </li>
+            {{else}}
+            <p class="videoView-tittle">{{this}}</p>
+            {{/if}} {{/with}} {{/each}}
+          </div>
+          {{/filter}}
+        </ul>
+      </div>
+
+      <div class="video-playback-wrapper mobile">
+        <ul class="videoView-thumbnails mobile">
+          {{#filter product.custom_fields '__product-blog-video' property='name'}}
+            <li class="videoView-thumbnail">
+            {{#each (split this.value '>>')}}
+                {{#with (trim this)}}  
+                    {{#if @index '===' 0}}
+                        <a class="videoView-thumbnail-link" data-type="video" data-video-id="{{this}}">
+                          <div
+                          class="playback-thumbnails"
+                          style="background-image: url('https://img.youtube.com/vi/{{this}}/0.jpg');"
+                        ></div>
+                        </a>  
+                    {{else}}
+                        <p class="videoView-tittle">{{this}}</p>
+                    {{/if}}
+                {{/with}}  
+            {{/each}}
+            </li>
+          {{/filter}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {{> components/products/modals/videoView type='tab'}} {{/if}} {{>
+  components/custom/product/tabs/shipping-returns}} {{#if product.warranty}}
+  <div data-tabcon="tab-warranty" data-accPosition="first">
+    <a
+      class="dropdown-toggle w-dropdown-toggle accordion-mobile"
+      data-accordion="tab-warranty"
+    >
+      <div class="accordion-title white">{{lang 'products.warranty'}}</div>
+      <i
+        class="fas fa-sharp fa-chevron-right"
+        style="color: #ffffff"
+        accordion-ddown
+      ></i>
+    </a>
+    <div
+      class="container tab-content tab-content--warranty pdp-content-body"
+      id="tab-warranty"
+      accordion-mobile-content
+    >
+      {{{product.warranty}}}
+    </div>
+  </div>
+  {{/if}} {{> components/custom/schematic/schematic-product }} {{>
+  components/custom/product/tabs/wear-parts }}
+</div>
+<script>
+  $(window)
+    .on("resize", function () {
+      //if (window.innerWidth <= 479) {
+      $(".tabs-contents [data-tabcon]")
+        .sort((a, b) => $(a).css("order") - $(b).css("order"))
+        .last()
+        .find(".tab-content")
+        .addClass("last-child");
+      //}
+    })
+    .trigger("resize");
+
+  if ("{{product.category}}".includes("Automatic Tool Sets")) {
+    $('[data-acctabid="tab-wear-parts"]').removeClass("hide");
+  } else {
+    $('[data-acctabid="tab-wear-parts"]').remove();
+    $('[data-tabcon="tab-wear-parts"]').remove();
+  }
+
+  function playVideo(videoSrc, element) {
+    const videoElement = document.getElementById("main-video");
+    videoElement.src = videoSrc;
+    var nextTitle = $(element).parent().parent().find('.videoView-tittle').text()
+    // console.log(nextTitle)
+    $('[playback-title]').text(nextTitle)
+  }
+</script>

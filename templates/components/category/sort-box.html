@@ -1,0 +1,88 @@
+<fieldset class="form-fieldset actionBar-section">
+    <div class="form-field">
+        {{!-- <label class="form-label" for="sort">{{lang 'common.sorter.sort_by'}}</label>
+        <select class="form-select form-select--small " name="sort" id="sort" role="listbox">
+            <option value="featured" {{#if sort '==' 'featured'}}selected{{/if}}>{{lang 'common.sorter.featured'}}</option>
+            <option value="newest" {{#if sort '==' 'newest'}}selected{{/if}}>{{lang 'common.sorter.newest'}}</option>
+            <option value="bestselling" {{#if sort '==' 'bestselling'}}selected{{/if}}>{{lang 'common.sorter.top_sellers'}}</option>
+            <option value="alphaasc" {{#if sort '==' 'alphaasc'}}selected{{/if}}>{{lang 'common.sorter.alpha_asc'}}</option>
+            <option value="alphadesc" {{#if sort '==' 'alphadesc'}}selected{{/if}}>{{lang 'common.sorter.alpha_desc'}}</option>
+            <option value="avgcustomerreview" {{#if sort '==' 'avgcustomerreview'}}selected{{/if}}>{{lang 'common.sorter.reviews'}}</option>
+            <option value="priceasc" {{#if sort '==' 'priceasc'}}selected{{/if}}>{{lang 'common.sorter.price_asc'}}</option>
+            <option value="pricedesc" {{#if sort '==' 'pricedesc'}}selected{{/if}}>{{lang 'common.sorter.price_desc'}}</option>
+            {{#if result_count}}
+                <option value="relevance" {{#if sort '==' 'relevance'}}selected{{/if}}>{{lang 'common.sorter.relevance'}}</option>
+            {{/if}}
+        </select> --}}
+        <div class="filter-wrapper" sort-block="" style="background-color: unset;">
+            <label class="form-label form-select--small" for="sort">Sort By:</label>
+            {{!-- <select class="form-select" name="sort" id="sort" role="listbox" style="display: none;">
+                <option value="featured" {{#if sort '==' 'featured'}}selected{{/if}}>{{lang 'common.sorter.featured'}}</option>
+                <option value="newest" {{#if sort '==' 'newest'}}selected{{/if}}>{{lang 'common.sorter.newest'}}</option>
+                <option value="bestselling" {{#if sort '==' 'bestselling'}}selected{{/if}}>{{lang 'common.sorter.top_sellers'}}</option>
+                <option value="alphaasc" {{#if sort '==' 'alphaasc'}}selected{{/if}}>{{lang 'common.sorter.alpha_asc'}}</option>
+                <option value="alphadesc" {{#if sort '==' 'alphadesc'}}selected{{/if}}>{{lang 'common.sorter.alpha_desc'}}</option>
+                <option value="avgcustomerreview" {{#if sort '==' 'avgcustomerreview'}}selected{{/if}}>{{lang 'common.sorter.reviews'}}</option>
+                <option value="priceasc" {{#if sort '==' 'priceasc'}}selected{{/if}}>{{lang 'common.sorter.price_asc'}}</option>
+                <option value="pricedesc" {{#if sort '==' 'pricedesc'}}selected{{/if}}>{{lang 'common.sorter.price_desc'}}</option>
+                {{#if result_count}}
+                    <option value="relevance" {{#if sort '==' 'relevance'}}selected{{/if}}>{{lang 'common.sorter.relevance'}}</option>
+                {{/if}}
+            </select> --}}
+            <div class="nice-select form-select">
+                <span class="current">Default</span><ul class="list">
+                    <li class="option" data-value="featured" {{#if sort '==' 'featured'}}selected{{/if}}>{{lang 'common.sorter.featured'}}</li>
+                    <li class="option" data-value="newest" {{#if sort '==' 'newest'}}selected{{/if}}>{{lang 'common.sorter.newest'}}</li>
+                    <li class="option" data-value="bestselling" {{#if sort '==' 'bestselling'}}selected{{/if}}>{{lang 'common.sorter.top_sellers'}}</li>
+                    <li class="option" data-value="alphaasc" {{#if sort '==' 'alphaasc'}}selected{{/if}}>{{lang 'common.sorter.alpha_asc'}}</li>
+                    <li class="option" data-value="alphadesc" {{#if sort '==' 'alphadesc'}}selected{{/if}}>{{lang 'common.sorter.alpha_desc'}}</li>
+                    <li class="option" data-value="avgcustomerreview" {{#if sort '==' 'avgcustomerreview'}}selected{{/if}}>{{lang 'common.sorter.reviews'}}</li>
+                    <li class="option" data-value="priceasc" {{#if sort '==' 'priceasc'}}selected{{/if}}>{{lang 'common.sorter.price_asc'}}</li>
+                    <li class="option" data-value="pricedesc" {{#if sort '==' 'pricedesc'}}selected{{/if}}>{{lang 'common.sorter.price_desc'}}</li>
+                    {{#if result_count}}
+                        <li class="option" data-value="relevance" {{#if sort '==' 'relevance'}}selected{{/if}}>{{lang 'common.sorter.relevance'}}</li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<script>
+    $('[sort-block]').on('click', function(){
+        $('.nice-select',$(this)).toggleClass('open')
+    })
+
+    $('[data-value]').on('click', function() {
+        let selectedVal = $(this).data('value')
+        let sortName = $(this).text()
+        //console.log(selectedVal)
+        //console.log(selectedName)
+        selectedName(sortName)
+        // var currentUrl = window.location.href;
+        // var newUrl = currentUrl.replace(/(sort=)[^\&]+/, '$1' + selectedVal);
+        // window.location.href = newUrl;
+
+        var currentUrl = window.location.href;
+        if (currentUrl.indexOf('sort=') === -1) {
+            // If 'sort' parameter is not present, add it
+            currentUrl += (currentUrl.indexOf('?') === -1 ? '?' : '&') + 'sort=' + selectedVal;
+        } else {
+            // If 'sort' parameter is present, update its value
+            currentUrl = currentUrl.replace(/(sort=)[^\&]+/, '$1' + selectedVal);
+        }
+        var newUrl = currentUrl.replace(/(sort=)[^\&]+/, '$1' + selectedVal);
+        window.location.href = newUrl;
+    })
+
+    var sortValue = new URLSearchParams(window.location.search).get("sort");
+    //console.log($(`[data-value="${sortValue}"]`).text())
+    //$('.nice-select .current').text($(`[data-value="${sortValue}"]`).text());
+    function selectedName(name) {
+        //console.log(name)
+        $('.nice-select .current').text(name);
+    }
+
+    if (sortValue) {
+        selectedName($(`[data-value="${sortValue}"]`).text())
+    }
+</script>

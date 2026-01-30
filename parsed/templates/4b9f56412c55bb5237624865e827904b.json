@@ -1,0 +1,3 @@
+{
+  "components/custom/product/info-contact": "<div class=\"more-info-contact\">\n        <p>{{lang 'forms.question_call'}} <a href=\"tel:+18002277713\">800.227.7713</a></p>\n</div>\n"
+}

@@ -1,0 +1,170 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>   
+<script>
+    (function() {
+        const $slideSetContent = document.querySelector('[set-content-slide][type="pc"]');
+        const $slideSetContentMobile = document.querySelector('[set-content-slide][type="mobile"]');
+        let $slideItem = document.querySelectorAll('ul.pdp-template__set-items li');
+        const arrMob = [];
+        let count = 0;
+        let temp = "";
+        if ($slideItem.length > 0) {
+            $slideItem.forEach((item) => {
+                if (count >= 4) {
+                    count = 0;
+                    arrMob.push(temp);
+                    temp = "";
+                }
+                const textElem = item.querySelector(".pdp-template__set-item-title");
+                const imgElem = item.querySelector(".pdp-template__set-item-image img");
+                const skuElem = item.querySelector("p.pdp-template__set-item-sku");
+
+                let a_link = "";
+                let a_tag = "div";
+                let title_class_adition = "no-link";
+                let img_src = "";
+                let sku_num = "";
+                if(textElem.hasAttribute("href")){
+                    a_link = textElem.getAttribute("href");
+                    a_tag = "a";
+                    title_class_adition = "";
+                }
+                if(imgElem.hasAttribute("src")){
+                    img_src = imgElem.getAttribute("src");
+                }
+                if(skuElem !== null){
+                    sku_num = skuElem.textContent;
+                }
+                const template = `
+                    <div class="pdp-fake-options__card-item " >
+                    <${a_tag} href="${a_link}" class="pdp-fake-options__card-link" title="${textElem.textContent}">
+                    <figure class="pdp-fake-options__card-img-container">
+                    <img class="pdp-fake-options__card-img js-fake-opt-img" src="${img_src}">
+                    <div class="set-content_item-wrapper">
+                        <figcaption class="set-content_item-title ${title_class_adition}">
+                        ${textElem.textContent.toUpperCase()}
+                        </figcaption>
+                        <p class="set-content_item-sku">
+                        ${sku_num}
+                        </p>
+                    </div>
+                    </figure>
+                    </${a_tag}>
+                    </div>`
+                temp += `<div class="set-content_wrapper">${template}</div>`;
+                count += 1;
+                if (textElem.textContent.length > 0) {
+                    $slideSetContent.innerHTML +=
+                        `<div data-product-slide class='productCarousel-slide'>
+                    <div class="set-content_wrapper">
+                    ${template}
+                    </div>
+                    </div>`;
+                }
+            });
+            arrMob.push(temp);
+        } else {
+            document.querySelector(".set-contents-container").style.display = "none";
+        }
+        arrMob.forEach(item => {
+            $slideSetContentMobile.innerHTML +=
+                `<div data-product-slide class='productCarousel-slide'>
+    <div class="set-content_wrapper-grid">
+    ${item}
+    </div>
+    </div>`;
+        });
+        
+    })();
+
+    if (document.getElementById('tab-credit')) {
+        document.getElementById('tab-credit').addEventListener('click', function() {
+            document.getElementById('tab-click').classList.remove('w--current')
+            document.getElementById('tab-credit').classList.add('w--current')
+            document.querySelector('div[data-w-tab="Tab 1"]').classList.remove('w--tab-active')
+            document.querySelector('div[data-w-tab="Tab 2"]').classList.add('w--tab-active')
+        })
+    }
+    if (document.getElementById('tab-click')) {
+        document.getElementById('tab-click').addEventListener('click', () => {
+            document.getElementById('tab-credit').classList.remove('w--current')
+            document.getElementById('tab-click').classList.add('w--current')
+            document.querySelector('div[data-w-tab="Tab 2"]').classList.remove('w--tab-active')
+            document.querySelector('div[data-w-tab="Tab 1"]').classList.add('w--tab-active')
+        })
+    }
+
+    function formSubmit(){
+      let skunumber = document.getElementById("product-sku").value;
+      let name = document.getElementById("name").value;
+      let phone = '';
+      let email = '';
+      {{#if product.price.without_tax.value '>' 1499}}
+        phone = document.getElementById("phone").value;
+      {{else}}
+        email = document.getElementById("email").value;
+        {{#if product.price.without_tax.value '<' 100}}
+        phone = document.getElementById("phone2").value;
+        {{/if}}
+      {{/if}}
+      console.log(name, phone, email)
+      const options = {
+        method: 'POST',
+        url: 'https://b2mb9cayba.execute-api.us-east-2.amazonaws.com/prod/inStockNotiRegister',
+        // url: 'https://b2mb9cayba.execute-api.us-east-2.amazonaws.com/inStockNotiTesting',
+        headers: {
+        'content-type': 'application/json',
+        },
+        params: {
+            sku: skunumber,
+            // sku: '6-100',
+            name: name,
+            email: email,
+            phone: phone
+        }
+      };
+      
+      axios
+        .request(options)
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+        
+        document.getElementById("instruction").classList.add("success");
+        document.getElementById("responseMsg").classList.remove("success");
+        document.getElementById("noti-form").classList.add("success");
+        
+    }
+    
+    {{#if product.price.without_tax.value '>' 1499}}
+        const fnc_btn = document.querySelector(".button.button--primary.finance");
+        const fnc_modal = document.querySelector(".financing-section#modal-1");
+        if(fnc_btn){
+          fnc_btn.addEventListener("click", function(){
+            fnc_modal.classList.remove("hide");
+          });  
+        }
+        
+        document.querySelector(".modal-exit-button.financing.landing").addEventListener("click", function(){
+            fnc_modal.classList.add("hide");
+        });
+        
+        let tab_finance = document.querySelectorAll(".w-tab-link");
+        tab_finance.forEach((tab) =>{
+            tab.addEventListener("click", function(){
+                const tb = document.querySelector(`#${tab.attributes["aria-controls"].value}`);
+                document.querySelectorAll(".w-tab-pane").forEach(t =>{
+                    t.classList.remove("w--tab-active");
+                });
+                tab_finance.forEach(btn =>{
+                    btn.classList.remove("w--current");
+                });
+                tab.classList.add("w--current");
+                tb.classList.add("w--tab-active");
+
+            });
+        });
+    {{/if}}
+</script>

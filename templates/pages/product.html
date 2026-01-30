@@ -1,0 +1,252 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+cart: true
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+    <div class="container">
+        <div class="product-page--breadcrumb breadcrumb-pc">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+        <div class="product-page--breadcrumb breadcrumb-mobile">
+            {{> components/custom/product/product-breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+    
+    
+    </div>
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="https://schema.org/Product">
+        {{> components/products/product-view }}
+
+        {{{region name="product_below_content"}}}
+
+        <div class="container">
+            {{#if product.videos.list.length}}
+                
+            {{/if}}
+
+            {{#if theme_settings.its.pdp_carousel_tabs}}
+                {{> components/products/tabs}}
+            {{else}}
+                {{#if product.related_products}}
+                    <h2 class="productCarousel-heading productCarousel-heading--related h1">{{lang 'products.related_products'}}</h2>
+                    {{#if settings.data_tag_enabled}}
+                        {{> components/products/carousel products=product.related_products columns=6 list="Related Products"}}
+                    {{else}}
+                        {{> components/products/carousel products=product.related_products columns=6 }}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            {{{region name="product_below_related"}}}
+
+            {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{/all}}
+
+            {{{region name="videos_and_articles"}}}
+        </div>
+    </div>
+    {{> components/custom/photoswipe}}
+    {{> components/products/schema}}
+{{/partial}}
+
+{{> layout/base container_active=false}}
+
+<style>
+.tooltype-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* .modal-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+} */
+
+/* .modal-content {
+  position: relative;
+  background: white;
+  padding: 2rem;
+  z-index: 10000;
+  max-width: 500px;
+  width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+} */
+
+/* .modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+} */
+
+.hidden {
+  display: none;
+}
+
+.learn-more-tools {
+    font-family: Oswald;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.learn-more-tools .info-icon {
+  width: 10px;
+  height: 10px;
+  margin-right: 3px;
+}
+
+.tooltype--popup {
+    z-index: 9999999999;
+}
+
+.tooltype--popup h1 {
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 479px) {
+  .tooltype--popup h1,
+  .tooltype--popup h2 {
+    font-size: 1.5rem;
+  }
+}
+
+
+</style>
+
+<style>
+.taper-images-wrapper {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.taper-image {
+  flex: 1;
+  height: 180px; /* adjust as needed */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media screen and (max-width: 479px) {
+    height: 89px;
+  }
+}
+
+.video-section {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #b8000d transparent;
+}
+
+.video-embed {
+flex: 0 0 auto; /* prevent shrinking */
+width: 448px;
+height: 252px;
+@media screen and (max-width: 479px) {
+  height: auto;
+  width: 220px;
+}
+}
+
+.video-embed iframe {
+width: 100%;
+height: 100%;
+border-radius: 6px;
+border: none;
+}
+
+.flatbox-details {
+margin-top: 2rem;
+}
+
+.flatbox-details p {
+/* margin-bottom: 0.75rem; */
+}
+
+.flatbox-details ul {
+padding-left: .5rem;
+margin-bottom: 1.5rem;
+}
+
+.flatbox-details ul li {
+/* margin-bottom: 0.5rem; */
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Hide the div with ID omnisend-dynamic-container when videoView-thumbnail or productView-thumbnail--video are clicked
+    $(document).on('click', '.videoView-thumbnail, .productView-thumbnail--video', function() {
+        $('#omnisend-dynamic-container').hide();
+    });
+    
+    // Show the div with ID omnisend-dynamic-container when videoView-close is clicked
+    $(document).on('click', '.videoView-close', function() {
+        $('#omnisend-dynamic-container').show();
+    });
+});
+</script>
+
+<script>
+  $(document).ready(function () {
+    // Open modal
+    $('.learn-more-tools').on('click', function (e) {
+      e.preventDefault();
+      const toolId = $(this).data('tooltype'); // expects data-tooltype="1234"
+      const $modal = $('#tooltype-popup-' + toolId);
+      if ($modal.length) {
+        $modal.removeClass('hidden');
+      }
+    });
+
+    // Close modal (via button or overlay)
+    $('.tooltype-modal').on('click', '.modal-close, .modal-overlay', function () {
+      $(this).closest('.tooltype-modal').addClass('hidden');
+    });
+
+    // Close modal with ESC key
+    $(document).on('keydown', function (e) {
+      if (e.key === 'Escape') {
+        $('.tooltype-modal').addClass('hidden');
+      }
+    });
+  });
+</script>

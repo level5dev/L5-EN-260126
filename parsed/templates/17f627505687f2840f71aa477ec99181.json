@@ -1,0 +1,3 @@
+{
+  "components/custom/schematic/table-header": "\n<div class=\"grid-item heading sch--col-mob\">{{lang 'custom.page.parts-components.table.schematic'}} #</div>\n<div class=\"grid-item heading sch--col-mobile over-padding-left\">#</div>\n<div class=\"grid-item heading\">{{lang 'custom.page.parts-components.table.part'}} <span class=\"sch--col-mob\"> #</span></div>\n<div class=\"grid-item heading sch-item-desc\">{{lang 'products.description'}}</div>\n<div class=\"grid-item heading\">{{lang 'invoice.price'}}</div>\n<div class=\"grid-item heading over-padding-right\">{{lang 'products.add_to_cart'}}</div>\n"
+}

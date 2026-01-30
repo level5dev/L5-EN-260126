@@ -1,0 +1,170 @@
+<nav class="navUser">
+    <ul class="navUser-section navUser-section--alt">
+        <li class="dropdown dropdown--quickSearch is-open f-open-dropdown" aria-hidden="true" data-prevent-quick-search-close>
+            {{> components/common/quick-search}}
+        </li>
+        
+        <!-- <li class="navUser-item navUser-item--search">
+            <button class="navUser-action navUser-item-cartLabel navUser-action--quickSearch" type="button"
+                id="quick-search-expand" data-search="quickSearch" aria-controls="quickSearch"
+                aria-label="{{lang 'common.search'}}">
+                {{lang 'common.search'}}
+            </button>
+        </li> -->
+        <li class="navUser-item navUser-item--account">
+            {{#if customer}}
+            <a class="navUser-action" href="{{urls.account.wishlists.all}}" aria-label="{{lang 'common.login'}}">
+                <!-- <span>Wishlist</span> -->
+                <span class="tooltiptextWishlist">{{lang 'common.wish_list'}}</span>
+                <img src = "https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/6434e900e5b4b33c7fb2c55c_heart%20(1)%201.svg" alt="wishlist"/>
+            </a>
+            {{else}}
+            {{#if theme_settings.its_popup_login}}
+            <a class="navUser-action" href="##" aria-label="{{lang 'common.login'}}" data-reveal-id="popupLoginWindow">
+                <!-- <span>Wishlist</span> -->
+                <span class="tooltiptextWishlist">{{lang 'common.wish_list'}}</span>
+                <img src = "https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/6434e900e5b4b33c7fb2c55c_heart%20(1)%201.svg" alt="wishlist"/>
+            </a>
+            {{else}}
+            <a class="navUser-action" href="{{urls.auth.login}}" aria-label="{{lang 'common.login'}}">
+                <!-- <span>Wishlist</span> -->
+                <span class="tooltiptextWishlist">{{lang 'common.wish_list'}}</span>
+                <img src = "https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/6434e900e5b4b33c7fb2c55c_heart%20(1)%201.svg" alt="wishlist"/>
+            </a>
+            {{/if}}
+            {{/if}}
+        </li>
+        <li class="navUser-item navUser-item--search_mobile">
+            {{> components/custom/search-mobile}}
+        </li>
+        <li class="navUser-item navUser-item--cart">
+            {{> components/custom/slide-cart}}
+        </li>
+    </ul>
+
+</nav>
+
+
+{{!-- Leftover elements
+{{> components/common/currency-selector}}
+
+{{#if customer.store_credit.value '>' 0}}
+<li class="navUser-item">
+    <a class="navUser-action navUser-action--storeCredit" data-dropdown="storeCredit-dropdown"
+        data-options="align:bottom" href="{{urls.cart}}"
+        aria-label="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}">
+        <span class="navUser-action-divider">
+            {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+        </span>
+    </a>
+    <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+        {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+    </div>
+</li>
+{{/if}}
+
+{{#if theme_settings.social_icon_placement_top}}
+<li class="navUser-item navUser-item--social">
+    {{> components/common/social-links}}
+</li>
+<li class="navUser-item navUser-item--divider">|</li>
+{{/if}}
+
+{{#if settings.gift_certificates_enabled}}
+<li class="navUser-item">
+    <a class="navUser-action" href="{{urls.gift_certificate.purchase}}" aria-label="{{lang 'common.gift_cert'}}">
+        {{lang 'common.gift_cert'}}
+    </a>
+</li>
+{{/if}}
+
+--}}
+
+<style>
+    .navUser-action {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .navUser-action .tooltiptextWishlist {
+      visibility: hidden;
+      width: max-content;
+      background-color: white;
+      color: #000;
+      text-align: center;
+      border-radius: 10px;
+      padding: 6px 12px;
+      top: 100%;
+      left: 50%;
+      margin-top: 10px;
+      margin-left: -63px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+      /* transition: .3s ease-in;
+      transition-delay: .3s; */
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+    
+    .navUser-action .tooltiptextWishlist::after {
+      content: " ";
+      position: absolute;
+      bottom: 100%;  /* At the top of the tooltip */
+      left: 73.5%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent white transparent;
+    }
+    
+    .navUser-action:hover .tooltiptextWishlist {
+      visibility: visible;
+      transition: .3s ease-in;
+      transition-delay: .3s;
+    }
+    
+    .navUser-item {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .navUser-item .tooltiptextCart {
+      visibility: hidden;
+      width: max-content;
+      background-color: white;
+      color: #000;
+      text-align: center;
+      border-radius: 10px;
+      padding: 6px 12px;
+      top: 100%;
+      left: 50%;
+      margin-top: 10px;
+      margin-left: -26px;
+      box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.2);
+      /* transition: .3s ease-in;
+      transition-delay: .3s; */
+      box-sizing: border-box;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+    
+    .navUser-item .tooltiptextCart::after {
+      content: " ";
+      position: absolute;
+      bottom: 100%;  /* At the top of the tooltip */
+      right: 43%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent white transparent;
+    }
+    
+    .navUser-item:hover .tooltiptextCart {
+      visibility: visible;
+      transition: .3s ease-in;
+      transition-delay: .3s;
+    } 
+</style>

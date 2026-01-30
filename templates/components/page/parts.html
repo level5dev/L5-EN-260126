@@ -1,0 +1,139 @@
+
+<div id="parts--page">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="align--ctr">
+        <h1 class="page-heading" data-parts-head >{{title}}</h1>
+        <h4 class="page-heading parts-sub">{{title}}</h4>
+    </div>
+
+    <section class="container part-components-filter-wrapper" id="part-components-filter-wrapper">
+        <div class="actionBar filter--section" mobile>
+            <fieldset class="form-fieldset actionBar-section" > 
+                <div class="filter-mobile-wrapper">
+                    <div id="linkSelector" onclick="navigateToSelectedLink(this)" class="nice-select parts-component-select" tabindex="0">
+                        <span class="current">{{lang 'common.select_an_option'}}</span>
+                        <ul class="list">
+                            
+                            {{#for (lang 'custom.page.parts-components.category.total')}}
+                            <li data-value="{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.slug')}}" class="option parts-components-option"
+                            onclick="selectedParts(this)">{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.short-title')}}</li>
+                            {{/for}}
+                        </ul>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </section>
+<script>
+    function navigateToSelectedLink(element) {
+        $(element).toggleClass("open");
+    }
+
+    function selectedParts(element) {
+        //$(element).toggleClass("selected")
+        console.log($(element).text())
+        $("span.current","#linkSelector").text($(element).text())
+        console.log($(element).attr("data-value"))
+        $(`[parts-li-btn=${$(element).attr("data-value")}]`).click()
+
+    }
+</script>
+    <div class="parts-container flex-start-section">
+        <div class="actionBar filter--section">
+            <div class="filter_element--block show">
+                {{#for (lang 'custom.page.parts-components.category.total')}}
+               <li class="tag--block">
+                    <div class="tag_title--block">
+                        <a class="product--name" href="#" parts-li-btn="{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.slug')}}">
+                            {{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.title')}}
+                        </a>
+                    </div>
+                </li>
+                {{/for}}
+            </div>            
+        </div>
+        <div class="parts-component-block">
+            <div parts-card-block>
+                {{#for (lang 'custom.page.parts-components.category.total')}}
+                    <a href="#" data-parts-card="{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.slug')}}">
+                        <div class="card-wrapper">
+                            <article class="card parts--card">
+                                <figure class="card-figure">
+                                    {{!-- <div class="sale-flag-sash-cat">
+                                        <span class="sale-text" style="font-size:1.2em;">20% {{lang 'products.off'}}</span>
+                                    </div> --}}
+                                    <div class="card-figure__link">
+                                        <div class="card-img-container">
+                                            <img src="{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.image')}}">
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="card-body">
+                                    <h3 class="productView-type-title h4" style="font-size:1.4em;">{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.short-title')}}</h3>
+                                </div>
+                            </article>
+                        </div>
+                    </a>
+                {{/for}}
+            </div>
+            <div parts-list-block>
+                    {{#for (lang 'custom.page.parts-components.category.total')}}
+                    <div data-parts-dropdown="{{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.slug')}}">
+                        {{> components/custom/schematic/parts-components-product 
+                            list=(lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.slug'))
+                        }}
+                    </div>
+                    {{/for}}
+            </div>
+        </div>
+    </div>
+
+<div class="custom-model-main">
+  <div class="custom-model-inner">
+    
+    <div class="custom-model-wrap">
+      <div class="pop-up-content-wrap">
+        <div><b>Filter</b></div>
+        <div class="title--block">
+            <button class="filter--show_button">
+              <a class="tag-name" href="/automatic-finishing/tools/">
+                Parts & Components
+              </a>
+            </button>
+          </div>
+        {{> components/custom/filter/custom-sidebar-filter}}
+        {{#for (lang 'custom.page.parts-components.category.total')}}
+        <div class="filter_element--block show">
+            <li class="tag--block">
+                <div class="tag_title--block">
+                    <a class="product--name activelink" href="/automatic-finishing/automatic-taper/">
+                        {{lang (concat (concat 'custom.page.parts-components.category.head-'$index)'.short-title')}}
+                    </a>
+                </div>
+            </li>
+        </div>
+        {{/for}}
+    </div>
+</div>
+</div>
+<div class="bg-overlay">
+    <div id="closePartsFilter" class="close-btn">X</div>
+</div>
+</div>
+
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{cdn 'assets/js/theme/custom/parts.js'}}" type="module"></script>
+<script src="{{cdn 'assets/js/theme/custom/accordion.js'}}" type="module"></script>
+<script>
+  function goToHomePage() {
+    window.location.href = window.location.origin;
+  }
+
+  $('#closePartsFilter').on('click', function() {
+    $('.custom-model-main').removeClass('model-open')
+  })
+
+</script>

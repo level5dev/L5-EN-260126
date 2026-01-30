@@ -1,0 +1,235 @@
+
+{{assignVar 'index' $index}}
+
+
+
+{{#if (lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.number-of-child')) '!=' 0}}
+<a class="navPages-action has-subMenu megMenu{{#if hover_menu}}navPages-action--toplevel{{/if}}{{#if is_active}} activePage{{/if}}"
+   href="{{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.link')}}"
+   data-collapsible="navPages-{{getVar 'index'}}"
+   {{#if hover_menu}}data-collapsible-disabled-breakpoint="medium"{{/if}}
+   onClick="handleClick(event)"
+>
+    {{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.title')}}
+    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+        <svg><use xlink:href="#icon-chevron-down" /></svg>
+    </i>
+</a>
+
+{{!-- temporary delete later
+
+
+<style>
+#navPages-1{
+    display: block !important;
+}
+</style>
+ --}}
+<div class="navPage-subMenu" id="navPages-{{getVar 'index'}}" aria-hidden="true" tabindex="-1">
+    <div class="navPage-subMenu-container">
+        <div class="navPage-gray_wrapper">
+            <ul id="navPage-subMenu-list" class="navPage-subMenu-list">
+                <li class="navPage-subMenu-item">
+                    <a class="navPage-subMenu-action navPages-action"
+                       href="{{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.link')}}"
+                       aria-label="{{lang 'category.view_all.name' category=name}}"
+                    >
+                        {{lang 'category.view_all.name' category=name}}
+                    </a>
+                </li>
+                {{#for 1 (lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.number-of-child'))}}
+                {{assignVar 'index-child' $index}}
+                    <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                               href="{{lang (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.link')}}"
+                               aria-label="{{lang (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.title')}}"
+                            >
+                                {{lang (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.title')}}
+                                <!-- <span class="collapsible-icon-wrapper"
+                                    data-collapsible="navPages-{{getVar 'index'}}"
+                                    data-collapsible-disabled-breakpoint="medium"
+                                    data-collapsible-disabled-state="open"
+                                    data-collapsible-enabled-state="closed"
+                                >
+                                    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                                        <svg><use xlink:href="#icon-chevron-down" /></svg>
+                                    </i>
+                                </span> -->
+                            </a>
+                            <!-- <ul class="navPage-childList" id="navPages-{{getVar 'index'}}">
+                                {{#for 1 (lang (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.number-of-children'))}}
+                                {{assignVar 'index-children' $index}}
+                                <li class="navPage-childList-item">
+                                    <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                                       href="{{lang (concat (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))(concat '.children-'(getVar 'index-children')))'.link')}}"
+                                       aria-label="{{name}}"
+                                    >
+                                        {{lang (concat (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))(concat '.children-'(getVar 'index-children')))'.title')}}
+                                    </a>
+                                </li>
+                                {{/for}}
+                            </ul> -->
+
+                            <ul class="navPage-childList" id="navPages-{{getVar 'index'}}">
+                                {{#for 1 (lang (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.number-of-children'))}}
+                                {{assignVar 'index-children' $index}}
+                                {{assignVar 'current-link' (lang (concat (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))(concat '.children-'(getVar 'index-children')))'.link'))}}
+                                <li class="navPage-childList-item">
+                                    <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}{{#contains (getVar 'current-link') '/custom-automatic-tool-set//'}} new-item{{/contains}}"
+                                       href="{{getVar 'current-link'}}"
+                                       aria-label="{{name}}"
+                                    >
+                                        {{#contains (getVar 'current-link') '/custom-automatic-tool-set/'}}
+                                            <span class="new-label">NEW</span>
+                                        {{/contains}}
+                                        {{lang (concat (concat (concat (concat 'custom.header.menu.menu-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))(concat '.children-'(getVar 'index-children')))'.title')}}
+                                    </a>
+                                </li>
+                                {{/for}}
+                            </ul>
+                    </li>
+                {{/for}}
+                {{!#if (lang (concat (concat 'custom.header.mega-menu.category-'@index)'.view')) '===' 'true'}}
+                    <!-- <li class="navPage-subMenu-item navPage-subMenu-item--mega-menu">
+                        {{> components/custom/mega-menu }}
+                    </li> -->
+                {{!/if}}
+            </ul>
+        </div>
+        {{#if (lang (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))'.view')) '===' 'true'}}
+            <div class="navPage-subMenu-item navPage-subMenu-item--mega-menu" index="{{getVar 'index'}}">
+                {{!-- {{> components/custom/mega-menu }} --}}
+                {{#if (lang (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))'.view')) '===' "true"}}
+                    <div class="nav-slider" index="{{getVar 'index'}}" >
+                    <div class="nav-slider_header">
+                        <h3>BEST SELLERS</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="63" height="15" viewBox="0 0 63 18" fill="none">
+                            <path d="M31.3286 17.4316L0.309007 0.741205L62.3482 0.741211L31.3286 17.4316Z" fill="#343434"/>
+                        </svg>
+                    </div>
+                    <ul>
+                    {{#for 1 (lang (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))'.number-of-child'))}}
+                        {{assignVar 'index-child' $index}}
+                        {{> components/custom/mega-menu-slider }}    
+                        {{!-- <li> --}}
+                            
+                           {{!--  <a>
+                            <p>{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.title')}}
+                            </p>
+                            <a> --}}
+                        {{!-- </li> --}}
+                              
+                    {{/for}}
+                    </ul>
+
+                    </div>
+                {{/if}}
+            </div>
+
+        {{/if}}
+    </div>
+
+    <div class="navPage-subMenu-list--bottomContainer">
+        <div class="navPage-subMenu-list--textContain-1">   
+            <a href="/shipping-returns/">{{lang 'cart.freeshipping_order_over'}}</a>
+        </div>
+       {{!--  <div class="navPage-subMenu-list--textContain-2">
+            <a href="{{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.bottom-link')}}">{{lang 'common.view_all_tool'}}</a>
+        </div> --}}
+    </div>
+</div>
+{{else}}
+<a class="navPages-action{{#if is_active}} activePage{{/if}}"
+   href="{{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.link')}}"
+   aria-label="{{name}}"
+>
+    {{lang (concat (concat 'custom.header.menu.menu-'(getVar 'index'))'.title')}}
+</a>
+{{/if}}
+
+<style>
+    @media screen and (max-width: 1500px) {
+        #navPages-4 { right:0; }
+    }
+</style>
+
+<script>
+    function handleClick(event) {
+        event.preventDefault();
+        if (window.innerWidth > 1400) {
+            const href = event.target.getAttribute('href');
+            window.location.href = href;
+        }
+    }
+    {{#if (lang (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))'.view')) '===' "true"}}
+    function startSlider{{getVar 'index'}}(){
+
+        const index = "{{getVar 'index'}}";
+        const mainClass = ".nav-slider";
+        let slideCount = $(`${mainClass}[index="${index}"] ul li`).length;
+        let slideWidth = $(`${mainClass}[index="${index}"] ul li`).width();
+        let slideHeight = $(`${mainClass}[index="${index}"] ul li`).height();
+        // let slideWidth = 320;
+        // let slideHeight = 500;
+        let sliderUlWidth = slideCount * slideWidth;
+        
+        $(`${mainClass}[index="${index}"]`).css(
+             { width: slideWidth, height: slideHeight }
+            );
+        
+        $(`${mainClass}[index="${index}"] ul`).css({ width: sliderUlWidth, marginLeft: - slideWidth });
+        
+        $(`${mainClass}[index="${index}"] ul li:last-child`).prependTo(`${mainClass}[index="${index}"] ul`);
+
+        function moveRight() {
+            $(`${mainClass}[index="${index}"] ul`).animate({
+                opacity: "10%"
+            }, 200, function () {
+                $(`${mainClass}[index="${index}"] ul li:first-child`).appendTo(`${mainClass}[index="${index}"] ul`);
+                $(`${mainClass}[index="${index}"] ul`).css('left', '');
+            });
+            $(`${mainClass}[index="${index}"] ul`).animate({
+                opacity: "100%"
+            }, 200, function(){});
+        };
+        let notStarted{{getVar 'index'}} = true;
+        $(`.navPages-item[index='{{getVar 'index'}}']`).on( "mouseenter", function(){
+            if(notStarted{{getVar 'index'}}){
+                setInterval(function () {
+                    if($("#navPages-{{getVar 'index'}}").css("display") !== "none" && screen.width > 1024){
+                       moveRight(); 
+                    }
+                    
+                }, 7000);
+                notStarted{{getVar 'index'}} = false;
+            }else{
+                return;
+            }
+        } );
+        
+    }
+    /*
+    let notStarted{{getVar 'index'}} = true;
+    $(`.navPages-item[index='{{getVar 'index'}}']`).on( "mouseenter", function(){
+        setTimeout(function(){
+            if(notStarted{{getVar 'index'}}){
+                startSlider{{getVar 'index'}}();
+                notStarted{{getVar 'index'}} = false;
+            }else{
+                return;
+            }
+            
+        }, 0);
+    } ); 
+    */
+    // let notStarted{{getVar 'index'}} = true;
+    $(document).ready(function(){
+        setTimeout(function(){
+            startSlider{{getVar 'index'}}();
+        }, 0);
+    } );
+
+    {{/if}}
+
+
+</script>

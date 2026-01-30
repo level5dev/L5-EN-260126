@@ -1,0 +1,43 @@
+<div class="container-950px">
+	<div class="form-confirmation">
+		<h2 class="form-confirmation__title">Request Received</h2>
+		<div class="form-confirmation__message">
+			Thank you for submitting your request for returning merchandise.
+		</div>
+		<p class="form-confirmation__details">
+			<br>Please allow up to one business day for a member of our customer service team to connect with you by phone or email to 
+			confirm details and/or provide you with an RMA number.<br><br>
+			<b>IMPORTANT:</b> Please print the RMA slip you are provided and include it with your returned item(s), so our warehouse team can
+			properly identify your shipment.<br><br>
+			Sincerely,<br>
+			The Customer Service Team <br><br>
+			LEVEL5 Tools
+		</p>
+	</div>
+</div>
+
+{{> components/custom/warranty-page/warranty-confirmation-css}}
+
+<style>
+	.form-confirmation__title {
+		font-size: clamp(1.5rem, 2vw + 1rem, 3.95rem);
+		font-weight: 700;
+		text-align: center;
+	}
+
+	.form-confirmation__message {
+		font-size: clamp(1.25rem, 1.5vw + 1rem, 1.563rem);
+		font-weight: 400;
+	}
+
+	.form-confirmation__details {
+		font-weight: 400;
+		color: black;
+	}
+
+	@media screen and (max-width:551px){
+		.btn-mob-full {
+			width: 100%;
+		}
+   }
+</style>

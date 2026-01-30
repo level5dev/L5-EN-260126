@@ -1,0 +1,40 @@
+<section class="productCarousel product_page--carousel"
+    data-list-name="{{list}}"
+    data-slick='{
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "slide": "[data-product-slide]",
+        "dots": false,
+        "responsive": [
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": {{columns}},
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 768,
+                "settings": {
+                    "slidesToShow": 4,
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 640,
+                "settings": {
+                    "slidesToShow": 4,
+                    "slidesToScroll": 1
+                }
+            }
+        ]
+    }'
+    set-content-slide type="{{type}}"
+>
+    
+    <!-- {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}} -->
+</section>

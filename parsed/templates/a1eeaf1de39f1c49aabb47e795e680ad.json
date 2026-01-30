@@ -1,0 +1,3 @@
+{
+  "components/custom/filter/filter-list-checkbox": "<li class=\"tag--block\">\n    <div class=\"tag_input--block\"><input input-filter=\"{{input-filter}}\" type=\"checkbox\" value=\"{{value}}\" /></div>\n    <div class=\"tag_title--block\"><span class=\"product--name\" top-title=\"{{top-title}}\">{{name}} {{top_title}}</span></div>\n</li>\n"
+}

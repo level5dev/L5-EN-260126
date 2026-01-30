@@ -1,0 +1,272 @@
+<ul class="productView-thumbnails" product--carousel {{#gt slick_activation_count 4}} data-slick='{
+    "infinite": false,
+    "mobileFirst": true,
+    "dots": false,
+    "arrows": false,
+    "accessibility": false,
+    "slidesToShow": 5,
+    "slidesToScroll": 1,
+    "responsive": [
+        {
+            "breakpoint": 1440,
+            "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }
+        },
+        {
+            "breakpoint": 1280,
+            "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }
+        },
+        {
+            "breakpoint": 1024,
+            "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }
+        },
+        {
+            "breakpoint": 768,
+            "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }
+        },
+        {
+            "breakpoint": 480,
+            "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }
+        }
+    ]
+}'{{/gt}}>
+{{#or (if product.images.length '>' 1) (if product.videos.list)}}
+{{#all (if product.images.length '===' 1) (if product.videos.list) (unless video_show)}}
+{{else}}
+    {{#each product.images}}
+        {{#if @index '<' 3}}
+            <li class="productView-thumbnail">
+                <a class="productView-thumbnail-link"
+                    href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    data-type="image"
+                    data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                    data-image-gallery-item
+                    data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                    data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                    data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                    {{> components/common/responsive-img
+                        image=this
+                        fallback_size=../theme_settings.productview_thumb_size
+                        lazyload=../theme_settings.lazyload_mode
+                    }}
+                </a>
+            </li>
+        {{/if}}
+    {{/each}}
+
+    {{#if product.videos.list}} <!-- If have video-->
+        {{#if product.images.length '<=' 4}} <!-- If image less than 4-->
+            {{#each product.images}}
+                {{#if @index '>=' 3}}
+                    <li class="productView-thumbnail">
+                        <a class="productView-thumbnail-link"
+                            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                            data-type="image"
+                            data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                            {{> components/common/responsive-img
+                                image=this
+                                fallback_size=../theme_settings.productview_thumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                            }}
+                        </a>
+                    </li>
+                {{/if}}
+            {{/each}}
+
+            {{#all (if video_show) (if video_pos)}}
+                {{#each product.videos.list}}
+                    <li class="productView-thumbnail productView-thumbnail--video">
+                    <a
+                            class="productView-thumbnail-link"
+                            data-type="video"
+                            data-index="{{@index}}"
+                            data-video-id="{{id}}"
+                            data-video-gallery-new-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                            data-video-gallery-zoom-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                            data-video-gallery-new-image-srcset="https://img.youtube.com/vi/{{id}}/0.jpg"
+                            data-pswp-content='<div class="pswp-video"><iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>'
+                            data-image-gallery-video>
+                            <img src="{{cdn 'img/loading.svg'}}" data-srcset="https://img.youtube.com/vi/{{id}}/0.jpg" data-src="https://img.youtube.com/vi/{{id}}/0.jpg" data-sizes="auto" class="lazyload" alt="{{title_short}}" title="{{title_long}}">
+                        </a> 
+                    </li>
+                {{/each}}
+            {{/all}}
+
+            {{else}} <!-- Else image is more than 4-->
+                {{#each product.images}}
+                    {{#if @index '===' 3}}
+                        <li class="productView-thumbnail productView-thumbnail--remaining">
+                            <a class="productView-thumbnail-link"
+                                href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                                data-type="image"
+                                data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                                data-image-gallery-item
+                                data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                                data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                                data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                                {{> components/common/responsive-img
+                                    image=this
+                                    fallback_size=../theme_settings.productview_thumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                }}
+                                <span class="remaining-count">+{{subtract ../product.images.length 3}}</span>
+                            </a>
+                        </li>
+                    {{/if}}
+                {{/each}}
+
+                {{#all (if video_show) (if video_pos)}}
+                    {{#each product.videos.list}}
+                        <li class="productView-thumbnail productView-thumbnail--video">
+                        <a
+                                class="productView-thumbnail-link"
+                                data-type="video"
+                                data-index="{{@index}}"
+                                data-video-id="{{id}}"
+                                data-video-gallery-new-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                                data-video-gallery-zoom-image-url="https://img.youtube.com/vi/{{id}}/0.jpg"
+                                data-video-gallery-new-image-srcset="https://img.youtube.com/vi/{{id}}/0.jpg"
+                                data-pswp-content='<div class="pswp-video"><iframe src="https://www.youtube.com/embed/{{id}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>'
+                                data-image-gallery-video>
+                                <img src="{{cdn 'img/loading.svg'}}" data-srcset="https://img.youtube.com/vi/{{id}}/0.jpg" data-src="https://img.youtube.com/vi/{{id}}/0.jpg" data-sizes="auto" class="lazyload" alt="{{title_short}}" title="{{title_long}}">
+                            </a> 
+                        </li>
+                    {{/each}}
+                {{/all}}
+
+                {{#each product.images}}
+                    {{#if @index '>' 3}}
+                        <li class="productView-thumbnail">
+                            <a class="productView-thumbnail-link"
+                                href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                                data-type="image"
+                                data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                                data-image-gallery-item
+                                data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                                data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                                data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                                {{> components/common/responsive-img
+                                    image=this
+                                    fallback_size=../theme_settings.productview_thumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                }}
+                            </a>
+                        </li>
+                    {{/if}}
+                {{/each}}
+        {{/if}}
+    {{else}} <!-- Else No Video-->
+        {{#if product.images.length '<=' 5}} <!-- If image less than 5-->
+            {{#each product.images}}
+                {{#if @index '>=' 3}}
+                    <li class="productView-thumbnail">
+                        <a class="productView-thumbnail-link"
+                            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                            data-type="image"
+                            data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                            {{> components/common/responsive-img
+                                image=this
+                                        fallback_size=../theme_settings.productview_thumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                            }}
+                        </a>
+                    </li>
+                {{/if}}
+            {{/each}} 
+
+        {{else}} <!-- Else image is more than 5-->
+            {{#each product.images}}
+                {{#if @index '>=' 3}}
+                    <li class="productView-thumbnail {{#if @index '===' 4}}productView-thumbnail--remaining{{/if}}">
+                        <a class="productView-thumbnail-link"
+                            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                            data-type="image"
+                            data-index="{{#and (if ../video_show) (if ../video_pos)}}{{add (toInt @index) (toInt ../product.videos.list.length)}}{{else}}{{@index}}{{/and}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                            {{> components/common/responsive-img
+                                image=this
+                                fallback_size=../theme_settings.productview_thumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                            }}
+                            {{#if @index '===' 4}}
+                                <span class="remaining-count">+{{subtract ../product.images.length 4}}</span>
+                            {{/if}}
+                        </a>
+                    </li>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+
+    {{/if}}
+{{/all}}
+{{/or}}
+    <li class="productView-thumbnail" >
+    </li>
+</ul>
+
+<style>
+.productView-thumbnail--remaining {
+    position: relative;
+}
+
+.productView-thumbnail--remaining .remaining-count {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 2px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+</style>
+
+<script>
+    function setVideoThumbnailHeight() {
+        var imgHeight = $('#prodContainer .productView-thumbnail:not(.productView-thumbnail--video) img').height();
+        $('#prodContainer .productView-thumbnail--video img').height(imgHeight);
+    }
+
+    // Run on window resize
+    $(window).on('resize', function () {
+        setTimeout(setVideoThumbnailHeight, 100);
+    });
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            //console.log('Running after delay'); // Debugging log
+            setVideoThumbnailHeight();
+        }, 100);
+    });
+
+</script>

@@ -1,0 +1,38 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<form data-contact-form class="form support-request-form" action="https://usebasin.com/f/a30b38137e7c" method="post" 
+data-name="{{lang 'forms.support.support-request'}}" aria-label="{{lang 'forms.support.support-request'}}">
+
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/first-name}}
+        {{> components/custom/form-field/last-name}}
+        {{> components/custom/form-field/address-1}}
+        {{> components/custom/form-field/address-2}}
+        {{> components/custom/form-field/city}}
+        {{> components/custom/form-field/state-province}}
+        {{> components/custom/form-field/country}}
+        {{> components/custom/form-field/zip-postal-code}}
+        {{> components/custom/form-field/email-address}}
+		{{> components/custom/form-field/phone-number}}
+    </div>
+    {{> components/custom/form-field/support-request-ta}}
+    <input type="hidden" name="_gotcha">
+    {{!-- <div class="form-fieldx">
+        
+        <div class="tag_input--block">
+            <input class="form-checkbox checkbox-vip" type="checkbox" id="join_vip" name="join_vip">
+            <label id="labelvip" class="form-label" for="join_vip">{{lang 'common.join_vip_its_free'}}</label>
+        </div>
+    </div> --}}
+    {{> components/custom/form-field/vip-checkbox}}
+    {{> components/custom/form-field/recaptcha}}
+	{{> components/custom/form-field/submit-btn}}
+</form>
+
+<style>
+    #labelvip:before, #labelvip:after {
+        width: 20px;
+        height: 20px;
+    }
+
+</style>

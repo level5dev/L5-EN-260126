@@ -1,0 +1,1104 @@
+{{!-- 
+  Automatic Tools: 53 83 80 98 92 73 79 71 77 78 82 72 70 74 76 75 99
+  Semi-Automatic Tools: 49 
+  Skimming Blades: 18 90 55 51 57 96 91 52 56
+  Hand Tools: 59 84 61 63 65 66 85 86 64 108 67 89 87 88 126
+  
+  Automatic Tools: 53
+    Automatic Taping & Finishing Tools: 83
+        Automatic Taper: 80
+        MiniShot Compound Tube: 98
+        Tool Handles: 92
+        Flat Boxes: 73
+        Compound Pump & Accessories: 79
+        Corner Finishers: 71
+        Corner Applicators: 77
+        Corner Roller: 78
+        Nail Spotters: 82
+        Maintenance Kits: 72
+    Automatic Tool Sets: 70
+        Full Taping & Finishing Sets: 74
+        Drywall Finishing Sets: 76
+        Flat Box Combo Sets: 75
+        Starter Sets: 99
+  
+  Semi-Automatic Tools: 49
+  
+  Skimming Blades: 18
+    Skimming Blades: 90
+        Individual Blades: 55
+        Handles & Adapters: 51
+        Replacement Parts: 57
+        Compound Rollers: 96
+    Skimming Blade Sets: 91
+        Multi-Blade Sets: 52
+        Blade + Handle Combos: 56
+        Roller + Handle Combos: 117
+  
+  Hand Tools: 59
+    Finishing Hand Tools: 84
+        Joint Knives: 61
+        Taping Knives: 63
+        Mixers & Mud Pans: 65
+        Sanders: 126
+        Compound Rollers: 66
+        Trowels & Hawk: 85
+        Corner Knives: 86
+        Specialty Tools: 64
+        Tool Bags: 108
+    Hand Tool Sets: 67
+        Deluxe Hand Tool Sets: 89
+        Joint Knife Sets: 87
+        Taping Knife Sets: 88
+        
+  Masonry Tools: 109
+        London Brick Trowels: 110
+        Philidelphia Brick Trowels: 114
+        Pointing Trowels: 111
+        Margin Trowels: 112
+        Tuck-Pointing Trowels: 115
+  
+   --}}
+  
+  <div class="filter--container">
+  <!---           START OF FILTER CONTENT                --->
+  
+  <!--- AUTOMATIC TAPING AND FINISHING TOOLS -->
+  
+    {{!-- Parent Nav 1 --}}
+    {{assignVar "allowList" "53 83 80 98 92 73 79 71 77 78 82"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/automatic-finishing/tools/">
+            {{lang 'category.tools.automatic_tools'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.par_nav_1.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.par_nav_1.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.par_nav_1.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Parent Nav 2 --}}
+    {{assignVar "allowList" "53 70 74 76 75 99"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/automatic-finishing/sets/">
+            {{lang 'category.tools.tool_sets'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.par_nav_2.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.par_nav_2.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.par_nav_2.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    
+    {{!--Include Automatic Taper --}}
+    {{assignVar "allowList" "70"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="iat">
+          <div class="tag-name">
+            {{lang 'category.tools.automatic_taper'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="iat">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_1.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='iat'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_1.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_1.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_1.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+  
+    {{!--Corner Applicator Type --}}
+    {{assignVar "allowList" "70 74 76"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="cat">
+          <div class="tag-name">
+            {{lang 'category.tools.corner_applicator_type'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="cat">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_2.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='cat'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_2.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_2.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_2.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Flat Box Set Sizes Full/All Sets --}}
+    {{assignVar "allowList" "70 74"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="fbs-fas">
+          <div class="tag-name">
+            {{lang 'category.tools.flat_box_sizes'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="fbs-fas">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_3.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='fbs-fas'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_3.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_3.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_3.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Flat Box Set Sizes Combo Sets --}}
+    {{assignVar "allowList" "75 76"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="fbs-cs">
+          <div class="tag-name">
+            {{lang 'category.tools.flat_box_sizes'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="fbs-cs">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_4.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='fbs-cs'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_4.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_4.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_4.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Flat Box Capacities --}}
+    {{assignVar "allowList" "70 74 76 75"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="fbc">
+          <div class="tag-name">
+            {{lang 'category.tools.flat_box_capacities'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="fbc">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_5.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='fbc'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_5.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_5.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_5.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- # of Corner Finishers --}}
+    {{assignVar "allowList" "70 74 76"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="ncf">
+          <div class="tag-name">
+            # {{lang 'common.of'}} {{lang 'category.tools.corner_finisher'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="ncf">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_6.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='ncf'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_6.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_6.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_6.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- # of Compound Pumps --}}
+    {{assignVar "allowList" "70 74"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="ncp">
+          <div class="tag-name">
+            # {{lang 'common.of'}} {{lang 'category.tools.compound_pumps'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="ncp">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_7.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='ncp'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_7.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_7.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_7.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Nail Spotter Included? --}}
+    {{assignVar "allowList" "70 74"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="nsi">
+          <div class="tag-name">
+            {{lang 'category.tools.nail_spotter'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="nsi">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_8.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='nsi'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_8.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_8.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_8.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Handle Type --}}
+    {{assignVar "allowList" "70 74 76 75"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="ht">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_type'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="ht">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_9.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='ht'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_9.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_9.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_9.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Handle Tool Type --}}
+    {{assignVar "allowList" "92"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="htt">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_tool_type'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="htt">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_10.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='htt'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_10.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_10.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_10.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+
+    {{!-- Handle Style --}}
+    {{assignVar "allowList" "92"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="hst">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_style'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="hst">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_11.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='hst'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_11.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_11.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_11.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+
+    {{!-- Maintenance Kit Tool --}}
+    {{assignVar "allowList" "72"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="mkt">
+          <div class="tag-name">
+            {{lang 'category.tools.tool_type'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="mkt">
+        {{#for 1 (lang 'custom.other.filter.auto_taping_finishing.ch_nav_12.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='mkt'
+          top-title=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_12.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_12.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.auto_taping_finishing.ch_nav_12.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+  
+  
+  <!-- SKIMMING BLADES -->
+  
+  
+    {{!-- Parent Nav 1 --}}
+    {{assignVar "allowList" "18 90 55 51 57 96"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/skimming-blades/tools/">
+            {{lang 'category.tools.skimming_blade'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.par_nav_1.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.par_nav_1.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.skimming_blade.par_nav_1.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}  
+    
+    {{!-- Parent Nav 2 --}}
+    {{assignVar "allowList" "18 91 52 56 117"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/skimming-blades/sets/">
+            {{lang 'category.tools.tool_sets'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.par_nav_2.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.par_nav_2.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.skimming_blade.par_nav_2.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}  
+  
+    {{!-- Body Material --}}
+    {{assignVar "allowList" "90 55 57 91 52 56"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-bm">
+          <div class="tag-name">
+            {{lang 'category.tools.body_material'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-bm">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_1.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-bm'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_1.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_1.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_1.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Blade Length --}}
+    {{assignVar "allowList" "90 55 57"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-bl">
+          <div class="tag-name"> 
+            {{lang 'category.tools.blade_length'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-bl">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_2.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-bl'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_2.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_2.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_2.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Blade Length (Combos) --}}
+    {{assignVar "allowList" "56"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-bl">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_length'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-bl">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_3.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-bl'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_3.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_3.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_3.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+    {{!-- Handle Length --}}
+    {{assignVar "allowList" "56"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-hl">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_length'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-hl">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_4.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-hl'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_4.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_4.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_4.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Handle Included --}}
+    {{assignVar "allowList" "52"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-hi">
+          <div class="tag-name">
+            {{lang 'category.tools.handle'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-hi">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_5.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-hi'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_5.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_5.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_5.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Roller Included --}}
+    {{assignVar "allowList" "56"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-ri">
+          <div class="tag-name">
+            {{lang 'category.tools.compound_roller'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-ri">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_6.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-ri'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_6.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_6.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_6.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Blades Included --}}
+    {{assignVar "allowList" "52"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-bi">
+          <div class="tag-name">
+            {{lang 'category.tools.blades_included'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-bi">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_7.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-bi'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_7.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_7.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_7.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Roller Size --}}
+    {{assignVar "allowList" "96"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="sb-rs">
+          <div class="tag-name">
+            {{lang 'category.tools.roller_size'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="sb-rs">
+        {{#for 1 (lang 'custom.other.filter.skimming_blade.ch_nav_8.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='sb-rs'
+          top-title=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_8.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_8.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.skimming_blade.ch_nav_8.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    
+<!--- HAND TOOLS --->
+
+    {{!-- Parent Nav 1 --}}
+    {{assignVar "allowList" "59 84 61 63 65 66 85 86 64 108"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/hand-tools/finishing-hand-tools/">
+            {{lang 'category.tools.finishing_hand_tools'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.par_nav_1.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.par_nav_1.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.hand_tools.par_nav_1.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Parent Nav 2 --}}
+    {{assignVar "allowList" "59 67 89 87 88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button">
+          <a class="tag-name" href="/hand-tools/sets/">
+            {{lang 'category.tools.tool_sets'}}
+          </a>
+        </button>
+      </div>
+      <div class="filter_element--block show">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.par_nav_2.total')}}
+          {{> components/custom/filter/filter-list-link 
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.par_nav_2.fil_' $index) '.name'))
+          link=(lang (concat (concat 'custom.other.filter.hand_tools.par_nav_2.fil_' $index) '.link'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Joint Blade Material --}}
+    {{assignVar "allowList" "61"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="jkbm">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_material'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="jkbm">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_1.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='jkbm'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_1.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_1.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_1.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Joint Set Blades --}}
+    {{assignVar "allowList" "87"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="jksbs">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_style'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="jksbs">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_2.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='jksbs'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_2.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_2.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_2.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Joint Handle Material --}}
+    {{assignVar "allowList" "61"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="jkhm">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_material'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="jkhm">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_3.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='jkhm'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_3.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_3.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_3.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Joint Blade Size --}}
+    {{assignVar "allowList" "61"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="jkbs">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_size'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="jkbs">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_4.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='jkbs'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_4.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_4.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_4.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Taping Blade Material --}}
+    {{assignVar "allowList" "63 88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tkbm">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_material'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tkbm">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_5.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tkbm'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_5.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_5.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_5.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Taping Blade Profile --}}
+    {{assignVar "allowList" "63"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tkbp">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_profile'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tkbp">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_6.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tkbp'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_6.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_6.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_6.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Taping Set Profile --}}
+    {{assignVar "allowList" "88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tksbp">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_profile'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tksbp">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_7.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tksbp'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_7.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_7.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_7.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Taping Handle Material --}}
+    {{assignVar "allowList" "63"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tkhm">
+          <div class="tag-name">
+            {{lang 'category.tools.handle_material'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tkhm">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_8.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tkhm'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_8.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_8.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_8.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Taping Blade Size --}}
+    {{assignVar "allowList" "63"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tkbs">
+          <div class="tag-name">
+            {{lang 'category.tools.blade_size'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tkbs">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_9.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tkbs'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_9.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_9.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_9.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Offset Blade Size --}}
+    {{assignVar "allowList" "88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="okbs">
+          <div class="tag-name">
+            {{lang 'category.tools.offset_combo_blade_size'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="okbs">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_10.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='okbs'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_10.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_10.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_10.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- OffSet Flex --}}
+    {{assignVar "allowList" "63 88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="okf">
+          <div class="tag-name">
+            {{lang 'category.tools.offset_knife_stiffness'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="okf">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_11.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='okf'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_11.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_11.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_11.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- OffSet Handle --}}
+    {{assignVar "allowList" "63 88"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="okh">
+          <div class="tag-name">
+            {{lang 'category.tools.offset_knife_handle'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="okh">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_12.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='okh'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_12.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_12.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_12.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Trowel Blade Thickness --}}
+    {{assignVar "allowList" "85"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tr-bt">
+          <div class="tag-name">
+            {{lang 'category.tools.trowel_blade_thickness'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tr-bt">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_13.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tr-bt'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_13.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_13.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_13.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+
+    {{!-- Trowel Size --}}
+    {{assignVar "allowList" "85"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tr-s">
+          <div class="tag-name">
+            {{lang 'category.tools.trowel_length'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tr-s">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_14.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tr-s'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_14.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_14.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_14.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Trowel Blade Shape --}}
+    {{assignVar "allowList" "85"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tr-bs">
+          <div class="tag-name">
+            {{lang 'category.tools.trowel_blade_shape'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tr-bs">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_15.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tr-bs'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_15.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_15.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_15.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+      
+    {{!-- Masonry Tools --}}
+    {{assignVar "allowList" "109"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tr-s">
+          <div class="tag-name">
+            {{lang 'category.tools.trowel_type'}}
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tr-s">
+        {{#for 1 (lang 'custom.other.filter.hand_tools.ch_nav_16.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tr-s'
+          top-title=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_16.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_16.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.hand_tools.ch_nav_16.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+    
+    {{!-- Deal Den --}}
+    {{assignVar "allowList" "134"}}
+    {{#contains (getVar "allowList") (concat category.id "")}}
+    <div class="filter--box">
+      <div class="title--block">
+        <button class="filter--show_button" filter-button="tr-dd">
+          <div class="tag-name">
+            Deal Den Products
+          </div>
+        </button>
+      </div>
+      <div class="filter_element--block show" filter-block="tr-dd">
+        {{#for 1 (lang 'custom.other.filter.deal_den.ch_nav_1.total')}}
+          {{> components/custom/filter/filter-list-checkbox 
+          input-filter='tr-dd'
+          top-title=(lang (concat (concat 'custom.other.filter.deal_den.ch_nav_1.fil_' $index) '.top_title'))
+          name=(lang (concat (concat 'custom.other.filter.deal_den.ch_nav_1.fil_' $index) '.name'))
+          value=(lang (concat (concat 'custom.other.filter.deal_den.ch_nav_1.fil_' $index) '.value'))
+          }}
+        {{/for}}
+      </div>
+    </div>
+    {{/contains}}
+  
+  <!---           END OF FILTER CONTENT                --->
+  
+  </div>
+  
+  

@@ -1,0 +1,3 @@
+{
+  "components/custom/slide-cart": "<a href=\"#slideCart\" class=\"navUser-action slide-cart-open\">\n    <span class=\"navUser-item-cartLabel\"><span class=\"tooltiptextCart\">Cart</span><img src = \"https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/6434e900d29de4291a283f62_Layer_x0020_1.svg\" alt=\"wishlist\"/></span>\n    <span class=\"countPill cart-quantity\"></span>\n</a>\n\n<div id=\"slideCart\" class=\"slide-cart-container\">\n    <button class=\"slide-cart-close modal-close\" type=\"button\">\n        <!--span class=\"aria-description--hidden\">{{lang 'common.close'}}</span-->\n        <span aria-hidden=\"true\">&#215;</span>\n    </button>\n    <div class=\"slide-cart\"></div>\n</div>\n"
+}

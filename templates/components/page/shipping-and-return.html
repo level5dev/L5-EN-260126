@@ -1,0 +1,254 @@
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<style>
+    @media screen and (max-width: 1245px){
+        .tabs-wrapper.tabs-desktop .container.tabs li.tab {
+            min-width: auto;
+        }
+    }
+</style>
+<section class="page">
+    {{#unless theme_settings.hide_page_heading }}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    {{/unless}}
+
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered">
+        <p></p>
+        <blockquote><span><i>Congratulations!</i> Within a few days, you will be enjoying your new products from LEVEL5 Tools. Here’s some information on how your order will make its way from our facility to your doorstep, and how you can keep track of it while it's on its way.</span></blockquote>
+        <div class="tabs-div ">
+                    <div class="tabs-wrapper tabs-desktop">
+                        <ul class="container tabs" data-tab="" data-accTab>
+                            <li data-id="tab-free" data-accTabId="tab-free" class="tab is-active"><a class="tab-title" aria-selected="false" tabindex="0">Free Shipping</a></li>
+                            <li data-id="tab-international" data-accTabId="tab-international" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">International Shipping</a></li>
+                            <li data-id="tab-tracking" data-accTabId="tab-tracking" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">Order Tracking</a></li>
+                            <li data-id="tab-shipments" data-accTabId="tab-shipments" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">Partial Shipments</a></li>
+                            <li data-id="tab-returns" data-accTabId="tab-returns" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">Returns</a></li>
+                        </ul>
+                    </div>
+                    <div class="tabs-contents">
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-free">
+                                <div class="accordion-title white">Free Shipping</div>
+                                <i class="fas fa-sharp fa-chevron-right open" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content is-active" id="tab-free" accordion-mobile-content>
+                                <p>Free shipping is available if you live in the continental United States and you spend $50 
+                                    or more (before taxes are applied).</p>
+                                <p>All US-address destined orders will be shipped via our choice of UPS Ground or FEDEX Ground, 
+                                    unless otherwise requested. Delivery times vary between 1 to 5 business days.</p>
+                                <p>"Continental United States" refers to the 48 contiguous states and the District of Columbia, 
+                                    but excludes Alaska, Hawaii, Puerto Rico or the other U.S. territories and military posts.  
+                                    For these regions, please contact us at <a href="tel:+1-800-227-7713">800.227.7713</a> (USA and Canada) or <a href="tel:+1-913-608-8530">913.608.8530</a> for an 
+                                    accurate quote, including shipping. English y español.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-international">
+                                <div class="accordion-title white">International Shipping</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-international" accordion-mobile-content>
+                                 <p>LEVEL5 Tools ships worldwide! To get a quote that includes accurate shipping for your region, 
+                                     call <a href="tel:+1-800-227-7713">800.227.7713</a> (USA and Canada) or <a href="tel:+1-913-608-8530">913.608.8530</a> . English y español.
+                                 </p>
+                                 <p>To quote your order, we will need the following details:</p>
+                                 <p><ul>
+                                     <li>First and Last Name</li>
+                                     <li>EXACT Shipping Address</li>
+                                     <li>Mobile Number</li>
+                                     <li>Email Address</li>
+                                     <li>A list of the tools you wish to purchase</li></ul>
+                                 </p>
+                                 <p>Please note that your order will be transacted in US dollars and your credit card company 
+                                     or bank will perform the conversion to your native currency on your behalf. 
+                                </p>
+                                
+                                <h3>METHOD OF SHIPMENT</h3>
+                                <p>All merchandise destined for outside the continental US will be shipped via air or ocean. 
+                                    Rates and delivery times for international parcel shipment will vary based on carrier, 
+                                    delivery method, and speed of shipment required. The customer is responsible for the 
+                                    freight charges and all invoices are prepaid before shipment.
+                                </p>
+                                
+                                <h3>DUTIES & CUSTOMS</h3>
+                                <p>Your country may charge additional fees in the form of duties, border clearing costs, taxes, etc. 
+                                    that would be in addition to the quote we are providing you.  It is your responsibility to 
+                                    understand what these additional costs might be.  Your country may hold your order at the 
+                                    border until you have paid them these additional fees.  WE HIGHLY RECOMMEND you contact an 
+                                    international shipping broker in your country who can assist you with understanding any 
+                                    additional costs associated with importing your tools and can make the importation easy 
+                                    for you by handling the logistics and paperwork on your behalf.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-tracking">
+                                <div class="accordion-title white">Order Tracking</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-tracking" accordion-mobile-content>
+                                 <p>We’re as excited as you are to get your order in your hands. There are a few different ways 
+                                     to keep track of the status of your order:
+                                 </p>
+                                 
+                                 <h3>ORDER HISTORY</h3>
+                                 <p><a href="/login.php">Login</a> to your LEVEL5 Tools account at LEVEL5Tools.com to check the status of your order from 
+                                    processing to shipping. Order history will also show you if any items have been shipped separately 
+                                    in the case of a multiple item order where an item was not in stock and could not be shipped with 
+                                    the rest of your order. Please note, if your order doesn’t qualify for free shipping, you will only 
+                                    be charged shipping one time for split orders.
+                                </p>
+                                
+                                <h3>EMAIL UPDATES</h3>
+                                <p>When your order status changes an email will be automatically sent to you. You can make sure this 
+                                    information reaches you in a timely manner by double-checking that you have entered your email 
+                                    address correctly at the time of order placement.
+                                </p>
+                                <p>Also, if you believe you have not received an email from us, please have a look in your spam folder 
+                                    prior to contacting us. Sometimes our messages are diverted to this folder inadvertently.
+                                </p>
+                                
+                                <h3>SHIPMENT TRACKING</h3>
+                                <p>When your tools ship, your account will be updated to show the shipper’s tracking number associated with your order.</p>
+                                <p>For orders shipped by FEDEX or UPS, you can easily keep an eye on your merchandise by visiting <a href="https://www.fedex.com/" target="_blank">www.fedex.com</a> or 
+                                    <a href="https://www.ups.com/my/en/Home.page" target="_blank">www.ups.com</a> and entering the tracking number that we provide you via email.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-shipments">
+                                <div class="accordion-title white">Partial Shipments</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-shipments" accordion-mobile-content>
+                                <p>On occasion, we may have to ship a partial order on a multiple item order where one product may not be in stock or may 
+                                    have to be custom-manufactured to your specifications. You will be able to view all partial shipments in the Order 
+                                    History section of your profile on LEVEL5Tools.com.
+                                </p>
+                                <p>If you receive a shipment and believe an item is missing, please call us at toll-free at <a href="tel:+1-866-562-4229">866.562.4229</a> (local: <a href="tel:+1-913-631-0804">913.631.0804</a>) 
+                                    Monday through Friday, between 8am and 4pm Central Standard Time. We will be able to assist in track down your 
+                                    missing your item without delay.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-returns">
+                                <div class="accordion-title white">Returns</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-returns" accordion-mobile-content>
+                                <h3>The LEVEL5 30-Day, “No-Hassle” Policy</h3>
+                                <p>We believe it is important that you have some time to evaluate the design, quality, fit and finish of your LEVEL5 
+                                    tools before fully committing to their use.  Therefore, if you aren’t 100% satisfied, you have a period of 30 
+                                    days from purchase to return any <b>UNUSED tools</b> you've purchased directly from LEVEL5 Tools LLC.
+                                    <a class="link" href="/return">Click here to process your return</a>.
+                                </p>
+                                <p>Once your tools have been received in good order at our facility, you will receive your choice of a credit or 
+                                    refund of the original price.  Please note that refunds must be applied against the same credit card you used 
+                                    to make the original purchase.  
+                                </p>
+                                <p><b>You will be responsible for any return shipping expenses.</b> We recommend you insure your shipment with 
+                                    your shipping agent (FEDEX, UPS, USPS, etc.), as you are responsible for any damage to the tools during 
+                                    the return shipment.  To assist with offsetting these return shipping costs, LEVEL5 will provide you 
+                                    with a one-time use coupon code for our website equal to the return shipping amount (a copy of the 
+                                    shipping receipt is required).
+                                </p>
+                                <div class="return-center">
+                                    <a class="button button--primary btn-mob-full" role="button" href="/return">
+                                        Process Your Return
+                                    </a>
+                                </div>
+                                <h3>Terms & Conditions</h3>
+                                <p>If you wish to return your LEVEL5 tools within the 30-day evaluation period: </p>
+                                <p><ul>
+                                    <li><b>The tools must be returned in the original packaging, </b> including any internal bags, 
+                                    foam inserts, internal boxes, and/or shipping boxes - to ensure the tools are protected during 
+                                    delivery back to our facility.
+                                    </li>
+                                    <li><b>The tools must be unused and undamaged, </b>so they can be resold as new, in order to 
+                                    receive a full refund of the purchase price.
+                                        <ul>
+                                            <li>UNUSED TOOLS - Any unused tools received that are damaged in any way so that they cannot 
+                                                be resold as new will need to be refurbished. This requires us to charge you a 25% restocking fee.
+                                            </li>
+                                            <li>USED TOOLS - Any used tools received will need to be cleaned of joint compound, refurbished and 
+                                                sold at a discount. We will charge you a 50% restocking fee OR return the used tools back to you 
+                                                if preferred.  You will be responsible for paying any corresponding shipping charges if you wish 
+                                                to have the tools returned.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Any tools that are received damaged and cannot be refurbished and resold will discarded and will 
+                                    not qualify for a refund. </b>You will have the option to have the tool(s) returned to you, but you will be 
+                                    responsible for paying any corresponding shipping charges
+                                    </li>
+                                    </ul>
+                                </p>
+                                <p>If you have any questions regarding this return policy, please reach out to us toll-free at 
+                                    <a href="tel:+1-866-562-4229">866.562.4229</a> (local: <a href="tel:+1-913-631-0804">913.631.0804</a>). </p>
+                            </div>
+                        </div>
+                </div>
+                </div>
+    </div>
+</section>
+<script>
+    const cbox = document.querySelectorAll("li.tab");
+    const tabContent = document.querySelectorAll(".tab-content");
+    let tabID;
+
+    for (let i = 0; i < cbox.length; i++) {
+     cbox[i].addEventListener("click", function() {
+       tabID = this.getAttribute('data-id')
+       
+       for (let i=0; i<cbox.length; i++){
+           cbox[i].classList.remove('is-active')
+       }
+       this.classList.add('is-active')
+       
+       for (let j=0; j<tabContent.length; j++){
+           tabContent[j].classList.remove('is-active')
+       }
+       document.getElementById(tabID).classList.add('is-active')
+     });
+    }
+
+</script>
+<script src="{{cdn 'assets/js/theme/custom/accordion.js'}}" type="module"></script>
+
+<style>
+    .tabs-wrapper .tabs .tab .tab-title {
+        white-space: wrap;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .tabs-wrapper .tabs .tab {
+        padding: 0.5rem 0rem;
+    }
+    
+    .tab-contents {
+        padding-top: 1rem;
+    }
+    
+    p > a {
+        text-decoration:underline;
+    }
+
+    .return-center {
+        display: flex;
+        justify-content: center;
+    }
+</style>

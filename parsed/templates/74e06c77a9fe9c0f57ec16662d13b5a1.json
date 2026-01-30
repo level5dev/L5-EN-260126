@@ -1,0 +1,3 @@
+{
+  "components/custom/schematic/schematic-tab": "{{!-- Product SKU schematic tab  --}}\n{{assignVar \"ProdSKU\" \"4-754 4-732 4-733 4-734 4-735 4-741 4-755 4-759 4-764 4-765 4-766 4-770 4-771 4-772 4-780 4-781 4-782 4-767 4-768 4-769 4-701 4-702 4-880 4-881 4-760 4-707\"}}\n{{#contains (getVar \"ProdSKU\") (concat product.sku \"\")}}   \n    <li class=\"tab tab--schematic\" data-accTabId=\"tab-schematic\">\n        <a class=\"tab-title\" href=\"#tab-schematic\">{{lang 'products.schematic'}}</a>\n    </li>\n{{/contains}}\n"
+}

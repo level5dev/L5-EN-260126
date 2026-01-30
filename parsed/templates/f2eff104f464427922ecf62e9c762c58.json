@@ -1,0 +1,3 @@
+{
+  "components/custom/form-field/business-age": "<div class=\"form-field\">\n    <label class=\"form-label\" for=\"business_age\">{{lang 'forms.company.business_age'}}</label>\n    <input class=\"form-input\" id=\"business_age\" type=\"number\" name=\"business_age\" value=\"\">\n</div>\n"
+}

@@ -1,0 +1,46 @@
+{{!-- <nav aria-label="Breadcrumb">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList" style="text-align: left;">
+        <li class="breadcrumb" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="javascript:void(0)" class="home-link" onclick="goToHomePage()">
+                <i class="fas fa-home"></i>
+            </a>
+            <a class="breadcrumb-label" itemprop="item" href="{{url}}">
+                <span itemprop="name" style="text-transform: uppercase;font-weight: 400;"> / {{lang 'common.customer_support'}}</span>
+            </a>
+            
+        </li>
+    </ol>
+</nav> --}}
+
+<nav aria-label="Breadcrumb">
+    <ol class="breadcrumb-wicon" itemscope itemtype="https://schema.org/BreadcrumbList">
+        {{#unless theme_settings.hide_breadcrumbs }}
+            {{#each breadcrumbs}}
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumb-label"
+                       itemprop="item"
+                       href="{{url}}"
+                       {{#if @last}}aria-current="page"{{/if}}
+                    >
+                    {{!-- #if name '===' 'Home'}}
+                        <a href="javascript:void(0)" class="home-link" onclick="goToHomePage()">
+                            <i class="fas fa-home"></i>
+                        </a>
+                    {{else}}
+                        <span itemprop="name">{{name}}</span>
+                    {{/if --}}
+                    <span itemprop="name">{{name}}</span>
+                        
+
+                    </a>
+                    <meta itemprop="position" content="{{add @index 1}}" />
+                </li>
+            {{/each}}
+        {{/unless}}
+    </ol>
+</nav>
+<script>
+    function goToHomePage() {
+        window.location.href = window.location.origin;
+    }
+</script>

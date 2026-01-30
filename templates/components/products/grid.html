@@ -1,0 +1,42 @@
+<div class={{#if page_type '===' 'category' }} "gridProd" {{else if page_type '===' 'search' }} "productGrid grid-3-cl"
+    {{else}} "productGrid" {{/if}} {{#if page_type '===' 'category' }} id="isotope-container" {{/if}}>
+    {{!-- {{#if ../page_type '===' 'category'}}
+    <div class="gutter-sizer" style="width: 4%;"></div>
+    {{/if}} --}}
+
+    {{assignVar "toolBuilderList" "70 74"}}
+    {{#contains (getVar "toolBuilderList") (concat category.id "")}}
+    {{>components/custom/category/tool-set-builder-card}}
+    {{/contains}}
+
+    {{assignVar "num" 0}}
+    {{#each products}}
+    {{#if has_options}}
+    {{log this}}
+    {{/if}}
+    {{#if ../page_type '===' 'category'}}
+    <div class="product" {{else}} <li class="product" {{/if}} data-event-type="{{event}}" data-entity-id="{{id}}"
+        data-position="{{position}}" {{!-- sorting --}} data-name="{{name}}"
+        data-fake-name="{{#filter custom_fields '__product-fake-heading' property='name'}}{{{this.value}}}{{/filter}}"
+        data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}},{{/if}}{{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="{{#or customer (unless theme_settings.restrict_to_login)}}{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}{{else}}{{lang 'common.login_for_pricing'}}{{/or}}"
+        data-rating="{{rating}}" data-num-rating="{{num_reviews}}" data-custom-best-selling="{{incrementVar 'num'}}"
+        data-sku="{{truncate sku 5}}"
+        data-custom-sort="{{#filter custom_fields '__product-sort-order' property='name'}}{{this.value}}{{else}}999{{/filter}}"
+        {{!-- filtering --}}
+        filter-data="{{#filter custom_fields '__product-filter-tag' property='name'}}{{{this.value}}} {{/filter}} ">
+        {{>components/products/card settings=../settings show_compare=../show_compare
+        show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event
+        position=(add @index 1)}}
+
+
+        {{#if ../page_type '===' 'category'}}
+    </div>
+    {{else}}
+    </li>
+    {{/if}}
+
+    {{/each}}
+    {{inject "num" (getVar "num")}}
+</div>

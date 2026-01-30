@@ -1,0 +1,134 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<style>
+    @media screen and (max-width: 1245px){
+        .tabs-wrapper.tabs-desktop .container.tabs li.tab {
+            min-width: auto;
+        }
+    }
+    hr.solid {
+      border-top: 1px solid #bbb;
+    }
+
+    .tabs-wrapper .tabs .tab {
+        background-color: #b8000d;
+    }
+    .tabs-wrapper .tabs .tab:hover {
+        background-color: #dc0000;
+    }
+    .tabs-wrapper .tabs .tab.is-active:hover {
+        background-color: #ffffff;
+    }
+    .form{
+        margin-bottom: 3rem;
+    }
+    .tabs-div {
+        margin-top: 3rem;
+    }
+</style>
+<section class="page">
+    {{#unless theme_settings.hide_page_heading }}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    {{/unless}}
+
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered">
+        <p></p>
+        {{> components/custom/warranty-page/warranty-form}}
+        <hr class="solid" style="display: none;">
+        <div class="tabs-div" style="display: none;">
+                    <div class="tabs-wrapper tabs-desktop">
+                        <ul class="container tabs" data-tab="" data-accTab>
+                            <li data-id="tab-1" data-accTabId="tab-1" class="tab is-active"><a class="tab-title" aria-selected="false" tabindex="0">Automatic & Semi-Auto Tools</a></li>
+                            <li data-id="tab-2" data-accTabId="tab-2" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">Skimming Blades</a></li>
+                            <li data-id="tab-3" data-accTabId="tab-3" class="tab"><a class="tab-title" aria-selected="true" tabindex="0">Hand & Masonry Tools</a></li>
+                        </ul>
+                    </div>
+                    <div class="tabs-contents">
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-1">
+                                <div class="accordion-title white">7-Year Warranty</div>
+                                <i class="fas fa-sharp fa-chevron-right open" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content is-active" id="tab-1" accordion-mobile-content>
+                                    <h4>100% SATISFACTION GUARANTEED</h4><p>LEVEL5 makes workhorse drywall finishing tools that set the standard for quality &amp; reliability.</p><p>We back all of our tools with the strongest warranties in the industry and work hard to provide our family of finishers with the best customer service possible.</p><p>Do you have questions about your LEVEL5 Tool(s)? Call our toll-free support line at&nbsp;<a target="_blank">866.562.4229</a>&nbsp;(local:&nbsp;<a target="_blank">913.631.0804</a>) or send us an email at&nbsp;<a target="_blank">support@level5tools.com</a>. Our support team is available Monday through Friday, 7:30am to 4pm Central Time.</p><h4>MANUFACTURER'S &nbsp;WARRANTY</h4><p>For its&nbsp;<strong>full line of automatic &amp; semi-automatic drywall finishing tools and accessories</strong>, LEVEL5 Tools, LLC. ("LEVEL5") offers a full seven (7) year warranty to the original owner that these products will be free from defects in material and function. This warranty is valid only in the USA, Canada, Australia, the United Kingdom and Europe. A one (1) year warranty applies in all other countries/markets.</p><h4>TERMS &amp; CONDITIONS</h4><ul><li>The Warranty applies to the original owner and is not transferable.</li><li>The Warranty is limited to repair or replacement of the product, and does not cover direct, indirect, consequential, incidental or any other type of damage resulting from its use.</li><li>The Warranty does not cover normal wear, misuse, negligence, fire, theft, loss or intentional damage.</li><li>All shipments to the LEVEL5 facility must be freight paid. LEVEL5 reserves the right to determine whether to repair or replace any product covered under the Warranty. Discontinued products may be replaced with newer models when necessary.</li></ul>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-2">
+                                <div class="accordion-title white">1-Year Warranty</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-2" accordion-mobile-content>
+                                 <h4>00% SATISFACTION GUARANTEED</h4><p>LEVEL5 makes workhorse drywall finishing tools that set the standard for quality &amp; reliability.</p><p>We back all of our tools with the strongest warranties in the industry and work hard to provide our family of finishers with the best customer service possible.</p><p>Do you have questions about your LEVEL5 Tool(s)? Call our toll-free support line at&nbsp;<a target="_blank">866.562.4229</a>&nbsp;(local:&nbsp;<a target="_blank">913.631.0804</a>) or send us an email at&nbsp;<a target="_blank">support@level5tools.com</a>. Our support team is available Monday through Friday, 7:30am to 4pm Central Time.</p><h4>MANUFACTURER'S &nbsp;WARRANTY</h4><p>For its&nbsp;<strong>full line of skimming blades, handles and accessories</strong>, LEVEL5 Tools, LLC. ("LEVEL5") provides a full one (1) year warranty to the original owner that these products will be free from defects in material and function. This warranty is valid in all countries/markets.</p><h4>TERMS &amp; CONDITIONS</h4><ul><li>The Warranty applies to the original owner and is not transferable.</li><li>The Warranty is limited to repair or replacement of the product, and does not cover direct, indirect, consequential, incidental or any other type of damage resulting from its use.</li><li>The Warranty does not cover normal wear, misuse, negligence, fire, theft, loss or intentional damage.</li><li>All shipments to the LEVEL5 facility must be freight paid. LEVEL5 reserves the right to determine whether to repair or replace any product covered under the Warranty. Discontinued products may be replaced with newer models when necessary.</li></ul>
+                                
+                        </div>
+                        <div>
+                            <a class="dropdown-toggle w-dropdown-toggle accordion-mobile" data-accordion="tab-3">
+                                <div class="accordion-title white">Warranty Information</div>
+                                <i class="fas fa-sharp fa-chevron-right" style="color: #ffffff;" accordion-ddown></i>
+                            </a>
+                            <div class="tab-content" id="tab-3" accordion-mobile-content>
+                                 <h4>100% SATISFACTION GUARANTEED</h4><p>LEVEL5 makes workhorse drywall finishing tools that set the standard for quality &amp; reliability.</p><p>We back all of our tools with the strongest warranties in the industry and work hard to provide our family of finishers with the best customer service possible.</p><p>Do you have questions about your LEVEL5 Tool(s)? Call our toll-free support line at&nbsp;<a target="_blank">866.562.4229</a>&nbsp;(local:&nbsp;<a target="_blank">913.631.0804</a>) or send us an email at&nbsp;<a target="_blank">support@level5tools.com</a>. Our support team is available Monday through Friday, 7:30am to 4pm Central Time.</p><h4>MANUFACTURER'S &nbsp;WARRANTY</h4><p>For its premium stainless steel hand tools, specifically its&nbsp;<strong>one-piece welded joint knives</strong>&nbsp;and&nbsp;<strong>all stainless steel taping and joint knives with soft grip handles</strong>, LEVEL5 Tools, LLC. ("LEVEL5") offers a LIFETIME warranty to the original owner that these products will be free from defects in material and function. This warranty is valid only in the USA, Canada, Australia, the United Kingdom and Europe. A one (1) year warranty applies in all other countries/markets.</p><p>For&nbsp;<strong>all other hand tools</strong>, LEVEL5 Tools, LLC. ("LEVEL5") provides a full one (1) year warranty to the original owner that these products will be free from defects in material and function. This warranty is valid in all countries/markets.</p><h4>TERMS &amp; CONDITIONS</h4><ul><li>The Warranty applies to the original owner and is not transferable.</li><li>The Warranty is limited to repair or replacement of the product, and does not cover direct, indirect, consequential, incidental or any other type of damage resulting from its use.</li><li>The Warranty does not cover normal wear, misuse, negligence, fire, theft, loss or intentional damage.</li><li>All shipments to the LEVEL5 facility must be freight paid. LEVEL5 reserves the right to determine whether to repair or replace any product covered under the Warranty. Discontinued products may be replaced with newer models when necessary.</li></ul>
+                            </div>
+                        </div>
+                </div>
+                </div>
+    </div>
+    <div class="loadingOverlay" submitLoader></div>
+</section>
+
+</div>
+<script>
+    const cbox = document.querySelectorAll("li.tab");
+    const tabContent = document.querySelectorAll(".tab-content");
+    let tabID;
+
+    for (let i = 0; i < cbox.length; i++) {
+     cbox[i].addEventListener("click", function() {
+       tabID = this.getAttribute('data-id')
+       
+       for (let i=0; i<cbox.length; i++){
+           cbox[i].classList.remove('is-active')
+       }
+       this.classList.add('is-active')
+       
+       for (let j=0; j<tabContent.length; j++){
+           tabContent[j].classList.remove('is-active')
+       }
+       document.getElementById(tabID).classList.add('is-active')
+     });
+    }
+
+</script>
+<script src="{{cdn 'assets/js/theme/custom/accordion.js'}}" type="module"></script>
+
+<style>
+    .tabs-wrapper .tabs .tab .tab-title {
+        white-space: wrap;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .tabs-wrapper .tabs .tab {
+        padding: 0.5rem 0rem;
+    }
+    
+    .tab-contents {
+        padding-top: 1rem;
+    }
+    
+    p > a {
+        text-decoration:underline;
+    }
+</style>

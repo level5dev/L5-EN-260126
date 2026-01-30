@@ -1,0 +1,42 @@
+<script>
+  //console.log('product-tab')
+  const targetNode = document.querySelector('.productView-description');
+  let isElementAppended = false;
+
+  function appendScript() {
+    // Create a new script element
+    const script = document.createElement('script');
+    script.src = "{{cdn 'assets/js/theme/custom/accordion.js'}}";
+    script.type = "module";
+
+    // Append the script to the document body or any other appropriate location
+    document.body.appendChild(script);
+  }
+
+  //$(document).ready(function() {
+  tabScript()
+  function tabScript() {
+    $('[data-acctabid]').on('click', function () {
+      let tabName = $(this).data('acctabid');
+      let tabContent = $(`#${tabName}`)
+      //console.log('tabName ',tabName,'tabcontent ', tabContent)
+      $('.pdp-content-body').removeClass('is-active')
+      $(tabContent).toggleClass('is-active')
+      $(this).toggleClass('is-active')
+    })
+  }
+  //});
+
+  // Run appendScript() after a certain timeout
+  setTimeout(() => {
+    if (!isElementAppended) {
+      appendScript();
+      if ($('[data-acctabid="tab-schematic"]').length == 1 && $('[data-acctabid="tab-wear-parts"]').length == 1) {
+        $('[data-acctabid="tab-schematic"]').remove()
+        $('[data-tabcon="tab-schematic"]').remove()
+      }
+    }
+  }, 1000); // Adjust the timeout duration as needed
+
+
+</script>

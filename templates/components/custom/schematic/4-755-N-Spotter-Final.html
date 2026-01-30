@@ -1,0 +1,31 @@
+<section class="sch--cont" schematic-sec>
+    <a class="dropdown-toggle w-dropdown-toggle" data-accordion-sch >
+        <h4 style="margin-bottom:0px">{{lang (lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.title')}}</h4>
+        <i class="fas fa-sharp fa-chevron-right" style="color: #000000;" accordion-ddown-sch></i>
+    </a>
+    <div class="schematic-block tab-content-sch" style="margin-bottom:0px;">
+        <div class="div-block-201">
+            <div style="display: grid;">
+                <p>{{lang 'custom.page.parts-components.compatible_with_sku'}}: {{lang (lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.subtitle')}}</p>
+                <a href="{{lang (lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.pdf_link')}}" download target="_blank">
+                    <img src="{{lang (lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.image')}}" loading="lazy" sizes="(max-width: 479px) 90vw, 300px" alt="" class="image-78">
+                </a>
+                {{> components/custom/schematic/download-pdf pdf=(lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.pdf_link')}}
+            </div>
+        </div>
+        <div class="layout-grid grid-row">
+            {{> components/custom/schematic/table-header}}
+            {{#for 1 (lang 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_num')}}
+                {{> components/custom/schematic/schematic-item-list 
+                    index = $index
+                    id = (lang (concat (concat 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_' $index) '.id'))
+                    sku =(lang (concat (concat 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_' $index) '.sku'))
+                    name = (lang (concat (concat 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_' $index) '.name'))
+                    price = (lang (concat (concat 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_' $index) '.price'))
+                    quantity = (lang (concat (concat 'custom.page.parts-components.schematic.4-755-N-Spotter-Final.item_' $index) '.quantity'))
+                }}
+            {{/for}}
+        </div>
+        <div style="margin-bottom: 10px;"></div>
+    </div>
+</section>

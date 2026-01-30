@@ -1,0 +1,119 @@
+
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+<meta property="og:image" content="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/open-graph.png" />
+<script>
+    onElementReady("#seasonal-banner",()=>{
+        if (/lead=black-friday/.test(window.location.href)) {
+        console.log("show banner")
+        document.querySelector('#seasonal-banner').style.display = 'block'
+        }else{
+            console.log("hide banner")
+            document.querySelector('#seasonal-banner').style.display = 'block'
+        }
+    })
+    
+    function onElementReady(querySelector,callBack) {
+        if (document.querySelector(querySelector)) {
+            callBack();
+        } else {
+            setTimeout(()=>onElementReady.call(this,...arguments), 100);
+        }
+    }
+</script>
+<style> #main-content {  margin-top: 0; } </style>
+    {{{region name="home_below_menu"}}}
+        {{> components/custom/hero/hero}}
+    {{!-- {{#and carousel carousel.slides.length}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/and}} --}}
+    <section id="seasonal-banner" class="sec--banner" style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;">
+    {{> components/custom/seasonal-banner}}
+    </section>
+    {{{region name="home_below_carousel"}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+<div class="main full" id="bigcommerce">
+    <div class="bg-grey">
+        {{#if products.featured}}
+            {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+        {{/if}}
+        {{{region name="home_below_featured_products"}}}
+    </div>
+
+    <div class="bg-paint-splatter">
+        {{> components/custom/contact-cta theme="home" show_heading=true}}
+    </div>
+
+    {{> components/custom/category-cta }}
+
+    {{> components/custom/home-bottom-callout }}
+
+    <div class="container">
+        {{> components/custom/testimonial-callout }}
+    </div>
+    
+    {{#if theme_settings.its.brand_carousel}}
+        {{> components/custom/brand-carousel }}
+    {{/if}}
+    {{{region name="home_below_new_products"}}}
+
+    {{#if theme_settings.its.home_blogs}}
+        {{> components/custom/home-blog}}
+    {{/if}}
+
+</div>
+{{/partial}}
+{{> layout/base container_active=false}}
+
+<style>
+    /* @media screen and (min-width:1600px) and (max-width:1700px){
+        .main {
+            margin-top:10vh;
+        }
+    } */
+    
+    /*@media screen and (min-width:1700px){*/
+    /*    .main {*/
+    /*        margin-top:5vh;*/
+    /*    }*/
+    /*}*/
+    
+    /*@media screen and (min-width:3000){*/
+    /*    .main {*/
+    /*        margin-top:18vh;*/
+    /*    }*/
+    /*}*/
+    
+   /* @media screen and (min-width:1025px){
+        .product-carousel__container {
+            padding: 3rem 1rem;
+        }
+        
+        .slick-track {
+            width:100%;
+        }
+        
+        .productCarousel-slide {
+            width: 50%;
+        }
+    }*/
+</style>

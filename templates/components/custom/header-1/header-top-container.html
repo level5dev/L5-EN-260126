@@ -1,0 +1,24 @@
+<div
+  id="header--top--container"
+  class="header-1__top container"
+  style="padding-top: 1px"
+>
+  <div id="headerRotate" class="header-1__shipping-container">
+    {{#for 1 (lang
+    'custom.header.top-navigation.shipping-header.number-of-headers')}} {{!--#if
+    $index '!==' 1--}} {{#if (lang (concat (concat
+    'custom.header.top-navigation.shipping-header.header-'$index)'.expiry'))
+    '!==' 'null'}}
+    <div class="header--rotation">
+      {{{lang (concat (concat
+      'custom.header.top-navigation.shipping-header.header-'$index)'.text')}}}
+    </div>
+    {{else}}
+    <div class="header--rotation">
+      {{{lang (concat (concat
+      'custom.header.top-navigation.shipping-header.header-'$index)'.text')}}}
+    </div>
+    {{/if}} {{/for}}
+  </div>
+  {{> components/custom/header-1/header-1_top-nav}}
+</div>

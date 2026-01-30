@@ -1,0 +1,953 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script crossorigin src="https://unpkg.com/@credit-key/creditkey-js@latest/umd/creditkey-js.js" defer async></script>
+<div id="prodContainer">
+    {{#if product.id '==' '2952'}}
+    {{else}}
+    {{> components/custom/product/floating-adc }}
+    {{/if}}
+
+    <div class="container ">
+        <div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product"
+            data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="
+        {{#each product.category}}
+        {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
+        {{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="
+        {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{#if product.price.with_tax}}
+        {{product.price.with_tax.value}}
+        {{else}}
+        {{product.price.without_tax.value}} 
+        {{/if}}
+        {{else}}
+        {{lang 'common.login_for_pricing'}}
+        {{/or}}" data-product-variant="single-product-option" {{/if}}>
+
+            {{#each product.reviews.messages}}
+            {{#if error}}
+            {{> components/common/alert/alert-error error}}
+            {{/if}}
+            {{#if success}}
+            {{> components/common/alert/alert-success success}}
+            {{/if}}
+            {{/each}}
+            <section class="productView-images" data-image-gallery>
+                {{!--
+                Note that these image sizes are coupled to image sizes used in
+                /assets/js/theme/common/product-details.js
+                for variant/rule image replacement
+                --}}
+                {{#if product.images.length '>' 1 }}
+                {{> components/carousel-content-announcement}}
+                {{/if}}
+                <figure class="productView-image" data-image-gallery-main {{#if product.main_image}}
+                    data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+                    {{/if}}>
+                    <div class="productView-img-container">
+                        {{!-- Remove the surrounding a-element if there is no main image. --}}
+                        {{#if product.main_image}}
+                        <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                            data-index="{{#all (if product.videos.list) (if theme_settings.its.pdp_video_thumbnails)}}{{#each product.images}}{{#if data '===' ../product.main_image.data}}{{add (toInt @index) ../theme_settings.its.pdp_video_thumbnails_pos}}{{/if}}{{/each}}{{else}}0{{/all}}"
+                            data-type="image" target="_blank">
+                            {{/if}}
+                            {{> components/common/responsive-img
+                            image=product.main_image
+                            class="productView-image--default"
+                            fallback_size=theme_settings.product_size
+                            lazyload=theme_settings.lazyload_mode
+                            default_image=theme_settings.default_image_product
+                            otherAttributes="data-main-image"
+                            }}
+                            {{!-- Remove the surrounding a-element if there is no main image. --}}
+                            {{#if product.main_image}}
+                        </a>
+                        {{/if}}
+                    </div>
+                </figure>
+
+                {{#all (if product.videos.list) (if theme_settings.its.pdp_video_thumbnails)}}
+                {{> components/custom/product-view-thumbnails slick_activation_count=(add product.images.length
+                product.videos.list.length) video_pos=theme_settings.its.pdp_video_thumbnails_pos
+                video_show=theme_settings.its.pdp_video_thumbnails}}
+                {{else}}
+                {{> components/custom/product-view-thumbnails slick_activation_count=product.images.length}}
+                {{/all}}
+            </section>
+
+            <section class="productView-details product-data">
+                <div class="productView-product">
+                    {{#filter product.custom_fields '__product-fake-heading' property='name'}}
+                    <p class="productView-type-title h2">{{{this.value}}}</p>
+                    {{/filter}}
+                    <h1 class="productView-title font-scale">{{product.title}}</h1>
+                    {{#if product.brand}}
+                    <h2 class="productView-brand">
+                        <a href="{{product.brand.url}}">{{product.brand.name}}</span></a>
+                    </h2>
+                    {{/if}}
+
+                    {{!-- Assign sku to hide --}}
+                    {{assignVar "hidesku" "2956 2952"}}
+
+                    {{#contains (getVar "hidesku") (concat product.id "")}}
+                    {{else}}
+                    {{> components/custom/product/info-sku-upc }}
+                    {{/contains}}
+
+                    <dl class="productView-info">
+                        <dt class="productView-info-name sku-label" {{#unless product.sku}} style="display: none;"
+                            {{/unless}}>{{lang 'products.sku'}}</dt>
+                        <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
+                        <dt class="productView-info-name upc-label" {{#unless product.upc}} style="display: none;"
+                            {{/unless}}>{{lang 'products.upc'}}</dt>
+                        <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                        {{#if product.condition}}
+                        <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                        <dd class="productView-info-value">{{product.condition}}</dd>
+                        {{/if}}
+                        {{#if product.availability}}
+                        <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                        <dd class="productView-info-value">{{product.availability}}</dd>
+                        {{/if}}
+                        {{#all product.weight theme_settings.show_product_weight}}
+                        <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                        <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                        {{/all}}
+                        {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                        <dt class="productView-info-name">{{lang 'products.width'}}</dt>
+                        <dd class="productView-info-value" data-product-width>
+                            {{product.width}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                        <dt class="productView-info-name">{{lang 'products.height'}}</dt>
+                        <dd class="productView-info-value" data-product-height>
+                            {{product.height}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                        <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
+                        <dd class="productView-info-value" data-product-depth>
+                            {{product.depth}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                        {{/all}}
+                        {{#if product.min_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units'
+                            quantity=product.min_purchase_quantity}}</dd>
+                        {{/if}}
+                        {{#if product.max_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units'
+                            quantity=product.max_purchase_quantity}}</dd>
+                        {{/if}}
+                        {{#if product.gift_wrapping_available}}
+                        <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                        {{/if}}
+                        {{#if product.shipping}}
+                        {{#if product.shipping.calculated}}
+                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                        {{else}}
+                        {{#if product.shipping.price.value '===' 0}}
+                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
+                        {{else}}
+                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.shipping_fixed'
+                            amount=product.shipping.price.formatted}}</dd>
+                        {{/if}}
+                        {{/if}}
+                        {{/if}}
+
+                        {{#if settings.bulk_discount_enabled}}
+                        <div class="productView-info-bulkPricing">
+                            {{> components/products/bulk-discount-rates
+                            bulk_discount_rates=product.bulk_discount_rates}}
+                        </div>
+                        {{/if}}
+
+                        {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                        {{#each product.custom_fields}}
+                        <dt class="productView-info-name {{dashcase name}}" {{#startsWith '__' name}}
+                            style="display: none;" {{/startsWith}}>{{name}}:</dt>
+                        <dd class="productView-info-value {{dashcase name}}" {{#startsWith '__' name}}
+                            style="display: none;" {{/startsWith}}>{{{ sanitize value}}}</dd>
+                        {{/each}}
+                        {{/if}}
+                    </dl>
+
+                </div>
+            </section>
+
+            <section class="productView-details product-options">
+                {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span>{{product.call_for_price}}</span>
+                </p>
+                {{/if}}
+
+                {{#if settings.show_product_reviews}}
+                {{> components/products/modals/writeReview}}
+                {{/if}}
+
+                {{product.detail_messages}}
+
+                {{> components/custom/product/pdp-banner }}
+
+                <div class="productView-options">
+                    {{#if product.release_date }}
+                    <p>{{product.release_date}}</p>
+                    {{/if}}
+
+                    {{!-- old version --}}
+                    {{!--
+                    {{#filter product.custom_fields '__banner-flash-text' property='name'}}
+                    <div class="pdp-banner pdp-banner--sale">
+                        <p class="pdp-banner__heading h2">FLASH SALE</p>
+                        <ul class="pdp-banner__list">
+                            <li class="pdp-banner__text">
+                                THIS ITEM IS CURRENTLY <span style="color:red;">{{{this.value}}}</span> OFF!
+                            </li>
+                            {{#if ../product.price.without_tax.value '>' 49.99}}
+                            <li class="pdp-banner__text">
+                                <span style="color:red;">FREE</span> FAST SHIPPING*
+                            </li>
+                            {{/if}}
+                        </ul>
+                    </div>
+                    {{/filter}}
+                    --}}
+
+                    <div class="productView-price-rating-block flex space_between">
+                        <div class="productView-price-wrapper">
+                            <div class="productView-price">
+
+                                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=product.price bdsp_search_items=product.category}}
+                                {{else}}
+                                {{> components/common/login-for-pricing}}
+                                {{/or}}
+
+
+                            </div>
+                            {{> components/custom/product/info-slider price=product.price}}
+                        </div>
+
+                        <div class="productView-price-rating-wrapper">
+                            <div class="productView-rating">
+                                {{#if settings.show_product_rating}}
+                                <div>
+                                    {{> components/products/ratings rating=product.rating}}
+                                    {{#if product.num_reviews '>' 0}}
+                                    <a class="productView-rating__link"
+                                        href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}"
+                                        id="productReview_link">
+                                        ({{product.num_reviews}})
+                                    </a>
+                                    {{else}}
+                                    <span class="productView-rating__link">({{product.num_reviews}})</span>
+                                    {{/if}}
+                                </div>
+                                {{/if}}
+                                {{#if settings.show_product_reviews}}
+                                <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                                    class="productView-reviewLink productView-reviewLink--new anchor-secondary"
+                                    {{#unless is_ajax}}data-reveal-id="modal-review-form" {{/unless}} role="button">
+                                    {{lang 'products.reviews.new'}}
+                                </a>
+
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="flex product-button {{#filter product.custom_fields '__amazon-asin' property='name'}}two{{/filter}}">
+
+                        <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                            data-cart-item-add>
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="product_id" value="{{product.id}}" />
+                            <div data-product-option-change style="display:none">
+                                {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                                {{#each product.options}}
+                                {{{dynamicComponent 'components/products/options'}}}
+                                {{/each}}
+                            </div>
+
+                            {{#contains (getVar "hidesku") (concat product.id "")}}
+                            <div class="product--bpn">
+                                <div class="bpn--wrapper">
+                                    <div data-prod-id="{{product.id}}">Set Contents:</div>
+                                    <div data-prod-bpn data-mpn></div>
+                                </div>
+                            </div>
+
+                            <div id="myLottie"></div>
+                            {{else}}
+
+                            {{/contains}}
+
+                            {{> components/products/add-to-cart}}
+
+                        </form>
+                        {{#filter product.custom_fields '__amazon-asin' property='name'}}
+                        <div class="productView--grid">
+                            <a class="button button--primary" id="show-modal" role="button"
+                                href="https://www.amazon.com/dp/{{{this.value}}}">
+                                <img src="{{cdn 'img/Amazon_logo_3.svg'}}">
+                            </a>
+
+                            {{#if ../settings.show_wishlist}}
+                            {{> components/common/wishlist-dropdown}}
+                            {{/if}}
+                        </div>
+                        {{else}}
+                        <div class="productView--grid only-one" style="grid-template-columns: 1fr;">
+                            {{#if settings.show_wishlist}}
+                            {{> components/common/wishlist-dropdown}}
+                            {{/if}}
+                        </div>
+                        {{/filter}}
+
+
+                    </div>
+
+                    {{> components/custom/finance}}
+
+                </div>
+
+                <!-- KLARNA MODAL -->
+                {{#unless product.can_purchase}}
+                <div class="banner--out-of-stock">
+                    <p>Want to be notified when this item is back in stock? <a data-reveal-id="modal-soldout"
+                            class="anchor-secondary">Join our backorder list.</a></p>
+                </div>
+                {{/unless}}
+                <div>
+                    {{> components/custom/product/info-contact }}
+                    {{!-- {{#and (if product.price.without_tax.value '>=' 50) (if product.price.without_tax.value '<='
+                        1500)}} --}} {{#if product.price.without_tax.value '>=' 50}} <div href="#"
+                        class="klarna-btn-div">
+                        <h4>FINANCING OPTIONS (AT CHECKOUT)</h4>
+                        <div>
+
+                            <div data-pp-message data-pp-style-layout="text" data-pp-style-logo-type="inline"
+                                data-pp-style-text-color="black" data-pp-amount="{{product.price.without_tax.value}} "
+                                style="margin-top:16px;">
+                            </div>
+
+                            {{#if product.price.without_tax.value '>=' 500}}
+                            {{#if product.price.without_tax.value '>' 1500}}
+                            {{> components/custom/product/credit-key margin="-30px"}}
+                            {{else}}
+                            {{> components/custom/product/credit-key margin="-25px"}}
+                            {{/if}}
+                            <br>
+                            {{/if}}
+
+                            {{#and (if product.price.without_tax.value '>=' 50) (if product.price.without_tax.value '<='
+                                1500)}} <a data-reveal-id="modal">
+                                <div class="klarna-btn"><img class="klarna-img"
+                                        src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/620b4d76370a50990f9baa4f-logo-klarna.png"
+                                        alt="klarna button"></div>
+                                <span class="klarna-text-span">Pay-in-4 financing available. <span
+                                        style="text-decoration:underline;">{{lang 'common.learn_more'}} »</span></span>
+                                </a>
+                                {{#if product.price.without_tax.value '<' 500}} <style>
+                                    .klarna-btn{
+                                    margin-top: 5px;
+                                    }
+                                    </style>
+                                    {{/if}}
+                                    {{/and}}
+                        </div>
+                        <a class="button--secondary button button--financing" style="margin-top: 15px;"
+                            href="/financing/">Step-By-Step Financing Guide</a>
+                </div>
+        </div>
+
+        {{!-- {{/and}} --}}
+        {{/if}}
+        {{> components/custom/finance}}
+
+        <div id="modal" class="modal" data-reveal data-prevent-quick-search-close>
+            <a href="#" class="modal-close" role="button" aria-label="{{lang 'common.close'}}">
+                <span class="aria-description--hidden">{{lang 'common.close'}}</span>
+                <span aria-hidden="true">×</span>
+            </a>
+            <!-- you can add any content inside the element below, including another template -->
+            <div class="modal-content modal-klarna">
+                <h2>
+                    Shop Now, Pay-in-4 with Klarna
+                </h2>
+                <p>
+                    We’ve partnered with Klarna to give you a better shopping experience.
+                </p>
+
+                <p>
+                    When you choose to sign up and pay with Klarna, you can split your purchase into 4 manageable
+                    payments and spread the cost of your tool purchase over time. Simply enter the credit or debit card
+                    of your choice for automatic payments every two weeks. No interest or added fees when you pay on
+                    time!
+                </p>
+
+                <h3>
+                    HOW DOES IT WORK?
+                </h3>
+
+                <p>
+                    Add item(s) to your cart and when ready click "Checkout". You can then apply for easy monthly
+                    financing directly as part of the checkout process. A simple, 2-step application will provide an
+                    instant approval decision. Only basic information at the checkout, so you can complete your purchase
+                    with full transparency. It’s the simplest one-time sign-up process you’ve ever used.
+                </p>
+
+                <p>
+                    Once approved, you’ll receive reminders and can manage your payments directly in the Klarna app on
+                    your phone.
+                </p>
+
+                <h3>
+                    SAFE & SECURE
+                </h3>
+
+                <p>
+                    Klarna is one of the largest pay-in-4 financing firms in the world. It uses the latest safeguards
+                    and security to protect your information and prevent unauthorized purchases.
+                </p>
+
+                <h3>
+                    A GREAT WAY TO SHOP
+                </h3>
+
+                <p>
+                    See all of your purchases in one place, pay any open balances and much more in the Klarna app. At
+                    any time you can also log into your Klarna account at https://app.klarna.com/login.
+                </p>
+                <p><em>Monthly financing through Klarna issued by WebBank. Other CA resident loans made or arranged
+                        pursuant to a California Financing Law license. NMLS # 1353190.</em></p>
+            </div>
+            <div class="loadingOverlay"></div>
+        </div>
+
+        <!-- END KLARNA MODAL -->
+        {{#filter product.custom_fields '__amazon-asin' property='name'}}
+        <a href="https://www.amazon.com/dp/{{{this.value}}}" style="color:red;display:inline;margin-bottom:0.5rem;">This
+            item is also available with FREE shipping on <img
+                src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/amazonprime.png?t=1666339565"
+                alt="amazon logo" style="display:inline;height:24px;-o-object-fit: contain;object-fit: contain;"></a>
+        {{/filter}}
+
+
+        {{!-- {{!> components/common/share url=product.url}} --}}
+        {{> components/custom/product/details-list }}
+        {{> components/custom/product/fake-options }}
+        </section>
+        {{{region name="product_below_content"}}}
+
+
+    </div>
+    {{> components/custom/freq-bought-together}}
+</div>
+
+{{#if product.id '==' '2952'}}
+{{else}}
+<div class="container set-contents-container">
+    <div class="title-block">
+        <h2>SET CONTENTS</h2>
+        <p>Below are the items included in this tool set:</p>
+    </div>
+    {{> components/products/carousel-set-contents-products type="pc" columns=6}}
+    {{> components/products/carousel-set-contents-products type="mobile" columns=1}}
+</div>
+{{/if}}
+<div class="lfse-banner" id="lfse-banner">
+    <div>
+        <h2>LOOKING FOR SOMETHING ELSE?</h2>
+        <p>For more details or to purchase by telephone, call us at <a href="tel:+18002277713"><u>800.227.7713</u></a>
+        </p>
+    </div>
+
+</div>
+
+<article class="productView-description">
+    {{#if theme_settings.show_product_details_tabs}}
+    <div class="container desc-container">
+        {{{product.description}}}
+    </div>
+    <div class="container tabs-container">
+        {{> components/products/description-tabs}}
+    </div>
+    {{else}}
+    {{> components/products/description}}
+    {{/if}}
+</article>
+{{!--inject "product123" product --}}
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+<div>
+
+
+    {{#if product.out_of_stock}}
+    <!-- <div class="pdp-banner pdp-banner--sold-out">
+        <a href="#" data-reveal-id="modal-soldout" class="klarna-btn-div">SOLD OUT</a>
+    </div> -->
+
+    <div id="modal-soldout" class="modal" data-reveal data-prevent-quick-search-close>
+        <div class="modal-header">
+            <img src="https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/645086b0a698ed589c0e7f2c_643f493fef815326747b023c_image%2096.png"
+                loading="lazy" alt="">
+            <div href="#" class="modal-close" style="text-decoration:none;">
+                <span>×</span>
+            </div>
+        </div>
+        <!-- you can add any content inside the element below, including another template -->
+        <div class="modal-content modal-klarna">
+            <div class="modal-div">
+                <div class="text-block-4">IN STOCK NOTIFICATION</div>
+                <div class="text-block-5" id="instruction">Fill out your contact details below and we&#x27;ll call you
+                    as soon as this item is back in stock.</div>
+                <div class="text-block-5 success" id="responseMsg">We'll contact you as soon as this item is back in
+                    stock.</div>
+                <div class="form-block w-form" id="noti-form">
+                    <form id="notification-form" name="notification-form" data-name="Notification Form" method="get"
+                        onsubmit="formSubmit(); return false;">
+                        <label for="product-sku" class="form--label">Product SKU</label>
+                        <input type="text" class="form--field w-input" maxlength="256" name="product-sku"
+                            data-name="Product-SKU" placeholder="" id="product-sku" value="{{product.sku}}" disabled>
+                        <label for="name" class="form--label">{{lang 'forms.contact_us.full_name'}}</label>
+                        <input type="text" class="form--field w-input" maxlength="256" name="name" data-name="Name"
+                            placeholder="" id="name">
+                        {{#if product.price.without_tax.value '>' 1499}}
+                        <label for="phone" class="form--label">{{lang 'forms.contact_us.phone'}}</label>
+                        <input type="text" class="form--field w-input" maxlength="256" name="phone" data-name="phone"
+                            placeholder="" id="phone" required>
+                        {{else}}
+                        <label for="email" class="form--label">{{lang 'forms.contact_us.email'}}</label>
+                        <input type="email" class="form--field w-input" maxlength="256" name="email" data-name="Email"
+                            placeholder="" id="email" value="{{customer.email}}" required>
+                        {{#if product.price.without_tax.value '<' 100}} <label for="phone2" class="form--label">{{lang
+                            'forms.contact_us.phone'}}</label>
+                            <input type="text" class="form--field w-input" maxlength="256" name="phone2"
+                                data-name="phone2" placeholder="" id="phone2">
+                            {{/if}}
+                            {{/if}}
+                            <div class="div-block-10">
+                                <input class="button button-primary" type="submit" value="SUBMIT" style="color:#fff">
+                            </div>
+                    </form>
+                    <!-- <div class="div-block-10" id="inStockNotiSubmit"><div class="text-block-6">SUBMIT</div></div> -->
+                </div>
+            </div>
+        </div>
+        <div class="loadingOverlay"></div>
+    </div>
+    <!-- <div class="pdp-banner pdp-banner--sold-out">
+        <p class="pdp-banner__heading h2">{{lang 'custom.product.sold-out-banner.heading'}}</p>
+        <p class="pdp-banner__text">{{{lang 'custom.product.sold-out-banner.text'}}}</p>
+    </div> -->
+    {{/if}}
+
+
+
+    <style>
+        /*
+    #creditkeypdp{
+        display: grid;
+        justify-content: start;
+    }
+    .ck-pdp{
+        text-align: start !important;
+    }
+*/
+
+        .button--financing {
+            width: auto;
+            padding: .5rem 1.5rem;
+            margin-bottom: 4px;
+
+            @media screen and (max-width: 767px) {
+                margin-top: -16px;
+            }
+        }
+
+        .button.button-primary {
+            @media screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+
+        input:focus+label {
+            outline: none !important;
+        }
+
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        .text-block-5.success {
+            display: none;
+        }
+
+        .form-block.w-form.success {
+            display: none;
+        }
+
+        .modal-div {
+            padding-bottom: 10px;
+        }
+
+        .inputSubmit {
+            border: #B8000D;
+            background-color: #B8000D;
+            font-weight: 300;
+            display: flex;
+            padding: 0.875rem 2.25rem;
+            /* padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 45px;
+        padding-left: 45px; */
+            justify-content: center;
+            align-items: center;
+            font-family: "Roboto", Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14.91px;
+            line-height: 124.7%;
+            letter-spacing: 0px;
+            text-align: center;
+        }
+
+
+        .klarna-btn-div {
+            width: 100%;
+            padding-left: 0.75rem;
+        }
+
+        .klarna-text-span {
+            font-size: 0.8rem;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .klarna-btn-div {
+                margin-top: 20px;
+                padding-left: 1rem;
+            }
+
+            .klarna-text-span {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media only screen and (min-width: 600px) {
+            .klarna-btn-div {
+                margin-top: 20px;
+                margin-left: 0px;
+
+            }
+
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 819px) {
+            .klarna-btn-div {
+                margin-top: 25px;
+                margin-left: 0px;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .klarna-btn-div {
+                margin-top: 20px;
+                margin-left: 0px;
+            }
+        }
+
+        #myLottie {
+            display: none;
+        }
+
+        #myLottie svg {
+            width: 50% !important;
+            height: auto !important;
+        }
+
+        .product--bpn {
+            display: none;
+        }
+
+        .bpn--wrapper {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 5px;
+
+            @media screen and (min-width: 641px) {
+                width: 163%;
+            }
+
+            [data-prod-id] {
+                white-space: nowrap;
+            }
+        }
+    </style>
+
+    {{> components/custom/product/product-page-script }}
+    <!--script src="{{cdn 'assets/js/theme/custom/accordion.js'}}" type="module"></script-->
+    {{> components/products/product-tab-accordion-script }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var floatCardAdcWrapper = document.querySelector('.float-card-adc-wrapper');
+            var productButton = document.querySelector('.flex.product-button');
+            var footer = document.querySelector('footer');
+            var listenersAdded = false;
+
+            // Function to handle scroll event
+            function onScroll() {
+                if (window.innerWidth <= 467) { // Check if the screen width is 467px or less (mobile devices)
+                    var productButtonRect = productButton.getBoundingClientRect();
+                    var floatCardAdcWrapperHeight = floatCardAdcWrapper.clientHeight;
+
+                    if (productButtonRect.top < 0) {
+                        if (!floatCardAdcWrapper.classList.contains('float-show')) {
+                            floatCardAdcWrapper.classList.add('float-show');
+                            //document.body.style.paddingBottom = floatCardAdcWrapperHeight + 'px';
+                            footer.style.paddingBottom = floatCardAdcWrapper.clientHeight + 'px';
+                        }
+
+                        var floatAdcHeight = floatCardAdcWrapper.clientHeight;
+                        var newBottomStyle = 'bottom: ' + (floatAdcHeight + 10) + 'px !important;';
+
+                        $('iframe[title="chat widget"]').slice(0, 2).each(function () {
+                            var existingStyle = $(this).attr('style') || '';
+                            var cleanedStyle = existingStyle.replace(/bottom:\s*\d+px\s*!important;/, '');
+                            var finalStyle = cleanedStyle + newBottomStyle;
+                            $(this).attr('style', finalStyle);
+                        });
+
+                    } else {
+                        if (floatCardAdcWrapper.classList.contains('float-show')) {
+                            floatCardAdcWrapper.classList.remove('float-show');
+                            document.body.style.paddingBottom = '0';
+                            footer.style.paddingBottom = '0';
+                        }
+
+                        var newBottomStyle = 'bottom: ' + (20) + 'px !important;';
+
+                        $('iframe[title="chat widget"]').eq(0).each(function () {
+                            var existingStyle = $(this).attr('style') || '';
+                            var cleanedStyle = existingStyle.replace(/bottom:\s*\d+px\s*!important;/, '');
+                            var finalStyle = cleanedStyle + 'bottom: ' + (20) + 'px !important;';
+                            $(this).attr('style', finalStyle);
+                        });
+
+                        $('iframe[title="chat widget"]').eq(1).each(function () {
+                            var existingStyle = $(this).attr('style') || '';
+                            var cleanedStyle = existingStyle.replace(/bottom:\s*\d+px\s*!important;/, '');
+                            var finalStyle = cleanedStyle + 'bottom: ' + (90) + 'px !important;';
+                            $(this).attr('style', finalStyle);
+                        });
+                    }
+                }
+            }
+
+            // Function to add event listeners once
+            function addListeners() {
+                if (!listenersAdded) {
+                    window.addEventListener('scroll', onScroll);
+                    window.addEventListener('resize', onScroll);
+                    listenersAdded = true;
+                }
+            }
+
+            // Function to check if the chat widget is available
+            function checkChatWidget() {
+                if ($('iframe[title="chat widget"]').length > 0) {
+                    addListeners();
+                    // Initial check
+                    onScroll();
+                } else {
+                    // Check again after a short delay
+                    setTimeout(checkChatWidget, 100);
+                }
+            }
+
+            // Add listeners regardless of chat widget availability
+            addListeners();
+
+            // Start checking for the chat widget
+            checkChatWidget();
+
+        });
+
+        let prodId = parseInt($('[data-prod-id]').data('prod-id'));
+        let variantsData = []; // global store for variants
+
+        if (prodId == 2952 || prodId == 2956) {
+            $(document).on("change", ".productView-options input[type=radio]", function () {
+                $('[data-mpn]').text('');
+                $("#myLottie").show();
+                $('.product--bpn').hide()
+            })
+
+            // First fetch
+            /*getProduct().then(() => {
+            // Initial update
+            updateMpn();
+        
+            // Watch for SKU changes
+            const target = document.querySelector('[data-product-sku]');
+            const observer = new MutationObserver(() => {
+                updateMpn();
+            });
+            if (target) {
+                observer.observe(target, { childList: true, characterData: true, subtree: true });
+            }
+            });*/
+
+            getProductBpn().then(() => {
+                // Initial update
+                updateBpn();
+
+                // Watch for SKU changes
+                const target = document.querySelector('[data-product-sku]');
+                const observer = new MutationObserver(() => {
+                    updateBpn();
+                });
+                if (target) {
+                    observer.observe(target, { childList: true, characterData: true, subtree: true });
+                }
+            });
+
+
+            lottie.loadAnimation({
+                container: document.getElementById('myLottie'), // target div
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://cdn.prod.website-files.com/669591a78e0d5f26fa7c1147/66d6c565c502856051808ecc_Animation%20-%201695777648339.json'
+            });
+        }
+
+        // Fetch product + variants once
+        /*async function getProduct() {
+          try {
+            const response = await fetch('/graphql', {
+              method: 'POST',
+              credentials: 'same-origin',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer {{ settings.storefront_api.token }}'
+              },
+              body: JSON.stringify({
+                query: `query GetProduct($id: Int!) {
+                  site {
+                    product(entityId: $id) {
+                      name
+                      variants {
+                        edges {
+                          node {
+                            sku
+                            mpn
+                            entityId
+                            gtin
+                          }
+                        }
+                      }
+                    }
+                  }
+                }`,
+                variables: { id: prodId }
+              })
+            });
+        
+            const data = await response.json();
+            // store variants globally
+            variantsData = data.data.site.product.variants.edges.map(v => v.node);
+            return variantsData;
+          } catch (error) {
+            console.error(error);
+            throw error;
+          }
+        }*/
+
+        async function getProductBpn() {
+            const response = await fetch(`https://eonrglimf7f0zga.m.pipedream.net?product_id=${prodId}`);
+            const data = await response.json();
+            //console.log("Product with BPN:", data);
+            variantsData = data.variants;
+
+            return data.data; // or the correct field
+        }
+
+        function updateBpn() {
+            const currentSku = $('[data-product-sku]').eq(0).text().trim();
+            const variant = variantsData.find(v => v.sku === currentSku);
+            //console.log('updateBpn:', currentSku, variant);
+
+            if (!variant) return;
+
+            // ✅ Show BPN info
+            $("#myLottie").hide();
+            $('.product--bpn').show();
+            $('[data-mpn]').text(variant.bin_picking_number);
+
+            /*const newUrl = variant.image_url;
+            if (!newUrl) return;
+
+            // ✅ Update first thumbnail
+            const thumbLink = $('.productView-thumbnail-link').first();
+            if (thumbLink.length) {
+                thumbLink.attr({
+                    href: newUrl,
+                    'data-image-gallery-new-image-url': newUrl,
+                    'data-image-gallery-zoom-image-url': newUrl,
+                    'data-image-gallery-new-image-srcset': newUrl
+                });
+
+                const thumbImg = thumbLink.find('img').first();
+                if (thumbImg.length) {
+                    thumbImg.attr({
+                        src: newUrl,
+                        srcset: newUrl,
+                        'data-srcset': newUrl,
+                        alt: variant.mpn || currentSku,
+                        title: variant.mpn || currentSku
+                    });
+                }
+            }
+
+            // ✅ Trigger Stencil image gallery update
+            const galleryEl = $('[data-image-gallery]');
+            if (galleryEl.length) {
+                galleryEl.trigger('image-gallery:update-image', {
+                    imageUrl: newUrl,
+                    zoomImageUrl: newUrl
+                });
+                //console.log('Triggered image-gallery:update-image', newUrl);
+            }*/
+        }
+    </script>

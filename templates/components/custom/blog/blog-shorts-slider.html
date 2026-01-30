@@ -1,0 +1,134 @@
+{{#if page '===' 'vip'}}
+    {{> components/custom/blog/carousel-set-contents type="pc" blog_type="shorts" columns=3 tablet-columns=2 mobile-columns=1}}
+{{else}}
+    {{> components/custom/blog/carousel-set-contents type="pc" blog_type="shorts" columns=4 tablet-columns=2 mobile-columns=1}}
+{{/if}}
+
+{{!-- {{> components/custom/blog/carousel-set-contents type="mobile" blog_type="shorts" columns=4 tablet-columns=3 mobile-columns=1}} --}}
+{{!-- {{> components/custom/blog/carousel-set-contents type="mobile" blog_type="sku" columns=1}} --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+(function () {
+
+
+    function extractYouTubeId(url) {
+        // Extract the video ID from a standard YouTube URL
+        const standardRegEx = /youtube.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+        const standardMatch = url.match(standardRegEx);
+        if (standardMatch) {
+            return standardMatch[1];
+        }
+      
+        // Extract the video ID from a shortened YouTube URL
+        const shortRegEx = /youtu.be\/([a-zA-Z0-9_-]{11})/;
+        const shortMatch = url.match(shortRegEx);
+        if (shortMatch) {
+            return shortMatch[1];
+        }
+      
+        // Extract the video ID from an embed code
+        const embedRegEx = /youtube.com\/embed\/([a-zA-Z0-9_-]{11})/;
+        const embedMatch = url.match(embedRegEx);
+        if (embedMatch) {
+            return embedMatch[1];
+        }
+      
+        // Extract the video ID from a share URL
+        const shareRegEx = /youtube.com\/.*[?&]v=([a-zA-Z0-9_-]{11})/;
+        const shareMatch = url.match(shareRegEx);
+        if (shareMatch) {
+            return shareMatch[1];
+        }
+
+        // Extract the video ID from a playlist URL
+        const playlistRegEx = /youtube.com\/.*[?&]list=([a-zA-Z0-9_-]+)/;
+        const playlistMatch = url.match(playlistRegEx);
+        if (playlistMatch) {
+            return playlistMatch[1];
+        }
+        // Extract the video ID from a shorts URL
+        const shortsRegex = /\/shorts\/([A-Za-z0-9_-]{11})/;
+        const shortsMatch = url.match(shortsRegex);
+        if (shortsMatch) {
+            return shortsMatch[1];
+        }
+      
+        // If the URL doesn't match any of the patterns, return null
+        return "";
+    }
+
+    const $slideSetContent = document.querySelector('[set-content-slide][type="pc"][blog-type="shorts"]');
+    const $slideSetContentMobile = document.querySelector('[set-content-slide][type="mobile"][blog-type="shorts"]');
+    let shorts = document.querySelector('#youtube-shorts');
+    const arrMob = [];
+    let count = 0;
+    let temp = "";
+    if(shorts === undefined || shorts === null){
+            document.querySelector(".blog-post__yt-shorts-container").style.display = "none";
+    }
+    else if(shorts.textContent.length > 0){
+
+        let shorts_list = shorts.textContent.match(/(http[s]?:\/\/[^\s]+)/g);
+        // let shorts_list = shorts.textContent.match(/https?:\/\/([^/]+)/);
+        shorts_list = shorts_list.filter(s => s.length > 0);
+        // console.log(shorts_list);
+        let count = 0;
+        let temp = "";
+        const short_id_list = [];
+        shorts_list.forEach((item)=>{
+
+            
+            short_id_list.push(extractYouTubeId(item));
+            $slideSetContent.innerHTML +=  
+            `<div data-product-slide class='productCarousel-slide'>
+                <div class="set-content_wrapper">
+                <div class="blog-post__yt-shorts-item" yt-id="${extractYouTubeId(item)}">
+                    
+                </div>
+                </div>
+            </div>`
+
+        });
+
+        function fillSlider(){
+            short_id_list.forEach(id =>{
+                const template = `
+                <iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                `;
+                document.querySelectorAll(`.blog-post__yt-shorts-item[yt-id="${id}"]`).forEach(item =>{
+                    item.innerHTML += template;
+                })
+                // document.querySelector(`.blog-post__yt-shorts-item[yt-id="${id}"]`).innerHTML += template;
+
+            });
+            
+        };
+ 
+          window.addEventListener("scroll", function() {
+            // Get the element you want to trigger the function when scrolled towards
+            const element = document.getElementById("blog-post-shorts-section");
+
+            // Get the position of the element relative to the viewport
+            const boundingRect = element.getBoundingClientRect();
+
+            // Check if the element is in the viewport
+            if (
+                boundingRect.top <= window.innerHeight &&
+                boundingRect.bottom >= 0
+            ) {
+                // Execute the function only once
+                fillSlider();
+                // Remove the event listener after executing the function
+                window.removeEventListener("scroll", arguments.callee);
+            }
+        });
+
+
+    }else{
+        document.querySelector(".blog-post__yt-shorts-container").style.display = "none";
+    }
+
+    
+})();
+
+</script>

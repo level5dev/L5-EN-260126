@@ -1,0 +1,47 @@
+<div class="blog-post__expand-section">
+    <button class="blog-post__expand-button">{{lang 'blog.read_full_article'}} <img src="{{cdn 'assets/img/blog/arrow-double-down.svg'}}"/></button>
+    <div class="blog-post_social-media-container">
+        <p>{{lang 'common.share_this'}}</p>
+        <div class="blog-post_social-media-block">
+            <a target="_blank" class="twitter-share" href=""> 
+                <img src="{{cdn 'assets/img/blog/twitter-64px.png'}}" />
+            </a>
+            <a target="_blank" class="linkedin-share" href="">
+                <img src="{{cdn 'assets/img/blog/linkedin-64px.png'}}" />
+            </a>
+            <a target="_blank" class="facebook-share" href="">
+                <img src="{{cdn 'assets/img/blog/facebook-64px.png'}}" />
+            </a>
+          {{!--   <a class="slack-share">
+                <img src="{{cdn 'assets/img/blog/slack-64px.png'}}" />
+            </a> --}}
+        </div>
+    </div>
+</div>
+
+<script>
+
+(function () {
+    document.querySelector(".blog-post__expand-button").addEventListener("click", function(){
+        // document.querySelector(".blog-post__expand-section").style.display = "none";
+        document.querySelector(".blog-post__expand-button").style.display = "none";
+        const text = document.querySelector(".blog-post__content-mobile .blog-post__content");
+        text.style.height = "100%";
+        text.style.overflow = "unset";
+        text.style.webkitMaskImage = "none";
+
+        const styleElement = document.createElement('style');
+
+        styleElement.textContent = `
+            .blog-post__content-mobile .blog-post__expand-section {
+                padding-top: 2.5rem;
+                margin-top: 0px;
+                padding-bottom: 0;
+            }
+        `;
+
+        document.body.appendChild(styleElement);
+    });
+})();
+
+</script>

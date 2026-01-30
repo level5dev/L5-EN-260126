@@ -1,0 +1,3 @@
+{
+  "components/custom/filter/filter-list-link": "<li class=\"tag--block\">\n    <div class=\"tag_title--block\"><a class=\"product--name\" href=\"{{link}}\">\n        {{name}}\n    </a></div>\n</li>\n"
+}

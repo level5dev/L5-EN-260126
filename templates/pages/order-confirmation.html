@@ -1,0 +1,84 @@
+{{#partial "head"}}
+{{{ checkout.checkout_head }}}
+{{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+{{ getFontsCollection }}
+
+<script type="text/javascript">
+    window.language = {{{langJson 'optimized_checkout'}}};
+</script>
+
+{{{head.scripts}}}
+
+{{/partial}}
+
+{{#partial "page"}}
+<header class="checkoutHeader optimizedCheckout-header">
+    <div class="checkoutHeader-content">
+        <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+        <h2 class="checkoutHeader-heading">
+            <a class="checkoutHeader-link" href="{{urls.home}}">
+                {{#if checkout.header_image}}
+                    <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                {{ else }}
+                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
+            </a>
+        </h2>
+    </div>
+</header>
+
+{{{ checkout.order_confirmation_content }}}
+
+<div id="omnisend-embedded-v2-647f91b80843a93942f757e0"></div>
+<style>
+    #omnisend-embedded-v2-647f91b80843a93942f757e0 {
+        display:none;
+    }
+</style>
+
+<script>
+    const myTimeout = setTimeout(setForm, 4000);
+
+    function setForm() {
+        const form = document.querySelector('#omnisend-embedded-v2-647f91b80843a93942f757e0')
+        const parentElement = document.querySelector(".orderConfirmation")
+        //document.querySelector(".orderConfirmation").prependChild(form);
+        parentElement.insertBefore(form, parentElement.childNodes[2]);
+        form.style.display = "block"
+    }
+</script>
+<script>
+    // SOUNDEST-V6-SM
+    window.SOUNDEST = window.SOUNDEST || {};
+    SOUNDEST.shopID = "89a9ntp16";
+    SOUNDEST.shopType = "bigcommerce";
+    SOUNDEST.baseURL = "https://omnisnippet1.com/";
+    SOUNDEST.eventsURL = "https://events.soundestlink.com/";
+    SOUNDEST.jsFile = "bigcommerce-launcher.js";
+    SOUNDEST.version = new Date().toISOString().slice(0, 13);
+    SOUNDEST.pageType = "page";
+    SOUNDEST.productTitle = "";
+    SOUNDEST.productID = "";
+    SOUNDEST.categoryTitle = "";
+    SOUNDEST.categoryID = "";
+    SOUNDEST.orderID = "";
+    !function(e,n){for(var t=document.getElementsByTagName("script"),o=!1,s=0;s<t.length;s++)"string"==typeof t[s].src&&0<t[s].src.indexOf(SOUNDEST.jsFile)&&(o=!0);if(!o){var i=document.createElement("script");i.type="text/javascript",i.async=!0,i.src=e+"inshop/"+SOUNDEST.jsFile+"?v="+n;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(i,r)}}(SOUNDEST.baseURL,SOUNDEST.version),function(d,m,u,p,g){var e,D=function(e){var n,t,o,s=document.cookie.split(";"),i=e+"=";for(/mybigcommerce.com/.test(location.hostname)&&(i=e+"-"+m+"="),t=0;t<s.length;t+=1)0===(o=s[t].trim()).indexOf(i)&&(n=o.substring(i.length,o.length));return n};e=function(){if("orderconfirmation"===p){for(var e=document.getElementsByTagName("img"),n=!1,t=0;t<e.length;t++)"string"==typeof e[t].src&&0<e[t].src.indexOf("saveNewsletterOrder")&&0<e[t].src.indexOf("anonymousID")&&0<e[t].src.indexOf("sessionID")&&(n=!0);if(!n){var o=document.createElement("img"),s=["timestamp="+(new Date).getTime(),"shopBaseURL="+window.location.protocol+"//"+window.location.hostname+"/","shopID="+m,"shopType="+u,"orderID="+g,"source=sm"],i=D("omnisendAnonymousID"),r=D("omnisendSessionID"),a=D("omnisendContactID"),c=D("omnisendAttributionID");void 0!==i&&s.push("anonymousID="+i),void 0!==r&&s.push("sessionID="+r),void 0!==a&&s.push("contactID="+a),void 0!==c&&s.push("attributionID="+c),o.src=d+"events/saveNewsletterOrder/?"+s.join("&"),document.body.appendChild(o)}}},"loading"!==document.readyState?e():document.addEventListener?document.addEventListener("DOMContentLoaded",e):document.attachEvent("onreadystatechange",function(){"loading"!==document.readyState&&e()})}(SOUNDEST.eventsURL,SOUNDEST.shopID,SOUNDEST.shopType,SOUNDEST.pageType,SOUNDEST.orderID);
+</script>
+
+{{{ footer.scripts }}}
+
+<script>
+setTimeout(function(){
+   document.querySelectorAll("img").forEach(img =>{
+        if(img.src.includes("events.soundestlink")){
+            img.style.display = "none";
+        }
+    }); 
+}, 4000);
+
+</script>
+
+
+{{/partial}}
+
+{{> layout/empty}}

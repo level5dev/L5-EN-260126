@@ -1,0 +1,476 @@
+{{assignVar 'bds-percentageOff' 0}}
+
+{{#each product.category}}
+{{#contains this "Sale/"}}
+{{assignVar 'bds-amount' (toInt (last (split this '/')))}}
+
+{{#if (getVar 'bds-percentageOff') '<' (getVar 'bds-amount')}}
+{{assignVar 'bds-percentageOff' (getVar 'bds-amount')}}
+{{/if}}
+{{/contains}}
+{{/each}}
+
+{{!--  Maths:  parseFloat(((100 - bds-percentageOff) * 0.01 * price).toFixed(2)) --}}
+
+<!--{{#if (getVar 'bds-percentageOff') '!==' 0}}
+{{!-- data-percentage-off is required for the JS logic to update the pricing --}}
+{{!-- this snippet: {{getVar 'bds-percentageOff'}} is how you get the percentage off --}}
+    <div class="pdp-banner pdp-banner--sale" data-percentage-off="{{getVar 'bds-percentageOff'}}">
+        {{#filter product.custom_fields '__banner-off-text' property='name'}}
+            <p class="pdp-banner__heading h2">VALENTINE'S DAY SALE</p>
+            <ul class="pdp-banner__list">
+                    <li class="pdp-banner__text">
+                        THIS ITEM IS CURRENTLY <span style="color:red;">{{getVar 'bds-percentageOff'}}%</span> OFF!
+                    </li>
+                {{#if ../product.price.without_tax.value '>' 49.99}}
+                    <li class="pdp-banner__text">
+                        <span style="color:red;">FREE</span> FAST SHIPPING*
+                    </li>
+                {{/if}}
+                {{#filter ../product.custom_fields '__banner-off-custom-text' property='name'}}
+                    <li class="pdp-banner__text">
+                        {{this.value}}
+                    </li>
+                {{else}}
+                    {{#if (lang 'custom.product.sale-banner.line-3.enabled') '===' 'true'}}
+                        <li class="pdp-banner__text">
+                            {{lang 'custom.product.sale-banner.line-3.line-3-default-text'}}
+                        </li>
+                    {{/if}}
+                {{/filter}}
+            </ul>
+        {{/filter}}
+    </div>
+{{/if}}-->
+
+{{#if product.out_of_stock}}
+<!-- <div class="pdp-banner pdp-banner--sold-out">
+        <a href="#" data-reveal-id="modal-soldout" class="klarna-btn-div">SOLD OUT</a>
+    </div>
+    
+    <div id="modal-soldout" class="modal" data-reveal data-prevent-quick-search-close>
+        <div class="modal-header">
+            <img src="https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/643f493fef815326747b023c_image%2096.png" loading="lazy" alt="">
+            <a href="#" class="modal-close" role="button"  aria-label="{{lang 'common.close'}}" >
+                <span class="aria-description--hidden">Close</span>
+                <span aria-hidden="true">×</span>
+            </a>
+        </div>
+       
+        <div class="modal-content modal-klarna">
+            <div>
+                <div class="text-block-4">IN STOCK NOTIFICATION</div>
+                <div class="text-block-5">Fill out your contact details below and we&#x27;ll call you as soon as this item is back in stock.</div>
+                <div class="form-block w-form">
+                <form id="notification-form" name="notification-form" data-name="Notification Form" method="get">
+                    <label for="name" class="form--label">Product SKU</label>
+                    <input type="text" class="form--field w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name" value="{{product.sku}}">
+                    <label for="name-2" class="form--label">Full Name</label>
+                    <input type="text" class="form--field w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="" id="name-2">
+                    {{#if product.price.without_tax.value '>' 1499}}
+                    <label for="name-4" class="form--label">Phone Number</label>
+                    <input type="text" class="form--field w-input" maxlength="256" name="name-3" data-name="Name 3" placeholder="" id="name-3">
+                    {{else}}
+                    <label for="email" class="form--label">Email Address</label>
+                    <input type="email" class="form--field w-input" maxlength="256" name="email" data-name="Email" placeholder="" id="email" value="{{customer.email}}">
+                    {{/if}}
+                </form>
+                <div class="div-block-10"><div class="text-block-6">SUBMIT</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="loadingOverlay"></div>
+    </div> -->
+<!-- <div class="pdp-banner pdp-banner--sold-out">
+        <p class="pdp-banner__heading h2">{{lang 'custom.product.sold-out-banner.heading'}}</p>
+        <p class="pdp-banner__text">{{{lang 'custom.product.sold-out-banner.text'}}}</p>
+    </div> -->
+{{/if}}
+
+{{#filter product.custom_fields '__l5vip10' property='name'}}
+<div class="pdp-banner pdp-banner--sale"
+	style="background-color: black;background-image:url(https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/pdp-background.jpg);background-size:cover;color: white;">
+	<img src="https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/logo.png"
+		style="max-width:350px;width:100%;padding-right:20px;" />
+	<ul class="pdp-banner__list">
+		<li class="pdp-banner__text">
+			VIPs save extra 10% by using the coupon code <strong>{{lang 'common.vip_code'}}</strong> at
+					checkout.<br />
+					<span style="font-size:0.75em;display:block;margin-bottom:4px;line-height:1.1;"><em>Not a VIP? Use
+							this code to save 10% and you'll be signed up instantly!</em></span>
+		</li>
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">{{lang 'common.free'}}</span> {{lang 'common.fast_shipping'}}*
+		</li>
+		{{/if}}
+		{{#filter ../product.custom_fields '__banner-off-custom-text' property='name'}}
+		<li class="pdp-banner__text">
+			{{this.value}}
+		</li>
+		{{else}}
+		{{#if (lang 'custom.product.sale-banner.line-3.enabled') '===' 'true'}}
+		<li class="pdp-banner__text">
+			{{lang 'custom.product.sale-banner.line-3.line-3-default-text'}}
+		</li>
+		{{/if}}
+		{{/filter}}
+	</ul>
+</div>
+{{/filter}}
+
+{{#filter product.custom_fields '__banner-off-text' property='name'}}
+<div class="pdp-banner pdp-banner--sale"
+	style="background-color: black;background-image:url(https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/pdp-background.jpg);background-size:cover;color: white;">
+	<img src="https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/logo.png" style="max-width:350px;width:100%;padding-right:20px;object-fit: contain;object-position: left;max-height: 46px;" />
+	<ul class="pdp-banner__list">
+		<li class="pdp-banner__text">
+		This item is 
+<span style="color:#B8FF01;font-weight:500;">
+    {{{this.value}}} {{lang 'products.off'}} + FREE 
+    (<a href="https://www.level5tools.com/welded-joint-knife-3-pack/" style="color:#BBFF01; font-weight:600; font-family: Oswald; font-size:inherit;">5-653</a>) with orders over $150
+</span>
+		</li>
+		<li class="pdp-banner__text">
+				Add this item to your cart and the bonus item will appear!
+			</li>
+		
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">Financing options are available for this item!</span>
+		</li>
+		{{/if}}
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">{{lang 'common.free'}}</span> {{lang 'common.fast_shipping'}}*
+		</li>
+		{{/if}}
+	</ul>
+	{{#filter ../product.custom_fields '__banner-flash-text' property='name'}}
+	<div class="pdp-banner pdp-banner--sale" style="margin-bottom: 0; margin-top: 6px;">
+		<p class="pdp-banner__heading h2">FLASH SALE</p>
+		<ul class="pdp-banner__list">
+			<li class="pdp-banner__text">
+				This weekend ONLY, get a <strong>FREE Gooseneck</strong> [SKU 4-714 when you purchase this taper!
+			</li>
+			<li class="pdp-banner__text">
+				Add this tool to your cart, and your gooseneck will appear in your cart.
+			</li>
+			<li class="pdp-banner__text">
+				Ends 3/30 at 11:59 PM EST. While supplies last.
+			</li>
+		</ul>
+	</div>
+	{{/filter}}
+</div>
+{{/filter}}
+
+{{#filter product.custom_fields '__banner-deal-text' property='name'}}
+<div class="pdp-banner pdp-banner--sale"
+	style="background-color: black;background-image:url(https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/pdp-background.jpg);background-size:cover;color: white;">
+	<img src="https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/logo.png" style="max-width:350px;width:100%;padding-right:20px;object-fit: contain;object-position: left;max-height: 46px;" />
+	<ul class="pdp-banner__list">
+		<li class="pdp-banner__text">
+			This item is <span style="color:#B8FF01;font-weight:500;">{{{this.value}}} {{lang 'products.off'}} + FREE  (<a href="https://www.level5tools.com/skimming-blade-set-10-24-32-handle/"style="color:#BBFF01; font-weight:600; font-size:inherit; font-family: Oswald">5-441</a>) &amp; (<a href="https://www.level5tools.com/welded-joint-knife-3-pack/"style="color:#BBFF01; font-weight:600; font-size:inherit; font-family: Oswald">5-653</a>) with orders over $150</span>
+		</li>
+		<li class="pdp-banner__text">
+			<span style="color:white;">Add this item to your cart and the bonus items will appear!</span>
+		</li>
+		<!-- <li class="pdp-banner__text">
+			<span style="color:white;">Add this to your cart and your free pump will appear!</span>
+		</li> -->
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">Financing options are available for this item!</span>
+		</li>
+		{{/if}}
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">{{lang 'common.free'}}</span> {{lang 'common.fast_shipping'}}*
+		</li>
+		{{/if}}
+	</ul>
+	{{#filter ../product.custom_fields '__banner-flash-text' property='name'}}
+	<div class="pdp-banner pdp-banner--sale" style="margin-bottom: 0; margin-top: 6px;">
+		<p class="pdp-banner__heading h2">FLASH SALE</p>
+		<ul class="pdp-banner__list">
+			<li class="pdp-banner__text">
+				This weekend ONLY, get a <strong>FREE Gooseneck</strong> [SKU 4-714 when you purchase this taper!
+			</li>
+			<li class="pdp-banner__text">
+				Add this tool to your cart, and your gooseneck will appear in your cart.
+			</li>
+			<li class="pdp-banner__text">
+				Ends 3/30 at 11:59 PM EST. While supplies last.
+			</li>
+		</ul>
+	</div>
+	{{/filter}}
+</div>
+{{/filter}}
+
+{{#filter product.custom_fields '__banner-deal-den' property='name'}}
+<div class="pdp-banner pdp-banner--sale"
+	style="background-color: black;background-image:url(https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/pdp-background.jpg);background-size:cover;color: white;">
+	<img src="https://store-89a9ntp16.mybigcommerce.com/content/sale-graphics/logo.png" style="max-width:350px;width:100%;padding-right:20px;object-fit: contain;object-position: left;max-height: 46px;" />
+	<ul class="pdp-banner__list">
+		<li class="pdp-banner__text">
+			This item is <span style="color:#B8FF01;font-weight:500;">{{{this.value}}} {{lang 'products.off'}}</span>! 
+		</li>
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">Financing options are available for this item!</span>
+		</li>
+		{{/if}}
+		{{#if ../product.price.without_tax.value '>' 49.99}}
+		<li class="pdp-banner__text">
+			<span style="color:white;">{{lang 'common.free'}}</span> {{lang 'common.fast_shipping'}}*
+		</li>
+		{{/if}}
+	</ul>
+</div>
+{{/filter}}
+
+
+<!--
+{{#filter product.custom_fields '__banner-flash-text' property='name'}}
+<div class="pdp-banner pdp-banner--sale">
+	<p class="pdp-banner__heading h2">{{lang 'products.flash_sale'}}</p>
+	<ul class="pdp-banner__list">
+		<li class="pdp-banner__text">
+			{{{this.value}}}
+		</li>
+		<li class="pdp-banner__text">
+			<span style="color:red;">{{lang 'common.free'}}</span> {{lang 'common.fast_shipping'}}*
+		</li>
+	</ul>
+</div>
+{{/filter}}
+-->
+
+<script>
+	// SOUNDEST-V6-SM
+	window.SOUNDEST = window.SOUNDEST || {};
+	SOUNDEST.shopID = "89a9ntp16";
+	SOUNDEST.shopType = "bigcommerce";
+	SOUNDEST.baseURL = "https://omnisnippet1.com/";
+	SOUNDEST.eventsURL = "https://events.soundestlink.com/";
+	SOUNDEST.jsFile = "bigcommerce-launcher.js";
+	SOUNDEST.version = new Date().toISOString().slice(0, 13);
+	SOUNDEST.pageType = "page";
+	SOUNDEST.productTitle = "";
+	SOUNDEST.productID = "";
+	SOUNDEST.categoryTitle = "";
+	SOUNDEST.categoryID = "";
+	SOUNDEST.orderID = "";
+	!function (e, n) { for (var t = document.getElementsByTagName("script"), o = !1, s = 0; s < t.length; s++)"string" == typeof t[s].src && 0 < t[s].src.indexOf(SOUNDEST.jsFile) && (o = !0); if (!o) { var i = document.createElement("script"); i.type = "text/javascript", i.async = !0, i.src = e + "inshop/" + SOUNDEST.jsFile + "?v=" + n; var r = document.getElementsByTagName("script")[0]; r.parentNode.insertBefore(i, r) } }(SOUNDEST.baseURL, SOUNDEST.version), function (d, m, u, p, g) { var e, D = function (e) { var n, t, o, s = document.cookie.split(";"), i = e + "="; for (/mybigcommerce.com/.test(location.hostname) && (i = e + "-" + m + "="), t = 0; t < s.length; t += 1)0 === (o = s[t].trim()).indexOf(i) && (n = o.substring(i.length, o.length)); return n }; e = function () { if ("orderconfirmation" === p) { for (var e = document.getElementsByTagName("img"), n = !1, t = 0; t < e.length; t++)"string" == typeof e[t].src && 0 < e[t].src.indexOf("saveNewsletterOrder") && 0 < e[t].src.indexOf("anonymousID") && 0 < e[t].src.indexOf("sessionID") && (n = !0); if (!n) { var o = document.createElement("img"), s = ["timestamp=" + (new Date).getTime(), "shopBaseURL=" + window.location.protocol + "//" + window.location.hostname + "/", "shopID=" + m, "shopType=" + u, "orderID=" + g, "source=sm"], i = D("omnisendAnonymousID"), r = D("omnisendSessionID"), a = D("omnisendContactID"), c = D("omnisendAttributionID"); void 0 !== i && s.push("anonymousID=" + i), void 0 !== r && s.push("sessionID=" + r), void 0 !== a && s.push("contactID=" + a), void 0 !== c && s.push("attributionID=" + c), o.src = d + "events/saveNewsletterOrder/?" + s.join("&"), document.body.appendChild(o) } } }, "loading" !== document.readyState ? e() : document.addEventListener ? document.addEventListener("DOMContentLoaded", e) : document.attachEvent("onreadystatechange", function () { "loading" !== document.readyState && e() }) }(SOUNDEST.eventsURL, SOUNDEST.shopID, SOUNDEST.shopType, SOUNDEST.pageType, SOUNDEST.orderID);
+
+</script>
+<style>
+	#modal-soldout.modal.open {
+		width: 491px;
+		padding-top: 0px;
+
+		/* @media screen and (max-width: 300px){
+            width: 80vw;
+        } */
+	}
+
+	/* .modal{
+        @media screen and (max-width: 300px){
+            left: 45%;
+        }
+    } */
+
+	.modal-close {
+		text-align: initial;
+		right: 0.75rem;
+		top: .3em;
+		font-size: 40px;
+		color: #999;
+
+		:hover {
+			color: #dc0000;
+		}
+	}
+
+	.modal-header {
+		border-bottom: 0px;
+		padding-left: 1.25rem;
+		padding-right: 1.25rem;
+	}
+
+	.div-block-9 {
+		/* margin-right: 140px;
+        margin-left: 140px; */
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 0px;
+	}
+
+	.text-block-4 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: Oswald, sans-serif;
+		color: #000;
+		font-size: 27.95px;
+		line-height: 124.7%;
+		text-align: center;
+	}
+
+	.text-block-5 {
+		display: flex;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-right: 45px;
+		padding-left: 45px;
+		justify-content: center;
+		align-items: center;
+		font-family: Roboto, sans-serif;
+		color: #414141;
+		font-size: 14.91px;
+		line-height: 124.7%;
+		text-align: center;
+
+		@media screen and (max-width: 500px) {
+			padding-right: 0px;
+			padding-left: 0px;
+			font-size: 12.91px;
+		}
+	}
+
+	.form-block {
+		padding-right: 30px;
+		padding-left: 30px;
+
+		@media screen and (max-width: 500px) {
+			padding-right: 0px;
+			padding-left: 0px;
+		}
+	}
+
+	.form--label {
+		font-family: Roboto, sans-serif;
+		color: #929292;
+		font-size: 12px;
+		line-height: 124.7%;
+		font-weight: 400;
+	}
+
+	.form--field {
+		border-radius: 4px;
+	}
+
+	.w-form {
+		margin: 0 0 15px;
+	}
+
+	.div-block-10 {
+		position: static;
+		left: auto;
+		top: auto;
+		right: 0%;
+		bottom: 0%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+
+	.text-block-6 {
+		padding: 5px 45px;
+		background-color: #b8000d;
+		font-family: Roboto, sans-serif;
+		color: #fff;
+		font-size: 15.16px;
+		line-height: 124.7%;
+		cursor: pointer;
+	}
+
+	.w-input,
+	.w-select {
+		display: block;
+		width: 100%;
+		height: 38px;
+		padding: 8px 12px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #333333;
+		/*vertical-align: middle;*/
+		background-color: #ffffff;
+		border: 1px solid #cccccc;
+	}
+
+	/*.w-input:-moz-placeholder,
+	.w-select:-moz-placeholder {
+		// color: #999; 
+	}*/
+
+	/*.w-input::-moz-placeholder,
+	.w-select::-moz-placeholder {
+		// color: #999;
+  		// opacity: 1; 
+	}*/
+
+	/*.w-input:-ms-input-placeholder,
+	.w-select:-ms-input-placeholder {
+		// color: #999; 
+	}*/
+
+	/*.w-input::-webkit-input-placeholder,
+	.w-select::-webkit-input-placeholder {
+		// color: #999;
+	}*/
+
+	.w-input:focus,
+	.w-select:focus {
+		/* border-color: #3898EC; */
+		outline: 0;
+	}
+
+	/* .w-input[disabled],
+.w-select[disabled],
+.w-input[readonly],
+.w-select[readonly],
+fieldset[disabled] .w-input,
+fieldset[disabled] .w-select {
+  cursor: not-allowed;
+} */
+	/*.w-input[disabled]:not(.w-input-disabled),
+	.w-select[disabled]:not(.w-input-disabled),
+	.w-input[readonly],
+	.w-select[readonly],
+	fieldset[disabled]:not(.w-input-disabled) .w-input,
+	fieldset[disabled]:not(.w-input-disabled) .w-select {
+		// background-color: #eeeeee;
+	}*/
+
+	textarea.w-input,
+	textarea.w-select {
+		height: auto;
+	}
+
+	.w-select {
+		background-color: #f3f3f3;
+	}
+
+	.w-select[multiple] {
+		height: auto;
+	}
+
+	.w-form-label {
+		display: inline-block;
+		cursor: pointer;
+		font-weight: normal;
+		margin-bottom: 0px;
+	}
+
+	input {
+		font-family: Roboto, sans-serif;
+		font-weight: 700;
+		font-size: 12px;
+	}
+</style>

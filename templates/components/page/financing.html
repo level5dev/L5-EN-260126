@@ -1,0 +1,352 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div id="finance--page">
+  <div class="" id="financing" data-financing>
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="cont tools w-container finTitle">
+        <div class="align--ctr">
+        <!-- <h1 class="page-heading section--header__sm">{{lang 'custom.page.financing.financing_toolset'}}</h1> -->
+        <h1 class="page-heading">{{lang 'custom.page.financing.financing_toolset'}}</h1>
+        <p class="card--text">{{{lang 'custom.page.financing.get_tools_now'}}}</p>
+        <!-- <p class="head--subtitle limiter finP">{{{lang 'custom.page.financing.get_tools_now'}}}</p> -->
+        </div>
+    </div>
+<section class="categoryGrid container" id="product-listing-container">
+    </section>
+  <div class="sec--sm wf-section top">
+    <div class="">
+      <div id="" class="row--35px financing">
+        <div class="abs--grey financing"></div>
+        <div class="title">
+          <div class="top-img-title">Ownership Without The Upfront Cost</div>
+          <div class="card--text white">With tool financing, you get access to:</div>
+          <!-- <div class="head--title cap white">With tool financing, you get access to:</div> -->
+        </div>
+        <div class="flex--hor__20px">
+          <!-- <div class="header--paragraph" {{!--style="margin-top:1.3rem;margin-bottom:0.3rem;"--}}> Sign up today for access to:</div> -->
+          <div class="header--paragraph">
+            <ul class="custom-bullets">
+              <li>Brand New LEVEL5 Tools</li>
+              <li>Unmatched LEVEL5 Warranties</li>
+              <li>Industry-leading Support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sec--wrapper-1">
+      <div class="align--ctr">
+        <!-- <h2 class="page-heading section--header__sm" style="padding-top: 50px;">Get your new tools fast</h2> -->
+        <h1 class="page-heading">Get your new tools fast</h1>
+        <p class="card--text sub-title{{!-- head--subtitle limiter finP --}}">Follow these steps on our website, or call <a class='link' href='tel:+18002277713'>800.277.7713</a> for 1-on-1 support.</p>
+        
+        {{!-- <h2 class="h2--title mar-btm--med sm">{{lang 'custom.page.financing.why_finance_with_l5'}}</h2> --}}
+        <div class="grid-4">
+          {{#for 1 (lang 'custom.page.financing.why-finance.total')}}
+            {{!--<div id="w-node-_57d151eb-3ec6-9f37-053a-e64316537c2d-c0e3a51b" class="card--finance">
+              <div class="div-block-13">{{$index}}</div>
+              <h4 class="head--title">{{lang (concat (concat 'custom.page.financing.why-finance.head-'$index)'.title')}}</h4>
+            <p class="card--text">{{lang (concat (concat 'custom.page.financing.why-finance.head-'$index)'.description')}}</p>
+          </div>--}}
+          <div class="card--finance benefit-card">
+            <div class="number text"><span class="col--red">0{{$index}} </span>{{lang (concat (concat 'custom.page.financing.why-finance.head-'$index)'.title')}}</div>
+            <p class="card--text">{{{lang (concat (concat 'custom.page.financing.why-finance.head-'$index)'.description')}}}</p>
+        </div>
+          {{/for}}
+        </div>
+        {{!-- <div class="btn--ctr">
+          <a class="btn--browse button--primary" onclick="browseTools(this)"
+          data-link="{{lang 'custom.page.financing.btn-browse-1'}}">
+            {{lang 'common.browse_toolset'}}
+          </a>
+        </div> --}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner--red ba align--ctr sec--wrapper-2">
+
+  <!-- <h2 class="page-heading section--header__sm white">Our financing partner</h2> -->
+  <h1 class="page-heading white">Our financing partners</h1>
+  <p class="card--text white sub-title">LEVEL5 works with a range of partners with unique features and benefits.</p>
+  <div class="container">
+    <div class="grid-4s">
+      {{#for 1 (lang 'custom.page.financing.financing_partner.total')}}
+        <div class="card--finance">
+          <div class="div-block-197">
+            <div class="div-block-196">
+              <img
+                loading="lazy"
+                src="{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.img')}}"
+                alt=""
+                class="{{#if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'credit--key'}}image-73
+                {{else if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'klarna--'}}image-75
+                {{else}}image-74{{/if}}"
+              />
+            </div>
+            {{#if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.pay-type'))}}
+            <div class="pay--in">{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.pay-type')}}</div>
+            {{/if}}
+          </div>
+          <blockquote class="card--text">{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.description')}}</blockquote>
+          <ul class="financing-card-list">
+          {{#for 1 (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.point'))}}
+          <li>{{lang (concat (concat (concat 'custom.page.financing.financing_partner.head-'../$index)'.point-')$index)}}</li>
+          {{/for}}
+          </ul>
+          <div class="btn--ctr" style="width: 100%;">
+            <a class="btn--browse button--primary black" style="width: 75%;" data-gotostep="{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')}}">
+            {{lang 'common.learn_more'}}
+            </a>
+          </div>
+        </div>
+      {{/for}}
+    </div>
+  </div>
+</div>
+
+   
+<section id='appendJS'>
+    <div class="sec--sm wf-section" style="padding-top: 0;">
+      <!-- <div class="cont tools w-container cont-finProd"> -->
+        <div class="container product-carousel__container">
+        <div class="align--ctr">
+          <h1 class="page-heading">{{lang 'custom.page.financing.our_most_popular_tool'}}</h1>
+          <p class="card--text sub-title">All orders over $50 can be financed and qualify for free shipping!</p>
+          <!-- <h2 class="h2--title mar-btm--med">{{lang 'custom.page.financing.our_most_popular_tool'}}</h2> -->
+        </div>
+        <div id="popular" class="grid">
+        <!-- Display the custom products -->
+        </div>
+        <custom-products></custom-products>
+        <div id="loader-block" style="margin:auto;display: flex;">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      {{!-- <div class="btn--ctr">
+        <a class="btn--browse button--primary btnFin-bottom" href="javascript:void(0)" onclick="browseTools(this)" 
+        data-link="{{lang 'custom.page.financing.btn-browse-2'}}">
+        {{lang 'common.browse_toolset'}}
+        </a>
+      </div>  --}}
+    </div>
+    {{!-- {{> components/banner/learn-more}} --}}
+    {{!-- <div class="sec--sm bg--tools wf-section">
+      <div class="cont tools-2 w-container">
+        <div class="align--ctr mar-btm--lg">
+          <h2 class="head--white mar-btm--sm">{{lang 'common.get_your_new_tool_fast'}}</h2>
+          <p class="head--subtitle limiter text--white">{{lang 'custom.page.financing.as_a_pro'}}</p>
+        </div>
+        <div class="grid-4">
+          {{#for 1 (lang 'custom.page.financing.get-tools.total')}}
+            <div class="card--tools">
+              <div class="div-block-13">{{$index}}</div>
+              {{{lang (concat (concat 'custom.page.financing.get-tools.head-'$index)'.title')}}}
+              {{{lang (concat (concat 'custom.page.financing.get-tools.head-'$index)'.description')}}}
+          </div>
+          {{/for}}
+        </div>
+      </div>
+    </div> --}}
+    {{!-- <div class="sec--sm med wf-section" id="clickArea">
+      <div class="cont fqa w-container">
+        <div class="grid2x">
+          <h2 class="h2--title mar-btm--med mob--show">{{lang 'common.frequently_asked_question'}}</h2>
+          <div id="w-node-_81191250-d8cc-074e-364f-3100bdd6c870-c0e3a51b" class="content--left">
+            <h2 class="h2--title mar-btm--med">{{lang 'custom.page.financing.why_finance_with_l5'}}</h2>
+            <p id="w-node-_52b8f374-b9d0-aebf-1127-44aacbc88ddd-c0e3a51b" class="head--subtitle mar-btm--med">{{lang 'custom.page.financing.want_to_learn_more_custom'}}</p>
+            <a class="btn--browse sm button--primary" href="tel:+1-866-562-4229">
+              {{lang 'common.contact_us'}}
+            </a>
+          </div>
+          <div id="w-node-_103c9185-8016-f5be-80c1-136ad4a9039f-c0e3a51b" class="content--right">
+            {{#for 1 (lang 'custom.page.financing.faq.question-number')}}
+              {{#if $index '==' 1}}
+                <div data-hover="false" data-delay="0" class="dropdown top w-dropdown" data-open>
+                  <a class="dropdown-toggle w-dropdown-toggle">
+                    {{{lang (concat (concat 'custom.page.financing.faq.question-'$index)'.title')}}}
+                    <span loading="lazy" alt="" class="idropdown"></span>
+                  </a>
+                  <nav class="dropdown-list w-dropdown-list" data-open>
+                    {{{lang (concat (concat 'custom.page.financing.faq.question-'$index)'.description')}}}
+                  </nav>
+                </div>
+              {{else}}
+                <div data-hover="false" data-delay="0" class="dropdown top w-dropdown">
+                  <a class="dropdown-toggle w-dropdown-toggle">
+                    {{{lang (concat (concat 'custom.page.financing.faq.question-'$index)'.title')}}}
+                    <span loading="lazy" alt="" class="idropdown"></span>
+                  </a>
+                  <nav class="dropdown-list w-dropdown-list">
+                    {{{lang (concat (concat 'custom.page.financing.faq.question-'$index)'.description')}}}
+                  </nav>
+                </div>
+              {{/if}}
+            {{/for}}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>  --}}
+    <div class="sec--sm wf-section stepbystep-financing" id="stepbystepfinance">
+      <div class="">
+        <div class="container flex" style="flex-direction:column; align-content: center; flex-wrap: wrap;">
+          <h1 class="page-heading white">Step by Step Financing Guide</h1>
+          <p class="card--text white sub-title" style="margin-bottom:50px; max-width: 1044px; text-align: center;">
+            It's simple to apply with each of our partners and there's no obligation. Your credit rating is also unaffected by the initial application process. Select from the choices below for more details:</p>
+        </div>
+        <div class="financing-navBar container">
+        {{#for 1 (lang 'custom.page.financing.financing_partner.total')}}
+        <div class="accordion--wrapper-financing" id="{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')}}" data-accordion-fin>
+          <a class="financing-subpage-link" >
+            <div class="div-block-197">
+              <div class="div-block-196">
+                <img
+                  loading="lazy"
+                  src="{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.img')}}"
+                  alt=""
+                  class="{{#if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'credit--key'}}image-76
+                  {{else if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'klarna--'}}image-76
+                  {{else}}image-77{{/if}}"
+                />
+              </div>
+              {{#if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.pay-type'))}}
+              <div class="pay--in-2">{{lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.pay-type')}}</div>
+              {{/if}}
+            </div>  
+            {{!--<h2 class="support-item">{{lang 'custom.page.support.submit_support_request'}}</h2>--}}
+            <h2 class="support-item fa fa-chevron-right" style="color: #B8000D;" accordion-ddown-sch></h2>
+          </a>
+          <div class="financing-step-content tab-content-sch" accordion-content>
+            {{#if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'credit--key'}}
+              <div class="card--text">Credit Key is the perfect option for businesses that would like to start a line of credit. Applying does not impact your personal credit, and you can be approved for up to $50k. <b>Note</b>: Credit Key is only available for orders larger than $1500 and requires an EIN number. Here's a step-by-step guide for applying.
+              <br><br><b>1. Head to checkout -</b> Once you've picked out your tool set or individual tools, head to the LEVEL5 checkout and fill in your shipping & billing information. At the <b>Payment</b> section, select Credit Key as your payment method. You should see something like this:</div>
+              <br><div class="img-wrapper-ctr"><img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/credit-key-1.png"></div>
+              <br><div class="card--text"><b>2. Click “Continue with Credit Key” -</b> After you've clicked the button, you will be redirected to the Credit Key application. Here you will need to fill in your business & contact information. Please note you will need to supply an EIN number for this application (if you don't have one, try <a class="link" data-gotostep="paypal--monthly">PayPal Pay Monthly</a> instead). The application should look something like this:</div>
+              <br><div class="img-wrapper-ctr"><img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/credit-key-2.png"></div>
+              <br><div class="card--text"><b>3. Receive Approval -</b> Credit Key will provide you with an answer to your submission right away so you can continue your purchase at checkout. Upon approval, you can head back to the LEVEL5 checkout and complete your purchase!</div>
+              <br><br><div class="card--text"><b>4. Enjoy Your Tools -</b> We ship as soon as we have confirmation of financing from Credit Key. Our team will deliver your tools within 3 - 5 business days. You receive all of the benefits of ownership like LEVEL5's unmatched warranties and customer support!</div>
+              <h2 style="color:#535353;text-transform:capitalize;">Managing Your Payments</h2>
+              <br><div class="card--text">All of your payments will be made & managed through the Credit Key app. You can log in here to view your payment information: <a class="link" href="https://borrower.creditkey.com/login" target="_blank">https://borrower.creditkey.com/login</a>. If you require additional tools, you can use your Credit Key line of credit to make additional purchases within your approved credit amount.</div>
+              <br>
+            {{else if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'paypal--monthly'}}
+              <div class="card--text">PayPal Pay Monthly is a great option for individuals looking for a simple way to finance a tool set. This option is designed for orders over $1500 and works with your existing PayPal account.
+              <br><br><b>1. Head to checkout -</b> Once you've picked out your tool set or individual tools, head to the LEVEL5 checkout and fill in your shipping & billing information. At the <b>Payment</b> section, select PayPal Pay Later as your payment method (<b>Note:</b> Your order must be over $1500 to see this option). It will look something like this:</div>
+              <br><div class="img-wrapper-ctr"><img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/paypal-monthly.png"></div>
+              <br><div class="card--text"><b>2. Click “Continue with Pay Later” -</b> After you've click the button, you'll be prompted to sign up to PayPal or log in to your existing account. You will be taken through the application process where you will need to provide some personal information, contact details, Social Security Number or Individual Tax Identification Number, date of birth, and annual gross income.</div>
+              <br><br><div class="card--text"><b>3. Receive Approval -</b> PayPal will provide your with a decision in seconds, at which point you can complete your purchase at the LEVEL5 checkout.</div>
+              <br><br><div class="card--text"><b>4. Enjoy Your Tools -</b> We ship as soon as we have confirmation of financing from PayPal. Our team will deliver your tools within 3 - 5 business days. You receive all of the benefits of ownership like LEVEL5's unmatched warranties and customer support!</div>
+              <h2 style="color:#535353;text-transform:capitalize;">Managing Your Payments</h2>
+              <br><div class="card--text">Using your PayPal account, you can manage all of your payments easily with PayPal's Autopay feature.</div>
+              <br>
+            {{else if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'klarna--'}}
+              <div class="card--text">Klarna is a service that lets customers split up their payments into 4 payments separated by 2 week intervals with no interest. There's no fees or interest when you pay on time.
+              <br><br><b>1. Head to checkout -</b> Once you've added products to your cart (<b>Note:</b> Klarna is only available for orders between $50 and $1500) head to the LEVEL5 checkout and fill in your shipping & billing information. At the <b>Payment</b> section, select Klarna as your payment method. You should see something like this:</div>
+              <br><div class="img-wrapper-ctr"><img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/klarna-pay.png"></div>
+              <br><div class="card--text"><b>2. Click “Place Order” -</b> After you've clicked the button, a Klarna popup will guide you through the application process and provide you with an instant approval decision. You only need to provide basic information, so you can complete your purchase with full transparency. </div>
+              <br><br><div class="card--text"><b>3. Receive Approval -</b> Once you've received an approval decision, you can complete your purchase through the LEVEL5 checkout. </div>
+              <br><br><div class="card--text"><b>4. Enjoy Your Tools -</b> We ship as soon as we have confirmation of financing from Klarna. Our team will deliver your tools within 3 - 5 business days. You receive all of the benefits of ownership like LEVEL5's unmatched warranties and customer support!</div>
+              <h2 style="color:#535353;text-transform:capitalize;">Managing Your Payments</h2>
+              <br><div class="card--text">You can view all of your balances and remaining payments via the Klarna app or through the <a class="link" href="https://www.klarna.com/us/" target="_blank">website</a>.</div>
+                            <br>
+              <p><em>*Monthly financing through Klarna issued by WebBank. Other CA resident loans made or arranged pursuant to a California Financing Law license. NMLS # 1353190.</em></p>
+              <br>
+            {{else if (lang (concat (concat 'custom.page.financing.financing_partner.head-'$index)'.id')) '==' 'paypal--in4'}}
+              <div class="card--text">PayPal Pay-In-4 is a great option to split your order into 4 no-interest payments. You can complete your purchase with just 25% down, and 3 additional payments over 6 weeks. This method requires a PayPal account.
+              <br><br><b>1. Head to checkout -</b> Once you've added products to your cart (<b>Note:</b> PayPal Pay-In-4 is only available for orders between $50 and $1500) head to the LEVEL5 checkout and fill in your shipping & billing information. At the <b>Payment</b> section, select Pay Later as your payment method. You should see something like this:</div>
+              <br><div class="img-wrapper-ctr"><img src="https://cdn11.bigcommerce.com/s-89a9ntp16/images/stencil/original/image-manager/paypal-in4.png"></div>
+              <br><div class="card--text"><b>2. Click “Place Order” -</b> After you've clicked the button, a PayPal popup will show up to guide you through the application process. Once you have filled in the necessary information, you will receive an instant approval decision. </div>
+              <br><br><div class="card--text"><b>3. Enjoy Your Tools -</b> We ship as soon as we have confirmation of financing from PayPal. Our team will deliver your tools within 3 - 5 business days. You receive all of the benefits of ownership like LEVEL5's unmatched warranties and customer support!</div>
+              <h2 style="color:#535353;text-transform:capitalize;">Managing Your Payments</h2>
+              <br><div class="card--text">Using your PayPal account, you can manage all of your payments easily with PayPal's Autopay feature.</div>
+              <br>
+            {{/if}}
+          </div>
+          </div>
+        {{/for}}
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=634d1196dfe3ee1059acb423" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!--script src="{{cdn 'assets/js/theme/custom/financing.js'}}" type="module"></script-->
+<!-- <script src="{{cdn 'assets/js/theme/custom/financing-new.js'}}" type="module"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script src="{{cdn 'assets/js/theme/custom/accordion.js'}}" type="module"></script>
+<style>
+  .accordion--wrapper-financing {
+  cursor: pointer;
+}
+</style>
+
+<script>
+  //window.storefrontApiToken = "{{ settings.storefront_api.token }}";
+  //console.log('storefrontApiToken ', window.storefrontApiToken)
+  document.querySelector('.body .container').classList.remove("container")
+  document.querySelector('#financing').classList.add("container")
+  
+  function goToHomePage() {
+    window.location.href = window.location.origin;
+  }
+  function browseTools(element){
+    window.location.href = window.location.origin + element.getAttribute('data-link');
+    //console.log(element.getAttribute('data-link'))
+  }
+
+  function setEqualHeight() {
+    let maxHeight = 0;
+    $('.div-block-197').each(function() {
+        $(this).css('height', 'auto');
+        if ($(this).height() > maxHeight) {
+            maxHeight = $(this).height();
+        }
+    });
+    $('.div-block-197').height(maxHeight);
+  }
+
+  $(window).on('load resize', setEqualHeight);
+  
+  $(document).ready(function () {
+    $('[data-gotostep]').click(function () {
+    var target = $(this).data('gotostep');
+    if(!$(`#${target}`).find('[accordion-content]').hasClass('open')){
+      $(`#${target}`).click()
+    } else {
+      var targetTop = $(`#${target}`).offset().top;
+      var headerHeight = $('header').outerHeight(); 
+      var offset = targetTop - headerHeight - 20;
+      
+      $('html, body').animate({
+          scrollTop: offset
+      }, 500);
+    }
+  });
+
+  $('[data-accordion-fin]').click(function() {
+      var $target = $(event.target);
+        if ($target.hasClass('link')) {
+            console.log('link')
+            return;
+        }
+      var accordionContent = $(this).find('[accordion-content]');
+      var isOpen = accordionContent.hasClass('open');
+        console.log($(this))
+      $('[accordion-content]').not(accordionContent).removeClass('open');
+      $('[accordion-ddown-sch]').not($(this).find('[accordion-ddown-sch]')).removeClass('open');
+
+      accordionContent.toggleClass('open');
+      $(this).find('[accordion-ddown-sch]').toggleClass('open');
+
+      if (!isOpen) {
+          $('html, body').animate({
+              scrollTop: $(this).offset().top - 100
+          }, 300);
+      }
+  });
+  })
+  
+</script>
+

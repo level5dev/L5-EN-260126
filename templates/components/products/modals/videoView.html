@@ -1,0 +1,172 @@
+<style>
+    .-modal-content.videoView-modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 80%;
+      max-width: 800px;
+      background-color: transparent;
+      box-sizing: border-box;
+      box-shadow: 0px 0px 30px #000000;
+    }
+  
+    .videoView-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  
+    iframe {
+      width: 100%;
+      height: 450px;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    @media screen and (max-width: 1024px) {
+      iframe {
+        height: 417px;
+      }
+    }
+  
+    @media screen and (max-width: 897px) {
+      iframe {
+        height: 327px;
+      }
+    }
+  
+    @media screen and (max-width: 768px) {
+      iframe {
+        height: 270px;
+      }
+    }
+  
+    @media screen and (max-width: 469px) {
+      iframe {
+        height: 220px;
+      }
+    }
+  
+    @media screen and (max-width: 369px) {
+      iframe {
+        height: 174px;
+      }
+    }
+  
+    /* Previous and Next buttons at the corners */
+    .videoView-nav-btn {
+      position: absolute;
+      top: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+  </style>
+  <div id="videoModal" class="videoView-modal" data-content-type="{{type}}">
+    <span class="videoView-close white" onclick="closeModal()" videoView-btn
+      >&times;</span
+    >
+    <div class="-modal-content videoView-modal-content">
+      <iframe
+        id="videoFrame"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <span
+      class="videoView-nav-btn videoView-prev-btn"
+      onclick="prevVideo()"
+      videoView-btn
+      ><i class="fas fa-arrow-left white"></i
+    ></span>
+    <span
+      class="videoView-nav-btn videoView-next-btn"
+      onclick="nextVideo()"
+      videoView-btn
+      ><i class="fas fa-arrow-right white"></i
+    ></span>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    //console.log('vieww')
+    //console.log($('#videoModal').data('content-type'))
+    let type = $("#videoModal").data("content-type");
+    var modal = document.getElementById("videoModal");
+    // if (type == 'tab') {
+    // console.log('tab here')
+  
+    var videoIds = [],
+      videoCount = $(
+        '[data-tabcon="tab-videos"] .videoView-thumbnail-link'
+      ).length;
+  
+    $(".videoView-thumbnail-link").each(function () {
+      var videoId = $(this).data("video-id");
+      videoIds.push(videoId);
+    });
+  
+    var currentVideoIndex = 0;
+    function closeModal() {
+      $(".slick-next.slick-arrow,.slick-prev.slick-arrow").css("z-index", "1");
+      $("#videoFrame").attr("src", "");
+      modal.style.display = "none";
+    }
+  
+    function prevVideo() {
+      currentVideoIndex =
+        (currentVideoIndex - 1 + videoIds.length) % videoIds.length;
+      loadVideo(videoIds[currentVideoIndex]);
+    }
+  
+    function nextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+      loadVideo(videoIds[currentVideoIndex]);
+    }
+  
+    function loadVideo(videoId) {
+      var videoSrc = "https://www.youtube.com/embed/" + videoId;
+      $("#videoFrame").attr("src", videoSrc);
+    }
+  
+    $(".videoView-thumbnail-link").on("click", function (e) {
+    e.preventDefault();
+    //console.log("video click");
+    var videoId = $(this).data("video-id");
+    currentVideoIndex = videoIds.indexOf(videoId);
+    loadVideo(videoId);
+    modal.style.display = "block";
+    $(".header-1__bottom,.header-1 .navPages-container-title,.navUser").css(
+        "z-index",
+        "1"
+    );
+    $(".slick-next.slick-arrow,.slick-prev.slick-arrow").css("z-index", "0");
+    });
+  
+    var timer;
+    function hideButtons() {
+      $("[videoView-btn]").css("opacity", 0);
+    }
+  
+    function showButtons() {
+      $("[videoView-btn]").css("opacity", 1);
+    }
+  
+    $(document).on("mousemove", function () {
+      showButtons();
+      clearTimeout(timer);
+      timer = setTimeout(hideButtons, 3000);
+    });
+    showButtons();
+  
+    if (videoCount <= 1) {
+      $(".videoView-nav-btn.videoView-prev-btn").hide();
+      $(".videoView-nav-btn.videoView-next-btn").hide();
+    }
+    //}
+  </script>
+  

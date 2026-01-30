@@ -1,0 +1,108 @@
+{{> components/custom/blog/carousel-set-contents type="pc" blog_type="sku" columns=4 tablet-columns=3 mobile-columns=1}}
+<div id="sku-product" >
+{{> components/custom/blog/carousel-set-contents type="pc" blog_type="sku-product" columns=3 small-desktop-columns=3 tablet-columns=2 mobile-columns=1}}
+</div>
+<div id="loader-block-sku" style="margin:auto;display: flex;">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div> 
+{{!-- {{> components/custom/blog/carousel-set-contents type="mobile" blog_type="sku" columns=1}} --}}
+
+<script>
+        (function () {
+          // const $slideSetContent = document.querySelector('[set-content-slide][type="pc"][blog-type="sku"]');
+          const $slideSetContentProduct = document.querySelector('[set-content-slide][type="pc"][blog-type="sku-product"]');
+          // $slideSetContent.style.display = "none";
+          // $slideSetContentProduct.style.display = "none";
+          let sku = document.querySelector('#sku');
+          const arrMob = [];
+          let count = 0;
+          let temp = "";
+          if(sku === undefined || sku === null){
+            document.querySelector(".blog-post__sku-item-container").style.display = "none";
+          }
+          else if(sku.textContent.length > 0){
+
+            let sku_list = sku.textContent.replace(/[^0-9a-zA-Z,-]/g, '').split(",");
+            sku_list = sku_list.filter(s => s.length > 0);
+            // console.log(sku_list);
+
+            sku_list.forEach((item)=>{
+
+                const template = `
+                <a class="blog-post__sku-item" id="sku_${item}">
+                    <div class="blog-skeleton image-skeleton blog-post__sku-image"></div>
+                    <img class="blog-post__sku-image" src="">
+                    <h3 class="blog-post__sku-title"></h3>
+                    <p class="blog-post__sku-number">SKU: ${item}</p>
+                </a>`;
+
+                $slideSetContentProduct.innerHTML +=  
+                `<div data-product-slide class='productCarousel-slide product-${item}'>
+                    
+                </div>`
+
+            });
+
+        }else{
+            document.querySelector(".blog-post__sku-item-container").style.display = "none";
+        }
+    })();
+
+</script>
+<style>
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #cacaca;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+</style>

@@ -1,0 +1,123 @@
+.flex-start-section {
+  display: inline-flex;
+  justify-content: space-between;
+  @media screen and (max-width: 797px) {
+    display: block;
+  }
+}
+.flex-start-section > div:first-child {
+  width: 30%;
+}
+
+.parts-sub {
+  display: none;
+}
+
+.parts-container {
+  margin: 2rem 6rem;
+
+  @media screen and (max-width: 1067px) {
+    //margin: 2rem 3rem;
+  }
+
+  @media screen and (max-width: 797px) {
+    margin: 0;
+  }
+}
+
+#parts--page {
+  margin: auto;
+}
+#parts--page [parts-card-block] {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  @media screen and (max-width: 697px) {
+    grid-template-columns: repeat(2, auto);
+  }
+  @media screen and (max-width: 497px) {
+    grid-template-columns: auto;
+  }
+}
+
+// #parts--page [parts-list-block] {
+//   display: none;
+//   &.is--active {
+//     display: block;
+//   }
+// }
+
+#parts--page [data-parts-dropdown] {
+  display: none;
+  &.is--active {
+    display: block;
+  }
+}
+
+#parts--page h3 {
+  @media screen and (max-width: 497px) {
+    font-size: calc(22px + (26 - 18) * ((100vw - 769px) / (1441 - 769)));
+  }
+}
+
+// #parts--page .layout-grid.grid-row {
+//   grid-template-columns: 7% 15% 40% 17% 10%;
+// }
+
+// #parts--page .actionBar.filter--section {
+//   // width: 360px;
+// }
+
+// #parts--page [parts-list-block] {
+//   //min-width: 20rem;
+// }
+
+#parts--page .form-fieldset,
+#acc-navigation-ddown .form-fieldset {
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: 497px) {
+    //justify-content: center;
+  }
+}
+@media screen and (max-width: 497px) {
+  #parts--page .filter-mobile-wrapper {
+    //width: max-content;
+  }
+  #linkSelector .list {
+    width: 100%;
+    right: 0;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #parts--page .filter-mobile-wrapper,
+  #acc-navigation-ddown .filter-mobile-wrapper {
+    width: max-content;
+  }
+
+  #parts--page .nice-select:after,
+  #acc-navigation-ddown .nice-select:after {
+    height: 8px;
+    width: 8px;
+    right: 15px;
+    top: 53%;
+  }
+}
+
+#part-components-filter-wrapper {
+  margin-bottom: 0;
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  #part-components-filter-wrapper {
+    display: block;
+  }
+}
+
+#acc-nav-selector-wrapper,
+#acc-navigation-ddown {
+  display: none;
+  @media screen and (max-width: 1024px) {
+    display: block;
+  }
+}

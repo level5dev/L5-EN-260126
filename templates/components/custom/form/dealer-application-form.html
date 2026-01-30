@@ -1,0 +1,34 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<form data-contact-form class="form support-request-form" action="https://www.usebasin.com/f/6a0ad2ea3e43" method="post" 
+data-name="{{lang 'custom.page.become_a_dealer'}}" aria-label="{{lang 'custom.page.become_a_dealer'}}">
+
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/first-name}}
+        {{> components/custom/form-field/last-name}}
+    </div>
+    {{> components/custom/form-field/company-name}}
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/email-address}}
+		{{> components/custom/form-field/phone-number}}
+    </div>
+    {{> components/custom/form-field/street-address}}
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/city}}
+        {{> components/custom/form-field/state-province}}
+        {{> components/custom/form-field/zip-postal-code}}
+        {{> components/custom/form-field/country}}
+        {{> components/custom/form-field/business-age}}
+        {{> components/custom/form-field/incorporated}}
+        {{> components/custom/form-field/employees-num}}
+    </div>
+    {{> components/custom/form-field/other-brands}}
+    {{> components/custom/form-field/message}}
+    <input type="hidden" name="_gotcha">
+    {{> components/custom/form-field/recaptcha}}
+	{{> components/custom/form-field/submit-btn}}
+</form>
+        
+        
+        
+        

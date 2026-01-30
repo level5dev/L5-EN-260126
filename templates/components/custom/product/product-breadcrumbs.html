@@ -1,0 +1,49 @@
+<nav aria-label="Breadcrumb">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+        {{#unless theme_settings.hide_breadcrumbs }}
+            {{#each breadcrumbs}}
+                {{#if @last}}
+                    
+                {{else}}
+                    <li class="breadcrumb" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumb-label"
+                       itemprop="item"
+                       href="{{url}}"
+                       {{#if @last}}aria-current="page"{{/if}}
+                    >
+                        <span itemprop="name">{{name}}</span>
+   
+                    </a>
+                    <meta itemprop="position" content="{{add @index 1}}" />
+                </li>
+                {{/if}}
+                
+            {{/each}}
+        {{/unless}}
+    </ol>
+</nav>
+<style>
+    .breadcrumb-label {
+        text-transform: uppercase;
+    }
+
+    .breadcrumb-mobile {
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+        }
+    }
+</style>
+<script>
+(function () {
+    const bc_list = document.querySelector('.product-page--breadcrumb.breadcrumb-mobile ol');
+
+    // Remove all li elements except the first and second last
+    Array.from(bc_list.children).slice(1, -1).forEach(li => li.remove());
+
+    // Keep only the first and second last li elements
+   // bc_list.innerHTML = `<li>${bc_list.firstElementChild.innerHTML}</li>${bc_list.lastElementChild.outerHTML}`;
+
+    }
+)();
+</script>

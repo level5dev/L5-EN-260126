@@ -1,0 +1,135 @@
+<script>
+if(document.querySelectorAll(".filter--box").length > 0){
+	const haveFilter = document.querySelectorAll("[have-filter]");
+	const noFilter = document.querySelectorAll("[no-filter]");
+	document.head.innerHTML +=`
+	<style>
+	[no-filter]{
+		display: none !important;
+	}
+	.gridProd{
+		justify-content: flex-end
+	}
+	/*
+	#product-block {
+		max-width: 950px;
+	}
+	@media only screen and (max-width: 1431px) and (min-width: 1025px){
+		.filter-list_container[pc]{
+			margin-left: 0;
+		}
+		.gridProd {
+	    	margin-left: 0;
+	  	}
+	  	.product {
+		    margin-right: 20px;
+		    margin-left: 0px;
+
+		}
+	}*/
+	/*
+	@media only screen and (min-width: 1025px) and (max-width: 1120px){
+		#product-block {
+		    max-width: 550px;
+		}
+		.product {
+		    width: 25%;
+		    min-width: 240px;
+		    max-width: 390px;
+		    height: 470px;
+		    padding-bottom: 20px;
+		    margin-left: 30px;
+		    overflow: unset;
+		}
+	}
+	*//*
+	@media only screen and (min-width: 1441px) {
+		#product-block {
+	    	max-width: 1000px;
+	  	}
+	}
+	
+	
+	@media only screen and (min-width: 1476px){
+		.product { 
+    		margin-left: 38px;
+		}
+	}
+	*/
+	</style>
+	`;
+	
+}else{
+	
+	const haveFilter = document.querySelectorAll("[have-filter]");
+	const noFilter = document.querySelectorAll("[no-filter]");
+	document.head.innerHTML +=`
+	<style>
+	[have-filter]{
+		display: none !important;
+	}
+
+	@media only screen and (min-width: 640px){
+		.product {
+		    width: 23%;
+		    min-width: 260px;
+		    max-width: 310px;
+		    height: 495px;
+		    padding-bottom: 30px;
+		    padding-right: 10px;
+		    margin-left: 0px;
+		    margin-right: 20px;
+		    overflow: unset;
+		}
+	}
+
+	@media only screen and (max-width: 640px){
+		.actionBar-section .filter-mobile-wrapper .form-select{
+          padding: 0 1rem 0rem 0rem;
+		  max-width: 130px;
+		  justify-content: flex-end !important;
+        }
+    }
+
+	.gridProd{
+		margin-left: 0;
+		justify-content: unset;
+	}
+	.actionBar-section .filter-mobile-wrapper{
+		grid-template-columns: 2fr 1fr;
+		max-width: 350px;
+	}
+	[mobile] .actionBar-section{
+		float: left;
+	}
+
+	@media (min-width: 861px) and (max-width: 1024px){
+		.product {
+		    width: 23%;
+		    min-width: 260px;
+		    max-width: 310px;
+		    height: 495px;
+		    padding-bottom: 30px;
+		    padding-right: 20px;
+		    margin-left: 0px;
+		    margin-right: 20px;
+		    overflow: unset;
+		}
+		.gridProd{
+		    margin: 0 1rem !important;
+		    max-width: 1500px;
+		}
+		.actionBar-section .filter-mobile-wrapper{
+			grid-template-columns: 2fr 1fr;
+			max-width: 450px;
+		}
+		.actionBar-section .filter-mobile-wrapper .filter-wrapper .form-select{
+			width: 67%;
+		}
+	}
+
+	</style>
+	`;
+
+}
+</script>

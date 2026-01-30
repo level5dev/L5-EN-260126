@@ -1,0 +1,13 @@
+<div class="container blog-post__yt-shorts-container {{#if page}} {{page}} {{/if}}" id="blog-post-shorts-section">
+    <div class="blog-post__body container">
+        <div class="blog-post__yt-shorts-header-block">
+            <div class="section--header">{{title}}</div>
+        </div>
+        {{#if page '===''vip'}}
+                <blockquote class="mob--hide">Join the global community of DIY enthusiasts, professional finishers, and general contractors who rely on LEVEL5 Tools day in, day out.</blockquote>
+            {{/if}}
+        <div class="blog-post__yt-shorts-block" >
+            {{> components/custom/blog/blog-shorts-slider page="vip"}}
+        </div>
+    </div>   
+</div>

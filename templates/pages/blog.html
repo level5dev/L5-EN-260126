@@ -1,0 +1,200 @@
+---
+blog:
+    posts:
+        limit: 7
+        pages: 1
+        summary: 200
+---
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if page_type '==' 'blog'}}
+    <style>
+        .blog-posts .pagination-list {
+            display: none;
+        }
+    </style>
+{{/if}}
+
+{{#unless theme_settings.its.custom_blog}}
+    <section class="page"> 
+        
+        {{#unless theme_settings.hide_blog_page_heading }}  
+        <h1 class="page-heading">{{ blog.name }}</h1>
+        {{/unless}}
+
+        {{#each blog.posts}}
+            {{> components/blog/post post=this}}
+        {{/each}}
+
+        {{> components/common/paginator
+            pagination.blog
+            page_type=page_type
+            show_dropdown=theme_settings.its.paginator_dropdown
+        }}
+    </section>
+
+{{else}}
+    <section class="page page--blog-custom">
+        <section class="blog-top">
+            {{#unless theme_settings.hide_blog_page_heading }}
+            {{#if blog.tag}}
+                <h1 class="page-heading">{{ blog.tag }}</h1>
+                <p class="blog-description h4">{{blog.description}}</p>
+            {{else}}
+                <h1 class="page-heading">{{ blog.name }}</h1>
+                <p class="blog-description h4">{{blog.description}}</p>
+            {{/if}}
+            {{/unless}}
+           {{!-- <!-- <div class="blog-top__content">
+                {{#if (lang 'custom.blog.top.page-builder') '===' 'true'}}
+                    {{{region name="blog_top_content"}}}
+                {{else}}
+                    {{#or
+                        (if (length (lang 'custom.blog.top.image-mobile')))
+                        (if (length (lang 'custom.blog.top.image-desktop')))
+                    }}
+                        {{#if (lang 'custom.blog.top.image-mobile') '===' 'webdav:/img/blog/placeholder'}}
+                            <img class="blog-top__content-img blog-top__content-img--mobile lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://via.placeholder.com/800x400" alt="This is a placeholder image">
+                        {{else}}
+                            <img class="blog-top__content-img blog-top__content-img--mobile lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (lang 'custom.blog.top.image-mobile')}}" alt="{{lang 'custom.blog.top.image-alt-text'}}">
+                        {{/if}}
+
+                        {{#if (lang 'custom.blog.top.image-desktop') '===' 'webdav:/img/blog/placeholder'}}
+                            <img class="blog-top__content-img blog-top__content-img--desktop lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://via.placeholder.com/1240x215" alt="This is a placeholder image">
+                        {{else}}
+                            <img class="blog-top__content-img blog-top__content-img--desktop lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (lang 'custom.blog.top.image-desktop')}}" alt="{{lang 'custom.blog.top.image-alt-text'}}">
+                        {{/if}}
+                    {{/or}}
+
+                    <p class="blog-top__content-description">{{lang 'custom.blog.top.description'}}</p>
+                {{/if}}
+            </div> -->--}}
+        </section>
+        
+        {{!--<section class="blog-posts">
+            <div class="blog-posts__container">
+                {{#each blog.posts}}
+                    {{> components/custom/blog/blog-post-card post=this store_logo=../settings.store_logo.image show_tags=true}}
+                {{/each}}
+            </div>
+            {{> components/common/paginator
+                pagination.blog
+                page_type=page_type
+                show_dropdown=theme_settings.its.paginator_dropdown
+            }}
+        </section>--}}
+
+        <section class="blog-posts">
+            <div id="blog-loader-block" style="margin:auto;display: flex;" blog-loader>
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div class="blog-posts__container" style="visibility: hidden;">
+                <div id="featuredBlogPost" style="display: none;">
+                </div>
+                {{#if blog.tag}}
+                    {{#each blog.posts}}
+                        {{> components/custom/blog/blog-post-card post=this store_logo=../settings.store_logo.image show_tags=true}}
+                    {{/each}}
+                {{else}}
+                    {{#each blog.posts}}
+                        {{#unless this.title '==' 'Aluminum Body or Composite Body?  Which Skimming Blade Type is Right For You?'}}
+                            {{> components/custom/blog/blog-post-card post=this store_logo=../settings.store_logo.image show_tags=true}}
+                        {{/unless}}
+                    {{/each}}
+                {{/if}}
+               
+            </div>
+            {{> components/common/paginator
+                pagination.blog
+                page_type=page_type
+                show_dropdown=theme_settings.its.paginator_dropdown
+            }}
+        </section>
+        {{! recent post and newsletter components.}}
+        <aside class="blog-sidebar">
+            {{!> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-recent-posts'
+                sidebar_title=(lang 'custom.blog.sidebar.recent-posts.heading')
+            }}
+
+            {{> components/custom/blog/blog-sidebar-most-popular}}
+            {{> components/custom/blog/blog-sidebar-finishers-pick}}
+            {{> components/custom/blog/blog-sidebar-block
+                partial='blog-sidebar-newsletter'
+                sidebar_title=(lang 'custom.blog.sidebar.newsletter.heading')
+            }}
+        </aside>
+    </section>
+    <style>
+        nav[aria-label="Breadcrumb"] {
+            margin-left: -4.5rem;
+            @media screen and (max-width: 1024px){
+                margin-left: 0;
+            }
+        }
+    </style>
+    <!-- SSCODE: function for clickable article blog-post__card-->
+    <script>
+        const card = document.querySelectorAll("article.blog-post__card");
+        for (let i = 0; i < card.length; i++) {
+         card[i].addEventListener('click', function(event) {
+             window.location = this.getAttribute("data-link");
+         });
+        }
+    </script>
+{{/unless}}
+{{/partial}}
+{{> layout/base container_active=true}}
+<script src="{{cdn 'assets/js/theme/custom/featuredBlog.js'}}" type="text/javascript"></script>
+<script>
+    if(window.location.pathname === '/blog/'){
+    //blog title to be featured exp:'Automatic Drywall Taper Cable Replacement'
+    let blogTitle = 'Aluminum Body or Composite Body?  Which Skimming Blade Type is Right For You?'
+    let featuredBlog = {};
+    function waitForBlogPosts() {
+    return new Promise((resolve) => {
+        const intervalId = setInterval(() => {
+        if (window.allBlogPosts) {
+            featuredBlog = topBlog(window.allBlogPosts);
+            clearInterval(intervalId);
+            resolve();
+        }
+        }, 100);
+    });
+    }
+
+    async function main() {
+        await waitForBlogPosts();
+        if (featuredBlog) {
+            showFeaturedBlog(featuredBlog);
+        }
+    }
+    main();
+
+    function topBlog(allBlog){
+        for(blog of allBlog){
+            if(blog.title == blogTitle){
+                return blog;
+            }
+        }
+    }
+    window.addEventListener('load', updateImageSizes);
+    window.addEventListener('resize', updateImageSizes);
+}
+
+else{
+    $('[blog-loader]').css('display', 'none')
+    $("#featuredBlogPost").parent().css("visibility", "visible")
+}
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const summaries = document.querySelectorAll('.blog-post__card-summary');
+    
+//     for (let i = 1; i < summaries.length; i++) {
+//         summaries[i].parentNode.removeChild(summaries[i]);
+//     }
+// });
+
+</script>
+

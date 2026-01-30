@@ -1,0 +1,46 @@
+{{!-- <div class="more-info-slider"
+    data-slick='{
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "slide": "[data-pdp-info-slide]",
+        "fade": true,
+        "autoplay": true,
+        "autoplaySpeed": 5000,
+        "dots": false,
+        "arrows": false
+    }'
+>
+
+    {{#for 1 (lang 'custom.product.rotating-banner.items')}}
+        <div data-pdp-info-slide class="slick-slide">
+            {{#filter ../product.custom_fields '__rb-warranty-term' property='name'}}
+                <p class="more-info-slider__text">
+                    {{{lang (concat 'custom.product.rotating-banner.item-' ../$index) warranty-term=value}}}
+                </p>
+            {{else}}
+                <p class="more-info-slider__text">
+                    {{{lang (concat 'custom.product.rotating-banner.item-' $index) warranty-term='1-Year'}}}
+                </p>
+            {{/filter}}
+        </div>
+    {{/for}}
+
+</div> --}}
+<div class="deliviery--info">
+
+    <div class="deliviery--info_text">
+        {{#if price.without_tax.value ">=" 50}}
+            <p class="more-info-slider__text">
+                {{lang 'products.includes'}} <a href='/shipping-returns/' class='anchor-secondary'>{{lang 'products.fast_free_shipping'}}</a>
+            </p>
+        {{else}}
+            <p class="more-info-slider__text">
+                <a href='/shipping-returns/' class='anchor-secondary'>{{lang 'products.free_shipping'}}</a> {{lang 'products.order_more'}}
+            </p>
+        {{/if}}
+    </div>
+
+</div>
+

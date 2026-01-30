@@ -1,0 +1,22 @@
+<div id="modal-customer-service" class="modal" data-reveal data-prevent-quick-search-close>
+    {{> components/common/modal/popup-header }}
+        <!-- you can add any content inside the element below, including another template -->
+        <div class="modal-content modal-klarna">
+            <div class="modal-div">
+                <div class="text-block-4">{{lang 'custom.page.support.customer_service_upp'}}</div>
+                <div class="text-block-5">{{lang 'custom.page.support.when_you_purchase_tool'}}</div>
+            </div> 
+        </div>
+</div>
+
+<style>
+    @media screen and (max-width:551px){
+      #modal-customer-service{
+         min-height: 0vh;
+         width:90%;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+   }
+</style>

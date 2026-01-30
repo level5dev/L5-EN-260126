@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{#partial "page"}}
+{{#if page.id '==' 15}}
+    {{> components/page/vip}}
+{{else if page.id '==' 9}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/terms-conditions}}
+{{else if page.id '==' 10}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/privacy-policy}}
+{{else if page.id '==' 18}}
+    {{> components/page/financing}}
+{{else if page.id '==' 19}}
+    {{> components/page/parts title=page.title}}
+{{else if page.id '==' 20}}
+    {{> components/page/schematic}}
+{{else if page.id '==' 2}}
+    {{> components/page/shipping-and-return}}
+{{else if page.id '==' 23}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/warranty-page}}
+{{else if page.id '==' 24}}
+    {{> components/page/warranty-confirmation}}
+{{else if page.id '==' 26}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/support-request}}
+{{else if page.id '==' 27}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/support}}
+{{else if page.id '==' 29}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/dealer-application}}
+{{else if page.id '==' 30}}
+    {{> components/page/dealer-confirmation}}
+{{else if page.id '==' 31}}
+    {{> components/page/request-confirmation}}
+{{else if page.id '==' 32}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/page/merchandise-return}}
+{{else if page.id '==' 33}}
+    {{> components/page/merchandise-return-confirmation}}
+{{else}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<section class="page">
+    {{!-- {{page.id}} --}}
+    {{#unless theme_settings.hide_page_heading }}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    {{/unless}}
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered">
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            <p>{{{page.content}}}</p>
+        {{/replace}}
+    </div>
+
+    {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+                <li>
+                    <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</section>
+{{/if}}
+
+{{/partial}}
+
+{{> layout/base container_active=true}}

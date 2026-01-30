@@ -1,0 +1,83 @@
+<div class="float-card-adc-wrapper">
+    <div class="float-card-adc">
+        <div class="float-card-product">
+            {{> components/common/responsive-img
+                image=product.main_image
+                class="productView-image--default"
+                fallback_size=theme_settings.product_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+                otherAttributes="data-main-image"
+            }}
+            <div class="float-item-wrapper">
+                {{#filter product.custom_fields '__product-fake-heading' property='name'}}
+                    <p class="productView-type-title">{{{this.value}}}</p>
+                {{/filter}}
+                
+                {{!-- Assign sku to hide --}}
+                {{assignVar "hidesku" "2956 2952"}}
+
+                {{#contains (getVar "hidesku") (concat product.id "")}}
+                    {{> components/products/price price=product.price bdsp_search_items=product.category type='adc-only'}}
+                {{else}}
+                <div class="float-sku-price">
+                    <div class="productView-info-value float--text" data-product-sku>SKU#: {{product.sku}}</div>
+                    {{> components/products/price price=product.price bdsp_search_items=product.category type='adc-only'}}
+                </div>
+                {{/contains}}
+                
+            </div>
+        </div>
+        <div>
+            <div class="grid-item js-card-atc heading">
+                <div class="card-atc__section card-atc__section--qty hidden">
+                    <label for="card-atc__qty-{{id}}" class="card-atc__label is-srOnly">{{lang 'products.quantity'}}:</label>
+                    <div class="card-atc-increment--has-buttons js-card-atc-increment">
+                        <div class="form-increment incr-mob">
+                            <button class="button button--icon" data-action="dec" type="button" tabindex="0">
+                                <span class="icon-wrapper" aria-hidden="true">
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-keyboard-arrow-down"></use>
+                                    </svg>
+                                </span>
+                            </button>
+                            <input type="tel" class="form-input form-input--incrementTotal js-card-atc__input--total" name="card-atc__qty-{{product.id}}" id="card-atc__qty-{{product.id}}" value="1" min="1" pattern="[0-9]*" aria-live="polite" tabindex="0">
+                            <button class="button button--icon" data-action="inc" type="button" tabindex="0">
+                                <span class="icon-wrapper" aria-hidden="true">
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-keyboard-arrow-up"></use>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-atc__section card-atc__section--action adc-float">
+                    {{#if product.out_of_stock}}
+                        <div class="button button-soldout"  data-reveal-id="modal-soldout">{{lang 'products.sold_out'}}
+                        </div>
+                        <!-- <div class="form-action">
+                            <input
+                                    class="button button--soldout"
+                                    value="SOLD OUT"
+                            >
+                        </div> -->
+                    {{else}}
+                    <!-- <div class="button button-soldout"  data-reveal-id="modal-soldout">{{lang 'products.sold_out'}}
+                    </div> -->
+                    <button type="button" class="card-atc__button button button--primary js-card-atc__button adc-only" id="card-atc__add-{{product.id}}" data-default-message="{{lang 'products.add_to_cart'}}" data-wait-message="{{lang 'products.adding_to_cart'}}" data-added-message="{{lang 'products.add_to_cart'}}" value="{{lang 'products.add_to_cart'}}" data-card-add-to-cart="/cart.php?action=add&amp;product_id={{product.id}}" data-event-type="product-click" tabindex="0">{{lang 'products.add_to_cart'}}</button>
+                    <span class="product-status-message aria-description--hidden">{{lang 'products.add_to_cart_item_added'}}</span>
+                    {{/if}}
+                </div>
+                <div id="previewModal" class="modal modal--large" data-reveal>
+                    <button class="modal-close" type="button" title="{{lang 'common.close'}}">
+                        <span class="aria-description--hidden">{{lang 'common.close'}}</span>
+                        <span aria-hidden="true">&#215;</span>
+                    </button>
+                    <div class="modal-content"></div>
+                    <div class="loadingOverlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

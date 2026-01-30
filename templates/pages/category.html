@@ -1,0 +1,440 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: 100
+---
+{{#if (getVar 'UUIDcounter')}}
+    {{assignVar 'UUIDcounter' (add (getVar 'UUIDcounter') 1)}}
+    {{assignVar 'UUIDcatc' (add (toInt (moment unixtimestamp format="x")) (getVar 'UUIDcounter'))}}
+{{else}}
+    {{assignVar 'UUIDcounter' 1}}
+    {{assignVar 'UUIDcatc' (toInt (moment unixtimestamp format="x"))}}
+{{/if}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{{inject "categoryProductsPerPage" 100}}
+{{inject "categoryId" category.id}}
+{{inject "products" category.products}}
+{{inject "UUIDcatc" (getVar 'UUIDcounter')}}
+{{inject "subcategories" category.subcategories}}
+{{inject "categories" categories}}
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+ 
+{{#partial "page"}}
+
+<div class="container main_container">
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+
+<!-- style pages -->
+{{!-- {{> components/custom/category/custom-style}} --}}
+
+<div class="page">
+    <div class="container category-heading__container">
+        {{#unless theme_settings.hide_category_page_heading }}
+            <h1 class="page-heading">{{category.name}}</h1>
+            <!--{{{region name="category_below_header"}}}-->
+        {{/unless}}
+    </div>
+
+    {{!--<section class="categoryGrid container top-banner">
+        <style>
+            h2.top-banner-text{
+                font-size:2.5em;
+            }
+
+            .categoryGrid.container.top-banner{
+
+                margin-bottom: 40px;
+            }
+
+            @media only screen and (max-width: 620px) {
+               h2.top-banner-text{
+                    font-size:2.0em;
+                } 
+                h3.top-banner-text{
+                    font-size:1.3em;
+                } 
+                .categoryGrid.container.top-banner{
+                    padding: 0 1rem;
+                    margin-bottom: 10px;
+                }    
+            }
+            @media only screen and (max-width: 400px) {
+               h2.top-banner-text{
+                    font-size:1.5em;
+                }
+                h3.top-banner-text{
+                    font-size:1.3em;
+                }      
+            }
+        </style>  
+
+        
+    </section>--}}
+
+    {{#if category.description}}
+    <style>
+        .container.category-heading__container {
+            padding-bottom:0px;
+        }
+    </style>
+    <div id="category-description">
+            {{{category.description}}}
+            {{> components/products/modals/videoView type='description'}}
+    </div>
+    <script src="{{cdn 'assets/js/theme/custom/customcategory.js'}}"></script>
+    {{/if}}
+    
+    
+    <section class="categoryGrid container">
+        {{assignVar "allowList" "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150"}}
+        {{#contains (getVar "allowList") (concat category.id "")}}
+        <div class="cat-banner-container">
+            <div style="text-align:center;width: 100%;margin-bottom: 40px;"> 
+                <div class="cat-banner">
+                    <h2 style="color:#ffffff;text-shadow:-3px 2px 2px #00000030;font-family:'Oswald', Arial, Helvetica, sans-serif;" >
+                        <strong>NEW YEAR, NEW TOOLS & GIFTS!</strong>
+                    </h2>
+                    <h3>
+                       <strong style="font-family:'Oswald', Arial, Helvetica, sans-serif; font-style:normal;">GEAR UP FOR 2026 WITH <span style="color:#d4ff51; font-family:'Oswald', Arial, Helvetica, sans-serif; font-style:normal;">15% OFF TOOLSETS + FREE GIFTS OVER $150</span></strong>
+                    </h3>
+                    <!--<div style="padding-bottom: 20px;"class="banner-timer">
+                        <h3 id="banner-timer" data-timer="{{lang 'custom.category.banner-expiry'}}"style="border: 1px solid white; width: 300px; padding: 5px; margin: auto;"></h3>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        {{/contains}}
+        
+        {{assignVar "allowList2" " "}}
+        {{#contains (getVar "allowList2") (concat category.id "")}}
+        <div class="cat-banner-container">
+            <div style="text-align:center;width: 100%;margin-bottom: 40px;"> 
+                <div class="cat-banner">
+                    <h2>
+                        FLASH SALE ON NOW THROUGH SUNDAY
+                    </h2>
+                    <h3>
+                       <strong style="color:#d4ff51;font-family: 'Oswald', Arial, Helvetica, sans-serif;">FREE BANJO</strong> WITH ALL AUTOMATIC FINISHING SETS
+                    </h3>
+                </div>
+            </div>
+        </div>
+        {{/contains}}
+
+        {{!-- Assign allowed category IDs --}}
+        {{assignVar "customBannerCategories" "74 76 70 75 52"}}
+
+        {{#contains (getVar "customBannerCategories") (concat category.id "")}}
+            <div class="top-custom-banner on-banner">
+                <div class="top-banner-text">Need something custom? <span class="mobile-hide">Give us a call!</span></div>
+                <a href="tel:8002277713" class="top-banner-call">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Phone Icon" />
+                    800.227.7713
+                </a>
+            </div>
+        {{/contains}}
+
+        {{#if category.subcategories}}
+        <!--<ul class="categoryGrid_list">
+            {{#each category.subcategories}}
+            <li class="categoryGrid_list-items">
+                <div class="card-wrapper">
+                    <article class="card">
+                        <figure class="card-figure">
+                            <a href="{{url}}" class="card-figure__link">
+                                <div class="card-img-container" {{#if theme_settings.its.image_swap_on_hover}} data-image-swap-src="{{#each images}}{{#if @index '===' 1}}{{getImage data 'productgallery_size'}}{{/if}}{{/each}}"{{/if}}>
+                                    {{> components/common/responsive-img
+                                        image=image
+                                        class="card-image"
+                                        fallback_size=theme_settings.productgallery_size
+                                        lazyload=theme_settings.lazyload_mode
+                                        default_image=theme_settings.default_image_product
+                                    }}
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="card-body"> 
+                            <h3 class="card-title">
+                                <a href="{{url}}">
+                                    {{name}}
+                                </a>
+                            </h3>                    
+                        </div>
+                    </article>
+                </div>
+            </li>
+            {{/each}}
+        </ul>-->
+        {{else}}
+            <style>
+                @media (max-width: 640px){
+                    .actionBar{
+                        margin-top: 0;
+                    }
+                }
+            </style>
+        {{/if}}
+    </section>
+    
+
+    {{#if theme_settings.its.category_subcat_cards}}
+        {{> components/custom/subcat-grid}}
+    {{/if}}
+    
+    {{> components/custom/filter/custom-filter-mobile}}
+    
+    {{assignVar  'type' 'mobile'}} 
+    {{> components/custom/filter/custom-filter-box-at-top-grid}}
+    
+    <!-- SSCODE: DESKTOP VER. SORT/FILTER SELECTOR +  DISPLAY PRODUCTS -->
+    <section id="product-listing-container" class="container" section-view>  
+        <div class="actionBar filter--section" no-filter>
+            <fieldset class="form-fieldset actionBar-section" >
+                <div class="form-field" align="left">
+                    {{assignVar "filter-type" "  "}}
+                    {{assignVar "no-filter" "no-filter"}}
+                    {{> components/custom/filter/custom-sort-filter}}
+                    {{assignVar "no-filter" " "}}
+                </div>
+            </fieldset>
+        </div>
+        <section id="product-listing-all">
+            <div class="flex-div-section">
+                
+                
+                <div class="actionBar filter--section" have-filter>
+                    <fieldset class="form-fieldset actionBar-section" >
+                        <div class="form-field" align="left">
+                            {{assignVar "filter-type" "  "}}
+                            {{> components/custom/filter/custom-sort-filter}}
+                            <br>
+                            {{> components/custom/filter/custom-sidebar-filter}}
+                            {{!-- Category section --}}
+                            {{!-- 
+                                {{#if category.subcategories}}
+                                <label class="form-label" for="sort">Filter by:</label>
+                                <br>
+                                    {{#each category.subcategories}}
+                                    <div class="filter-option">
+                                        <label class="form-label" for="sort">{{category.subcategories.length}}</label>
+                                        <input type="checkbox" filter-value="{{id}}" checkbox-filter-all name="filter-all"><label class="form-label" for="filter-all" style="color:black; font-weight:200;">{{name}}</label>
+                                        <br>
+                                    </div>
+                                    {{/each}}
+                                {{/if}}
+                            --}}
+                        </div>
+                    </fieldset>
+                    <!-- {{> components/custom/filter/custom-filter-skeleton}} -->
+                </div>
+              
+            
+                <!-- <div class="lds-block">
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                </div>
+                <div> -->
+                    
+                    <!-- <div class="grid" id="grid-all-product">
+                    </div> -->
+                   
+                    {{> components/category/product-listing}}
+                        
+                </div>
+            </div>
+        </section>
+    </section>
+    {{> components/custom/category/custom-filter-script}}
+
+
+    {{#if banners.bottom}}
+        {{#if settings.data_tag_enabled}}
+            <div class="banners" data-banner-location="bottom">
+                {{#each (limit banners.bottom_metadata 1)}}
+                    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                        <div data-event-type="promotion-click">
+                            {{{this.content}}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="banners bg-paint-splatter" data-banner-location="bottom">
+                <div class="banner">
+                    {{{limit banners.bottom 1}}}
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+{{!--
+    {{#if category.description}}
+    <div class="template-background">
+        <div class="container">
+            {{{category.description}}}
+        </div>
+    </div>
+    {{/if}}
+--}}
+    {{!-- {{#if category.products}}
+        <div class="container product-carousel__container">
+            <div class="product-carousel__header">
+                <h2 class="page-heading h1">{{lang 'products.featured' }}</h2>
+                {{#unless page_type '===' 'category'}} <a href="{{lang 'products.featured_sublink_url' }}"
+                    class="product-carousel__sublink">{{{lang 'products.featured_sublink' }}}</a>{{/unless}}
+            </div>
+        {{{region name="category_below_description"}}}
+        </div>
+    {{/if}} --}}
+    {{{region name="category_below_content"}}}
+
+    <!-- ITS LOADING OVERLAY -->
+    {{!-- <div class="loadingOverlay loadingOverlay--product-listing"></div> --}}
+</div>
+
+{{!--  
+<style>
+    .select2-container--default .select2-selection--single {
+        background-color: #fff;
+        border: 0px solid #aaa;
+        border-radius: 4px;
+    }
+    .select2-selection__rendered{
+      text-align: end;
+      color: #666666;
+      background-position: right;
+      font-weight: 350;
+      text-align: end;
+      padding-right: 40px !important;
+    }
+    .select2-results__option {
+        text-align: end;
+    }
+    .select2-container--default .select2-results>.select2-results__options{
+        max-height: unset;
+        font-weight: 350;
+        padding: 3px 6px;  
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: unset;
+        color: inherit;
+    }
+    .select2-container--default .select2-results__option--selected {
+        background-color: unset;
+    }
+    .select2-container--open .select2-dropdown--below {
+        margin-top: 0.8rem;
+    }
+    .select2-dropdown {   
+        border: 1px solid #E4E4E4;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 26px;
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        width: 20px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow b{
+        display: none !important;
+    }
+    .select2-container--default.select2-container--disabled .select2-selection--single{
+        background-color: #f4f4f4;
+    }
+
+    .banner-timer {
+        padding-bottom: 20px;
+    }
+
+    #banner-timer {
+        border: 1px solid white;
+        width: 300px;
+        padding: 5px;
+        margin: auto;
+    }
+</style>
+--}}
+</div>
+<script>
+    let curheaderTimex = (parseInt({{lang 'custom.category.banner-expiry'}}))*1000;
+    let countDownDate = new Date((new Date(curheaderTimex)).toLocaleString("en-US",{ timeZone: "America/New_York" })).getTime();
+    
+    var x = setInterval(function() {
+    
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+    
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      if(document.getElementById("banner-timer") !== null){
+        document.getElementById("banner-timer").innerHTML = days + " DAYS " + hours + " HR "
+      + minutes + " MIN " + seconds + " SEC ";
+      }
+    
+      
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("banner-timer").innerHTML =  "0 DAYS " +" 0 HR "
+      + " 0 MIN " + " 0 SEC ";;
+      }
+    }, 1000);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+{{!-- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> --}}
+<script src="{{cdn 'assets/js/theme/custom/isotope.js'}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/isotope-fit-columns@1.1.4/fit-columns.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    function sortfilterBtn(){ document.querySelector('.filter--section_mobile').style.display = "block"; }
+    function closeBtn() { document.querySelector('.filter--section_mobile').style.display = "none"; }
+    // jQuery.noConflict();
+    // jQuery(document).ready(function() {
+    //     if(document.querySelectorAll(".filter--box").length > 0){
+    //        jQuery('[all-sort-select-pc]').select2({
+    //             minimumResultsForSearch: -1
+    //         }); 
+    //    }else{
+    //         jQuery('[all-sort-select-pc][no-filter]').select2({
+    //             minimumResultsForSearch: -1
+    //         });
+    //    }
+
+    //    jQuery("[all-sort-select-pc]").on('select2:select', function() {
+    //       // console.log(jQuery(this).val());
+    //       const val = jQuery(this).val();
+    //       const event = new CustomEvent("select2-selected", { detail: {val} });
+    //       window.dispatchEvent(event);
+          
+    //     });
+        
+        
+    // });
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $('.filter_element--block a').each(function(){
+        if ($(this).prop('href') === window.location.href) {
+            $(this).addClass('activelink');
+        }
+    });
+});
+</script>
+
+{{/partial}}
+{{> layout/base container_active=false}}

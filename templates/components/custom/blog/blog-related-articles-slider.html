@@ -1,0 +1,61 @@
+{{!-- {{> components/custom/blog/carousel-set-contents type="pc" blog_type="related-articles" columns=3 tablet-columns=3 mobile-columns=1}} --}}
+{{!-- {{> components/custom/blog/carousel-set-contents type="mobile" blog_type="related-articles" columns=1}} --}}
+
+<div class="blog-post__related-articles-block">
+</div>
+
+
+<script>
+        (function () {
+          const $slideSetContent = document.querySelector('.blog-post__related-articles-block');
+          // const $slideSetContentMobile = document.querySelector('[set-content-slide][type="mobile"][blog-type="related-articles"]');
+          let ra_item = document.querySelector('#related-articles');
+          const arrMob = [];
+          let count = 0;
+          let temp = "";
+          if(ra_item === undefined || ra_item === null){
+            document.querySelector(".blog-post__related-articles-container").style.display = "none";
+          }
+          else if(ra_item.textContent.length > 0){
+
+            let ra_item_list = ra_item.textContent.replace(/[^0-9a-zA-Z/,-]/g, '').split(",");
+            ra_item_list = ra_item_list.filter(s => s.length > 0);
+            // console.log(sku_list);
+
+            ra_item_list.forEach((item)=>{
+
+                const template = `
+                <a class="blog-post__related-article" href="${item}">
+                    <div class="blog-skeleton image-skeleton blog-related-article-image"></div>
+                    <img class="blog-related-article-image" src="" style="display:none;">
+                    <p class="blog-related-article-title"></p>
+                </a>`
+
+                $slideSetContent.innerHTML +=  template;
+                // `<div data-product-slide class='productCarousel-slide'>
+                //     <div class="set-content_wrapper">
+                //     ${template}
+                //     </div>
+                // </div>`
+
+            });
+
+        }else{
+            document.querySelector(".blog-post__related-articles-container").style.display = "none";
+        }
+
+        // arrMob.forEach(item=>{
+        //     $slideSetContentMobile.innerHTML += 
+        //     `<div data-product-slide class='productCarousel-slide'>
+        //     <div class="set-content_wrapper-grid">
+        //     ${item}
+        //     </div>
+        //     </div>`;
+        // });
+
+        // console.log(arrMob);
+    })();
+
+</script>
+
+

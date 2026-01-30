@@ -1,0 +1,209 @@
+{{!-- fetch section where the data will be used in related articles and in product page for videos tab --}}
+{{#if (getVar 'UUIDcounter')}}
+    {{assignVar 'UUIDcounter' (add (getVar 'UUIDcounter') 1)}}
+    {{assignVar 'UUIDcatc' (add (toInt (moment unixtimestamp format="x")) (getVar 'UUIDcounter'))}}
+{{else}}
+    {{assignVar 'UUIDcounter' 1}}
+    {{assignVar 'UUIDcatc' (toInt (moment unixtimestamp format="x"))}}
+{{/if}}
+{{inject "UUIDcatc" (getVar 'UUIDcatc')}}
+<div id="fetch-section" style="display:none;">
+    <p id="fetch-title">{{post.title}}</p>
+    <p id="fetch-image-old">{{getImage post.thumbnail}}</p>
+    
+        <ul >
+            {{#if post.tags}}
+                {{#each post.tags}}
+                <li fetch-tags>
+                    <p tag-url>{{url}}</p>
+                    <p tag-name>{{name}}</p>
+                </li>
+                {{/each}}
+            {{/if}}
+        </ul> 
+    <article class="blog-post__card" data-link="">
+    </article>
+    <article class="blog-post__card" data-link="{{post.url}}">
+        <div class="blog-post__card-container"> 
+            {{#if post.thumbnail}}
+                <figure class="blog-post__card-thumbnail">
+                    <a id="fetch-image" href="{{post.url}}">
+                        {{> components/common/responsive-img
+                            image=post.thumbnail
+                            fallback_size=theme_settings.blog_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </a>
+                </figure>
+            {{else}}
+                <figure class="blog-post__card-thumbnail">
+                    <a id="fetch-image" href="{{post.url}}">
+                        {{> components/common/responsive-img
+                            image=store_logo
+                            fallback_size=theme_settings.blog_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </a>
+                </figure>
+            {{/if}}
+        </div>
+        </div>
+</article>
+    
+</div>
+<div class="container">
+    <div class="blog-post__body blog-post_breadcrumbs">
+        {{!-- > components/common/breadcrumbs-blog breadcrumbs=breadcrumbs --}}
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+</div>
+<article class="blog-post">
+    
+    <div class="blog-post__image" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 0.5)), url("{{getImage post.thumbnail}}");'>
+        
+        <header class="blog-post__header">
+            <h1 class="blog-post__title">{{post.title}}</h1>
+            <p class="blog-post__date" id="heading-2-text"></p>
+        </header>
+        {{#if show_tags}}
+            {{#if post.tags}}
+                 <ul class="blog-post_tag-list">
+                    {{#each post.tags}}
+                    {{!-- <li class="blog-post_tags">
+                        <a href="{{url}}">{{name}}</a>
+                    </li> --}}
+                    <a class="blog-post_tags" href="{{url}}">
+                        <div>{{name}}</div>
+                    </a>
+                    {{/each}}
+                </ul> 
+            {{/if}}
+        {{/if}}
+         {{!--<!-- <div class="blog-post__figure">
+            {{!#if post.thumbnail}}
+                <figure class="blog-post__thumbnail">
+                    <a href="{{post.url}}">
+                        {{> components/common/responsive-img
+                            image=post.thumbnail
+                            fallback_size=theme_settings.blog_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </a>
+                </figure>
+            {{!/if}}
+        </div>  -->--}}
+    </div>
+    <div class="blog-post__body container">
+        <div class="blog-post__data-content">
+            
+            <div>
+                {{#if post.author}}
+                <p style="margin-bottom:0;">{{lang 'blog.author'}}: {{post.author}}</p>
+                {{/if}}
+                <p id="published-date-wrapper">{{lang 'blog.publish_date'}}: <span id="published-date-text">{{post.date_published}}</span></p>
+            </div>
+            
+
+            <div class="blog-post_social-media-container">
+                <p>{{lang 'common.share_this'}}</p>
+                <div class="blog-post_social-media-block">
+                    <a target="_blank" class="twitter-share" href=""> 
+                        <img src="{{cdn 'assets/img/blog/twitter-64px.png'}}" />
+                    </a>
+                    <a target="_blank" class="linkedin-share" href="">
+                        <img src="{{cdn 'assets/img/blog/linkedin-64px.png'}}" />
+                    </a>
+                    <a target="_blank" class="facebook-share" href="">
+                        <img src="{{cdn 'assets/img/blog/facebook-64px.png'}}" />
+                    </a>
+                    {{!-- <a class="slack-share">
+                        <img src="{{cdn 'assets/img/blog/slack-64px.png'}}" />
+                    </a> --}}
+                </div>
+            </div>
+        </div>
+        <div class="blog-post__content-pc">
+            <div class="blog-post__content">
+                {{{post.body}}}
+            </div>
+        </div>
+        <div class="blog-post__content-mobile">
+            <div class="blog-post__content">
+                {{{post.body}}}
+            </div>
+            {{> components/custom/blog/blog-expand-section}}
+        </div>
+        {{!-- {{> components/common/share url=post.url}} --}}
+    </div>
+    <div class="blog-post__sku-item-container">
+        <div class="blog-post__body container">
+            <h2>Product(s) Mentioned In This Article</h2>
+            <div class="blog-post__blog-post__sku-block">
+              {{> components/custom/blog/blog-sku-slider}}
+            
+            </div>
+        </div>   
+    </div>
+    <div id="test-grid-sku">
+    </div>
+
+    {{> components/banner/learn-more}}
+    <div class="blog-post__related-articles-container">
+        <div class="blog-post__body container">
+            <div class="blog-post__blog-post__related-articles-header-block">
+                <h2>{{lang 'blog.related_article'}}</h2>
+                <div><a href="/blog">
+                    <p class="rla-pc">{{lang 'blog.view_all_article'}}</p>
+                    <p class="rla-mobile">{{lang 'blog.all_articles'}}</p>
+                </a>
+            </div>
+            </div>
+            
+            <div class="blog-post__blog-post__related-articles-block" >
+                {{> components/custom/blog/blog-related-articles-slider}}
+            </div>
+        </div>   
+    </div>
+    
+    <div class="blog-post__yt-shorts-container" id="blog-post-shorts-section">
+        <div class="blog-post__body container">
+            <div class="blog-post__yt-shorts-header-block">
+                <h2>{{lang 'blog.from_l5_user'}}</h2>
+            </div>
+            
+            <div class="blog-post__yt-shorts-block" >
+                {{> components/custom/blog/blog-shorts-slider}}
+            </div>
+        </div>   
+    </div>
+</article>
+
+{{!-- Add to cart Popup --}}
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content">
+        {{> components/custom/card-atc-modal }}
+    </div>
+    <div class="loadingOverlay"></div>
+</div>
+
+<style>
+    .product{
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+        height: auto;
+        padding: 0px;
+        margin: 0px;
+        overflow: unset;
+    }
+    @media only screen and (min-width: 640px) and (max-width: 870px) {
+      .product{
+        max-width: 335px;
+      }
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+

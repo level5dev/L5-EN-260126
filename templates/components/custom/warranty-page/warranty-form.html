@@ -1,0 +1,29 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<form data-contact-form class="form" action="https://usebasin.com/f/9c948da6026a" method="post" {{!-- redirect="/warranty-confirmation" --}}
+data-name="Warranty Registration" {{!-- data-redirect="/warranty-confirmation" --}} aria-label="Warranty Registration">
+
+    {{!-- <input type="hidden" name="page_id" id="page_id" value="{{forms.contact.page_id}}"> --}}
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/order-receipt-number}}
+        {{> components/custom/form-field/purchase-location}}
+    </div>
+	{{> components/custom/form-field/products-to-be-registered}}
+
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/first-name}}
+        {{> components/custom/form-field/last-name}}
+		{{> components/custom/form-field/email-address}}
+		{{> components/custom/form-field/phone-number}}
+    </div>
+	{{> components/custom/form-field/street-address}}
+    <div class="form-row form-row--half">
+		{{> components/custom/form-field/city}}
+		{{> components/custom/form-field/state-province}}
+        {{> components/custom/form-field/zip-postal-code}}
+        {{> components/custom/form-field/country}}
+        <input type="hidden" name="_gotcha">
+    </div>
+    {{> components/custom/form-field/recaptcha}}
+	{{> components/custom/form-field/submit-btn}}
+</form>

@@ -1,0 +1,31 @@
+<style>
+    .form{
+        margin-bottom: 3rem;
+        margin-top: 2rem;
+    }
+    </style>
+    <section class="page">
+        {{#unless theme_settings.hide_page_heading }}
+            <h1 class="page-heading">{{ page.title }}</h1>
+        {{/unless}}
+    
+        {{#if page.sub_pages}}
+        <nav class="navBar navBar--sub">
+            <ul class="navBar-section account-navigation">
+            {{#each page.sub_pages}}
+                <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+            {{/each}}
+            </ul>
+        </nav>
+        {{/if}}
+    
+        {{{region name="page_builder_content"}}}
+    
+        <div class="page-content page-content--centered">
+            <blockquote>{{lang 'custom.page.support.support-request.blackquote'}}</blockquote> 
+            <p>{{{lang 'custom.page.support.support-request.description'}}}</p>
+            {{> components/custom/form/support-request-form}}
+        </div>
+    </section>
+    
+    

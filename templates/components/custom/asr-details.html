@@ -1,0 +1,30 @@
+<div id="modal-asr-details" class="modal" data-reveal data-prevent-quick-search-close>
+    {{> components/common/modal/popup-header }}
+        <!-- you can add any content inside the element below, including another template -->
+        <div class="modal-content modal-klarna">
+            <div class="modal-div">
+                <div class="text-block-4">Adult signature required</div>
+                <div class="text-block-5">
+                    For your protection, the "Adult Signature Required" option ensures your order is securely delivered and not left unattended.<br><br>
+                    All orders over $250 default to "Adult Signature Required." We strongly recommend keeping this option enabled. 
+                    However, if you live in a secure or remote area and prefer delivery without a signature, 
+                    you may choose to disable this option.<br><br>
+                    <b style="display: inline;">IMPORTANT:</b> By deselecting "Adult Signature Required," you accept full responsibility for your shipment, including any loss, theft, or non-delivery of your items.
+                </div>
+                <div class="text-block-5 success"></div>
+            </div> 
+        </div>
+</div>
+
+<style>
+    @media screen and (max-width:551px){
+      #modal-asr-details{
+         min-height: 0vh;
+         width:90%;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+   }
+</style>
+

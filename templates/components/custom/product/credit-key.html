@@ -1,0 +1,34 @@
+<script crossorigin src="https://unpkg.com/@credit-key/creditkey-js@latest/umd/creditkey-js.js"></script>
+
+{{!-- <div id="creditkeypdp" style="margin-bottom:{{margin}};margin-left:-6px;"></div> --}}
+<div id="creditkeypdp" {{!-- style="margin-bottom:-55px; --}}"></div>
+<script>
+    let ckPrice = document.getElementsByClassName('price price--withoutTax')[0].innerHTML.replace(/,|\$/g, '');
+    let client = new ck.Client('level_912fb11184834a4dbec915e772e86fe2', 'production');
+    let charges = new ck.Charges(ckPrice, 0, 0, 0, ckPrice);//Pass product price into the Charges object
+    creditkeypdp.innerHTML = client.get_pdp_display(charges);
+    
+    // console.log(client.get_pdp_display(charges));
+    $(document).ready(function() {
+        $(window).on('resize', function () {
+        var isMobile = $(window).width() <= 767; // Adjust the width threshold as needed
+        var marginValue = isMobile ? ($('.klarna-btn-div').find('.klarna-btn').length > 0 ? '-25px' : '-35px') : '';
+
+        $('#creditkeypdp').css('margin-bottom', marginValue);
+        }).trigger('resize'); // Trigger the resize event on page load
+
+    })
+    
+
+</script>
+<style>
+    #creditkeypdp {
+        margin-bottom: -55px;
+    }
+
+    @media (max-width: 467px) {
+        #creditkeypdp {
+            margin-bottom: -35px;
+        }
+    }
+</style>

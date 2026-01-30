@@ -1,0 +1,112 @@
+<section class="sch--cont" schematic-sec>
+    <a class="dropdown-toggle w-dropdown-toggle" data-accordion-sch >
+        <h4 style="margin-bottom:0px">{{lang (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.title')}}</h4>
+        <i class="fas fa-sharp fa-chevron-right" style="color: #000000;" accordion-ddown-sch></i>
+    </a>
+    <div class="schematic-block tab-content-sch" style="margin-bottom:0px;">
+        <div class="div-block-201">
+            <div style="display: grid;">
+                <p>{{lang 'custom.page.parts-components.compatible_with_sku'}}: {{lang (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.subtitle')}}</p>
+                <a href="{{lang (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.pdf_link')}}" download target="_blank">
+                    <img src="{{lang (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.image')}}" loading="lazy" sizes="(max-width: 479px) 90vw, 300px" alt="" class="image-78">
+                </a>
+                {{> components/custom/schematic/download-pdf pdf=(lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.pdf_link')}}
+            </div>
+        </div>
+        {{!-- <table>
+            <thead>
+                <tr>
+                    <th class="sch--col-mob">SCHEMATIC #<span class="sch--col-mobile"> #</span></th>
+                    <th class="">PART <span class="sch--col-mob"> #</span> </th>
+                    <th class="sch-item-desc">DESCRIPTION</th>
+                    <th class="">PRICE</th>
+                    <th class="">{{lang 'products.add_to_cart'}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#for 1 (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_num') }}
+                <tr>
+                    {{> components/custom/schematic/table-body 
+                        index = $index
+                        id = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.id'))
+                        sku =(lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.sku'))
+                        name = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.name'))
+                        price = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.price'))
+                        quantity = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.quantity'))
+                    }}
+                </tr>
+                <tr class="line-border"></tr>
+                {{/for}}
+            </tbody>
+        </table> --}}
+        <div class="layout-grid grid-row">
+            {{> components/custom/schematic/table-header}}
+            {{#for 1 (lang 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_num')}}
+                {{> components/custom/schematic/schematic-item-list 
+                    index = $index
+                    id = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.id'))
+                    sku =(lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.sku'))
+                    name = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.name'))
+                    price = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.price'))
+                    quantity = (lang (concat (concat 'custom.page.parts-components.schematic.7293-Gooser-Assembly.item_' $index) '.quantity'))
+                }}
+            {{/for}}
+        </div>
+        <div style="margin-bottom: 10px;"></div>
+    </div>
+</section>
+{{!-- <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .line-border {
+    position: relative;
+  }
+
+  .line-border:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -50%; /* Adjust to exceed the table on the left */
+    right: -50%; /* Adjust to exceed the table on the right */
+    bottom: -1px; /* Adjust to position the border at the bottom */
+    height: 1px;
+    background-color: #ddd; /* Border color */
+  }
+
+    th {
+        text-align: start;
+      //background-color: #f2f2f2;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 10%; /* Adjust the width as needed */
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 10%; /* Adjust the width as needed */
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 60%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 10%; /* Adjust the width as needed */
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 10%; /* Adjust the width as needed */
+      .grid-item {
+        padding-right: 0;
+      }
+    }
+  </style> --}}

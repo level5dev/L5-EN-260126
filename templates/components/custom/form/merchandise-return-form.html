@@ -1,0 +1,47 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<form data-contact-form class="form support-request-form" action="https://usebasin.com/f/27021fc3df29" method="post" 
+data-name="{{lang 'custom.page.become_a_dealer'}}" aria-label="{{lang 'custom.page.become_a_dealer'}}">
+
+    <div class="form-row form-row--half">
+        <div class="form-field">
+            <label class="form-label" for="order_receipt_number">{{lang 'forms.warranty_registration.order_number'}}
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <input id="order_receipt_number" class="form-input" maxlength="256" type="text" name="order_receipt_number" value="" required>
+        </div>
+    </div>
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/first-name}}
+        {{> components/custom/form-field/last-name}}
+    </div>
+    
+    <div class="form-row form-row--half">
+        {{> components/custom/form-field/address-1}}
+        {{> components/custom/form-field/address-2 req=false}}
+        {{> components/custom/form-field/city}}
+        {{> components/custom/form-field/state-province}}
+        {{> components/custom/form-field/zip-postal-code}}
+        {{> components/custom/form-field/country}}
+        {{> components/custom/form-field/phone-number}}
+        {{> components/custom/form-field/email-address}}
+    </div>
+    <div class="form-field">
+        <label class="form-label" for="message">SKU Number for Returned Item(s)
+        </label>
+        <textarea name="message" id="message" maxlength="5000" data-name="message" rows="3" cols="50" class="form-input"></textarea>
+    </div>
+    <div class="form-field">
+        <label class="form-label" for="return-reason">Reason for return
+        </label>
+        <textarea name="message" id="message" maxlength="5000" data-name="message" rows="3" cols="50" class="form-input"></textarea>
+    </div>
+    <input type="hidden" name="_gotcha">
+	{{> components/custom/form-field/submit-btn}}
+</form>
+
+
+        
+        
+        
+        

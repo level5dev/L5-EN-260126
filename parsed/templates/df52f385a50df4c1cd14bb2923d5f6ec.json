@@ -1,0 +1,3 @@
+{
+  "components/custom/form-field/full-name": "<div class=\"form-field\">\n    <label class=\"form-label\" for=\"contact_fullname\">{{lang 'forms.contact_us.full_name'}}</label>\n    <input class=\"form-input\" type=\"text\" id=\"contact_fullname\" name=\"contact_fullname\" value=\"\">\n</div>\n"
+}

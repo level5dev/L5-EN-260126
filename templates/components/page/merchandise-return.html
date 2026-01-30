@@ -1,0 +1,116 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<style>
+.form{
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+</style>
+<section class="page">
+    {{#unless theme_settings.hide_page_heading }}
+        <!-- h1 class="page-heading">{{ page.title }}</h1 -->
+        <h1 class="page-heading">Merchandise return form</h1>
+    {{/unless}}
+
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered">
+        <p></p>
+        <blockquote>To request a product return and receive a Return Merchandise Authorization (RMA) number, please complete and submit the form below.</blockquote> 
+        <p>Upon submission, a customer service representative will contact you via phone or email to confirm details and/or provide you with an RMA number.
+            <br><br>IMPORTANT: Please print the RMA slip you are provided and include it with your returned item(s), so our warehouse team can properly identify your shipment.
+            <br><br>For return eligibility details, please review our <a id="merchandise-returnpolicy" class="link">Return Policy</a>.</p>
+        {{> components/custom/form/merchandise-return-form}}
+    </div>
+    {{> components/custom/merchandise-return-policy}}
+</section>
+<div class="modal-backgrounds" style></div>
+<style>
+    .has-activeModal.modal-backgrounds {
+      display: block;
+   }
+   .modal-backgrounds {
+      background: #333;
+      background: rgba(68,68,68,.95);
+      bottom: 0;
+      display: none;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 1000;
+      left: 0;
+      opacity: 0.5;
+   }
+   .modal.open {
+      display: block; 
+      opacity: 1; 
+      visibility: visible;
+   }
+   .modal {
+      /*width: 440px;*/
+      border-radius: 0;
+   }
+
+   .modal-div {
+      padding-bottom:25px;
+   }
+   .modal-header {
+      padding: 1.5rem;
+      background-color: #fff; 
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+    padding: 15px;
+    /*box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+    margin-bottom: 10px;
+   }
+   #modal-merchandise-return-policy .modal-header {
+    background-color: #fff; 
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+    /*box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+    }
+    .text-block-4 {
+      display: flex;
+      justify-content: center;
+      /*align-items: center;*/
+      font-family: Oswald, sans-serif;
+      color: #000;
+      font-size: 26px;
+      line-height: 124.7%;
+      /*padding-bottom:25px;*/
+      /*text-align: center;*/
+      text-transform: uppercase;
+      margin-left: 0px;
+   }
+</style>
+<script>
+    document.querySelector('#merchandise-returnpolicy').addEventListener('click', ()=> {
+        console.log('clicked')
+         document.querySelector('#modal-merchandise-return-policy').classList.add('open')
+         document.querySelector('.modal-backgrounds').classList.add('has-activeModal')
+      })
+    const cbox = document.querySelectorAll('.modal-close')
+    for (let i = 0; i < cbox.length; i++) {
+        cbox[i].addEventListener("click", function() {
+            const dbox = document.querySelectorAll('.modal')
+            for (let j = 0; j < dbox.length; j++) {
+                dbox[j].classList.remove('open')
+                document.querySelector('.modal-backgrounds').classList.remove('has-activeModal')
+            }
+        });
+    } 
+</script>
+ 

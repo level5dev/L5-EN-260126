@@ -1,0 +1,4 @@
+{
+  "components/common/modal/popup-header": "<div class=\"modal-header\">\n    <img src=\"https://uploads-ssl.webflow.com/634d1196dfe3ee1059acb423/645086b0a698ed589c0e7f2c_643f493fef815326747b023c_image%2096.png\" loading=\"lazy\" alt=\"\">\n    {{!-- <div href=\"#\" class=\"modal-close\" style=\"text-decoration:none;\">\n        <span>×</span>\n    </div> --}}\n    {{> components/common/modal/modal-close-btn }}\n</div>\n",
+  "components/common/modal/modal-close-btn": "<button class=\"modal-close\" type=\"button\" {{additional_attr}} >\n    {{!-- <span class=\"aria-description--hidden\">{{lang 'common.close'}}</span> --}}\n    <span aria-hidden=\"true\">&#215;</span>\n</button>\n"
+}

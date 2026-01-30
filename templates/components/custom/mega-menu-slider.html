@@ -1,0 +1,26 @@
+<li class="mega-menu">
+    <a href="{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.link')}}" class="mega-menu__link" index="{{getVar 'index'}}" index-child="{{getVar 'index-child'}}">
+        <figure class="mega-menu__image-container">
+          {{!--   {{#if (lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.image')) '===' 'webdav:/img/mega-menu/'}}
+                <img class="lazyload mega-menu__image" data-src="{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.image-placeholder')}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.image-alt-text')}}">
+            {{else}} --}}
+                <img class="lazyload mega-menu__image" data-src="{{cdn (lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.image'))}}" src="{{cdn 'img/loading.svg'}}" alt="{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.image-alt-text')}}">
+            {{!-- {{/if}} --}}
+            <div class="mega-menu__image-overlay">
+                <div class="mega-menu__image-learn_more">{{lang 'common.learn_more'}}</div>
+            </div>
+        </figure>
+        <section class="mega-menu__text-container">
+            <h3 class="mega-menu__title">{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.title')}}</h3>
+
+            <p class="mega-menu__sku">SKU#: {{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.sku')}}</p>
+            {{!-- <div nav-price-loader index="{{getVar 'index'}}" index-child="{{getVar 'index-child'}}">
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div> --}}
+             <div class="mega-menu__price">
+                <p class="mega-menu__text" data-href="{{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.link')}}" index="{{getVar 'index'}}" index-child="{{getVar 'index-child'}}">${{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.price')}}</p>
+                <span class="mega-menu__text-discount">${{lang (concat (concat (concat 'custom.header.mega-menu.category-'(getVar 'index'))(concat '.child-'(getVar 'index-child')))'.priceWithoutDiscount')}}</span>
+            </div>
+        </section>
+    </a>
+</li>

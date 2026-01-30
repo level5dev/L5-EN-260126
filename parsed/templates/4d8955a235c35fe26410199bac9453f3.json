@@ -1,0 +1,3 @@
+{
+  "components/custom/product/info-sku-upc": "<ul class=\"pdp__sku-upc\">\n    {{#if product.sku}}<li>SKU: <span data-product-sku>{{product.sku}}</span> {{#if product.upc}}| UPC: {{product.upc}}{{/if}}</li>{{/if}}        \n</ul>\n"
+}
