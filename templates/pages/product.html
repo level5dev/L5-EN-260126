@@ -54,7 +54,7 @@ cart: true
             {{{region name="product_below_related"}}}
 
             {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
-                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls pagination=pagination}}
             {{/all}}
 
             {{{region name="videos_and_articles"}}}

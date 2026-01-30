@@ -718,6 +718,37 @@ $pdp-tab-color--active: #ffffff;
   max-width: 1000px;
 }
 
+.review-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #dadada;
+}
+
+.review-pagination__counter {
+  font-size: 0.875rem;
+  line-height: 1;
+  align-self: center;
+}
+
+.review-pagination__btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #dadada;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.875rem;
+
+  &:hover:not(:disabled) {
+    background: #f0f0f0;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
 .load-more-reviews {
   display: flex;
   text-transform: uppercase;

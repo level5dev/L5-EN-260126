@@ -8,11 +8,14 @@ import schematics from '../custom/schematics';
 export default class ITSProduct {
     constructor(context) {
         this.context = context;
+        this.currentPage = 1;
+        this.reviewsPerPage = this.context.productpageReviewsCount || 3;
+        this.totalReviews = this.context.productReviewsTotal || 0;
+        this.totalPages = Math.ceil(this.totalReviews / this.reviewsPerPage);
 
-        const showMoreReviews = this.showMoreReviews.bind(this)
-
-        $('.js-load-more-reviews').on('click', showMoreReviews);
-
+        $('.js-review-prev').on('click', () => this.navigateReviews(this.currentPage - 1));
+        $('.js-review-next').on('click', () => this.navigateReviews(this.currentPage + 1));
+        this.updatePageCounter();
 
         // schematic + parts list buttons
         $('.schematic__content .button:not(.button--pdf)').on('click', schematics);
@@ -23,48 +26,42 @@ export default class ITSProduct {
         });
     }
 
-    showMoreReviews(e) {
-        e.preventDefault();
-        const $store = $(e.currentTarget);
-        const currentPage = $store.data('current-page');
-        const productPageReviewsCount = this.context.productpageReviewsCount || 3;
+    navigateReviews(page) {
         const productPageURL = this.context.productpageURL;
-        const nextPageURL = `${productPageURL}?revpage=${currentPage + 1}`;
-        const productTotalReviews = this.context.productReviewsTotal;
+        const pageURL = `${productPageURL}?revpage=${page}`;
 
-        $("button.load-more-reviews.js-load-more-reviews").hide();
-        $(".lds-ring-circle").css("display", "flex");
-        $store.attr('disabled', true);
+        $('.js-review-prev, .js-review-next').attr('disabled', true);
 
         const requestOptions = {
             config: {
                 product: {
                     reviews: {
-                        limit: productPageReviewsCount,
+                        limit: this.reviewsPerPage,
                     },
                 },
             },
             template: 'products/ajax-reviews',
         };
 
-        utils.api.getPage(nextPageURL, requestOptions, (err, res) => {
+        utils.api.getPage(pageURL, requestOptions, (err, res) => {
             if (err) {
-                $store.attr('disable', false);
+                $('.js-review-prev, .js-review-next').attr('disabled', false);
                 return;
             }
 
-            $(res).hide().appendTo("#productReviews-list").slideDown(200);
+            const $list = $('#productReviews-list');
+            $list.fadeOut(200, () => {
+                $list.html(res).fadeIn(200);
+            });
 
-            $store.data('current-page', currentPage + 1).attr('disabled', false);
-            $(".lds-ring-circle").css("display", "none");
-            setTimeout(function(){
-                if($(`#productReviews-list li`).length >= productTotalReviews){
-                    $("button.load-more-reviews.js-load-more-reviews").hide();
-                }else{
-                    $("button.load-more-reviews.js-load-more-reviews").show();
-                }
-            }, 0);
+            this.currentPage = page;
+            $('.js-review-prev').attr('disabled', this.currentPage <= 1);
+            $('.js-review-next').attr('disabled', this.currentPage >= this.totalPages);
+            this.updatePageCounter();
+        });
+    }
 
-        })
+    updatePageCounter() {
+        $('.js-review-page').text(`${this.currentPage} / ${this.totalPages}`);
     }
 }
